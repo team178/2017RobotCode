@@ -6,7 +6,46 @@ package org.usfirst.frc.team178.robot;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
+/*
+  *2017 I/O List
+  *https://docs.google.com/spreadsheets/d/1UKpSRuZrjuywv0qT_H1iGqm0bs0VatQ2Ny5uf1lUkLQ/edit#gid=0
+*/
 public class RobotMap {
+
+	public static int JoystickPort = 0; //computer
+	public static int JoystickPortXbox = 1; //computer
+	
+	public static int DMTOPright = 1; //CAN
+	public static int DMMIDDLEright = 2; //CAN
+	public static int DMBOTTOMright = 3; //CAN
+	public static int DMTOPleft = 4; //CAN
+	public static int DMMIDDLEleft = 5; //CAN
+	public static int DMBOTTOMleft = 6; //CAN
+	
+	public static int PCM = 7; //CAN
+	
+	public static int PDP = 0; //CAN
+	
+	public static int BallSweep1 = 8; //CAN
+	public static int BallSweep2 = 9; //CAN
+	
+	public static int Climber1 = 10; //CAN
+	public static int Climber2 = 11; //CAN
+	
+	public static int ENCODERright1 = 0; //DIO
+	public static int ENCODERright2 = 1; //DIO
+	public static int ENCODERleft1 = 2; //DIO
+	public static int ENCODERleft2 = 3; //DIO
+	public static int ENCODERshooter1 = 4; //DIO
+	public static int ENCODERshooter2 = 5; //DIO
+	
+	public static int PRESSURETRANSDUCER = 0; //Analog
+	public static int ULTRASONIC = 1; //Analog
+	
+	public static int CAMERA1 = 1; //USB
+	public static int CAMERA2 = 2; //USB
+	
+	
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;
