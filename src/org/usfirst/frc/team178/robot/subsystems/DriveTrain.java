@@ -21,7 +21,7 @@ public class DriveTrain extends Subsystem {
 	public static CANTalon right3;
 	public static Encoder right;
 	public static Encoder left;
-	public static DoubleSolenoid PCM;
+	public static DoubleSolenoid speedShifter;
 	
 	
 	public DriveTrain() {
@@ -34,8 +34,20 @@ public class DriveTrain extends Subsystem {
 	right3 = new CANTalon(RobotMap.DMBOTTOMright);
 	right = new Encoder(RobotMap.ENCODERright1, RobotMap.ENCODERright2);
 	left = new Encoder(RobotMap.ENCODERleft1, RobotMap.ENCODERright2);
-	PCM = new DoubleSolenoid(0, 1);
+	speedShifter = new DoubleSolenoid(0, 1);
 	
+	
+	}
+	
+	public void toggleSpeed() {
+		if (speedShifter.get() == DoubleSolenoid.Value.kForward)
+		{
+			speedShifter.set(DoubleSolenoid.Value.kReverse);
+		}
+		else if (speedShifter.get() == DoubleSolenoid.Value.kReverse)
+		{
+			speedShifter.set(DoubleSolenoid.Value.kForward);
+		}
 	}
 	
 	public void drive(double leftMotors, double rightMotors)
