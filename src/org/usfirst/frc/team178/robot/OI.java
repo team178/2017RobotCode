@@ -30,6 +30,21 @@ public class OI {
 	Button startButton = new JoystickButton(Elizabeth, 8); 
  
 	
+	public OI() {
+		
+	}
+	
+	 public double getX (){
+	    	return Pooja.getX();
+	    }
+	    
+	    public double getY (){
+	    	return Pooja.getY();
+	    }
+	    
+	    public double getTwist (){
+	    	return Pooja.getRawAxis(3); //3 is axis for rotate 
+	    }
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
