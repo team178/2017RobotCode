@@ -34,7 +34,7 @@ public class DriveTrain extends Subsystem {
 	right2 = new CANTalon(RobotMap.DMMIDDLEright);
 	right3 = new CANTalon(RobotMap.DMBOTTOMright);
 	right = new Encoder(RobotMap.DRIVEencoderRA, RobotMap.DRIVEencoderRB);
-	left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderRB);
+	left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB);
 	speedShifter = new DoubleSolenoid(0, 1);
 	
 	speedShifter.set(DoubleSolenoid.Value.kForward);
