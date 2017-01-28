@@ -36,12 +36,12 @@ public class RobotMap {
 	public static int Shooter2 = 13; //CAN
 	public static int Shooter3 = 14; //CAN
 	
-	public static int ENCODERright1 = 0; //DIO
-	public static int ENCODERright2 = 1; //DIO
-	public static int ENCODERleft1 = 2; //DIO
-	public static int ENCODERleft2 = 3; //DIO
-	public static int ENCODERshooter1 = 4; //DIO
-	public static int ENCODERshooter2 = 5; //DIO
+	public static int DRIVEencoderRA = 0; //DIO
+	public static int DRIVEencoderRB = 1; //DIO
+	public static int DRIVEencoderLA = 2; //DIO
+	public static int DRIVEencoderLB = 3; //DIO
+	public static int SHOOTERencoderA = 4; //DIO
+	public static int SHOOTERencoderB = 5; //DIO
 	
 	public static int PRESSURETRANSDUCER = 0; //Analog
 	public static int ULTRASONIC = 1; //Analog

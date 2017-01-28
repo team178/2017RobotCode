@@ -4,7 +4,6 @@ import org.usfirst.frc.team178.robot.RobotMap;
 
 import com.ctre.CANTalon;
 
-import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -20,9 +19,9 @@ public class BallSweeper extends Subsystem {
 		right = new CANTalon(RobotMap.BallSweep2);
 	}
 	
-	public void ballSweep(double leftSpeed, double rightSpeed) {
-  		left.set(leftSpeed);
-  		right.set(rightSpeed);
+	public void ballSweep(double speed) {
+  		left.set(speed);
+  		right.set(-speed);
 }
 
     public void initDefaultCommand() {

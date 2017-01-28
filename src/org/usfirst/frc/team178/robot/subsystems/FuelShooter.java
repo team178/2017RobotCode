@@ -13,25 +13,29 @@ public class FuelShooter extends Subsystem {
 	public static CANTalon shooter1;
 	public static CANTalon shooter2;
 	public static CANTalon shooter3;
-	public static Encoder eshooter;
+	public static Encoder encoder;
 	
 	public FuelShooter() {
 	
 	shooter1 = new CANTalon(RobotMap.Shooter1);
 	shooter2 = new CANTalon(RobotMap.Shooter2);
 	shooter3 = new CANTalon(RobotMap.Shooter3);
-	eshooter = new Encoder(RobotMap.ENCODERshooter1, RobotMap.ENCODERshooter2);
+	encoder = new Encoder(RobotMap.SHOOTERencoderA, RobotMap.SHOOTERencoderB);
 	
 	}
 	
-	public void shoot(double speed1, double speed2, double speed3) {
-		shooter1.set(speed1);
-		shooter2.set(speed2);
-		shooter3.set(speed3);
+	//used to shoot and to turn off shooter
+	public void shoot(double shootSpeed, double intakeSpeed) {
+		shooter1.set(shootSpeed);
+		shooter2.set(shootSpeed);
+		shooter3.set(intakeSpeed);
 	}
 	
+	public void stop() {
+		shoot(0,0);
+	}
 	public double getEncoderValue() {
-		return eshooter.getRate();
+		return encoder.getRate();
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

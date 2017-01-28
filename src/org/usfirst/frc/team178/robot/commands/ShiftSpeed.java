@@ -33,16 +33,11 @@ public class ShiftSpeed extends Command {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	if(!oi.button1.get())
-    	{
-    		return true;
-    	}
-    	else 
-    	{
-        return false;
-    	}
+    protected boolean isFinished() {	
+    	return !oi.button1.get();
+    	//returns true if trigger is not held
     }
+    
 
     // Called once after isFinished returns true
     protected void end() {
