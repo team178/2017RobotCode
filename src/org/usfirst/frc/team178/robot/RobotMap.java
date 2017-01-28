@@ -48,6 +48,9 @@ public class RobotMap {
 	
 	public static int CAMERA1 = 1; //USB
 	public static int CAMERA2 = 2; //USB
+
+	public static int SHIFTHI = 0; // PCM Channel
+	public static int SHIFTLOW = 1; // PCM Channel
 	
 	
 	// For example to map the left and right motors, you could define the
