@@ -32,6 +32,10 @@ public class RobotMap {
 	public static int Climber1 = 10; //CAN
 	public static int Climber2 = 11; //CAN
 	
+	public static int Shooter1 = 12; //CAN
+	public static int Shooter2 = 13; //CAN
+	public static int Shooter3 = 14; //CAN
+	
 	public static int ENCODERright1 = 0; //DIO
 	public static int ENCODERright2 = 1; //DIO
 	public static int ENCODERleft1 = 2; //DIO

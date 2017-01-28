@@ -36,18 +36,16 @@ public class DriveTrain extends Subsystem {
 	left = new Encoder(RobotMap.ENCODERleft1, RobotMap.ENCODERright2);
 	speedShifter = new DoubleSolenoid(0, 1);
 	
+	speedShifter.set(DoubleSolenoid.Value.kForward);
 	
 	}
 	
-	public void toggleSpeed() {
-		if (speedShifter.get() == DoubleSolenoid.Value.kForward)
-		{
-			speedShifter.set(DoubleSolenoid.Value.kReverse);
-		}
-		else if (speedShifter.get() == DoubleSolenoid.Value.kReverse)
-		{
-			speedShifter.set(DoubleSolenoid.Value.kForward);
-		}
+	public void changeToLoGear() {	
+		speedShifter.set(DoubleSolenoid.Value.kReverse);
+	}
+	
+	public void changeToHiGear() {
+		speedShifter.set(DoubleSolenoid.Value.kForward);
 	}
 	
 	public void drive(double leftMotors, double rightMotors)
