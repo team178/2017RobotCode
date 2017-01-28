@@ -22,9 +22,9 @@ public class RopeClimber extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public void climb(double climbspeed1, double climbspeed2) {
-    	climber1.set(climbspeed1);
-    	climber2.set(climbspeed2);
+    public void climb(double climbspeed) {
+    	climber1.set(climbspeed);
+    	climber2.set(climbspeed);
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
