@@ -23,34 +23,32 @@ public class DriveTrain extends Subsystem {
 	public static Encoder right;
 	public static Encoder left;
 	public static DoubleSolenoid speedShifter;
-	
-	
+
 	public DriveTrain() {
-		
-	left1 = new CANTalon(RobotMap.DMTOPleft);
-	left2 = new CANTalon(RobotMap.DMMIDDLEleft);
-	left3 = new CANTalon(RobotMap.DMBOTTOMleft);
-	right1 = new CANTalon(RobotMap.DMTOPright);
-	right2 = new CANTalon(RobotMap.DMMIDDLEright);
-	right3 = new CANTalon(RobotMap.DMBOTTOMright);
-	right = new Encoder(RobotMap.DRIVEencoderRA, RobotMap.DRIVEencoderRB);
-	left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB);
-	speedShifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.SHIFTLOW, RobotMap.SHIFTHI);
-	
-	speedShifter.set(DoubleSolenoid.Value.kForward);
-	
+
+		left1 = new CANTalon(RobotMap.DMTOPleft);
+		left2 = new CANTalon(RobotMap.DMMIDDLEleft);
+		left3 = new CANTalon(RobotMap.DMBOTTOMleft);
+		right1 = new CANTalon(RobotMap.DMTOPright);
+		right2 = new CANTalon(RobotMap.DMMIDDLEright);
+		right3 = new CANTalon(RobotMap.DMBOTTOMright);
+		right = new Encoder(RobotMap.DRIVEencoderRA, RobotMap.DRIVEencoderRB);
+		left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB);
+		speedShifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.SHIFTLOW, RobotMap.SHIFTHI);
+
+		speedShifter.set(DoubleSolenoid.Value.kForward);
+
 	}
-	
-	public void changeToLoGear() {	
+
+	public void changeToLoGear() {
 		speedShifter.set(DoubleSolenoid.Value.kReverse);
 	}
-	
+
 	public void changeToHiGear() {
 		speedShifter.set(DoubleSolenoid.Value.kForward);
 	}
-	
-	public void drive(double leftMotors, double rightMotors)
-	{
+
+	public void drive(double leftMotors, double rightMotors) {
 		left1.set(leftMotors);
 		left2.set(leftMotors);
 		left3.set(leftMotors);
@@ -58,38 +56,30 @@ public class DriveTrain extends Subsystem {
 		right2.set(rightMotors);
 		right3.set(rightMotors);
 	}
-	
-	public double getELeft()
-	{
+
+	public double getELeft() {
 		return left.getRate();
 	}
-	
-	public double getERight()
-	{
+
+	public double getERight() {
 		return right.getRate();
 	}
-	
-	public boolean isStraight()
-	{
-		if (Math.abs(getELeft()-getERight()) < 0.1)
-		{
+
+	public boolean isStraight() {
+		if (Math.abs(getELeft() - getERight()) < 0.1) {
 			return true;
-		}
-		else 
-		{
+		} else {
 			return false;
 		}
 	}
-	
-	
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 
-    public void initDefaultCommand() {
-    	setDefaultCommand(new JoystickDrive());
-    	
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
+	// Put methods for controlling this subsystem
+	// here. Call these from Commands.
+
+	public void initDefaultCommand() {
+		setDefaultCommand(new JoystickDrive());
+
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
+	}
 }
-

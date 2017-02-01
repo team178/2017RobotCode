@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team178.robot.*;
 import org.usfirst.frc.team178.robot.subsystems.*;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class JoystickDrive extends Command {
 	
@@ -21,10 +22,19 @@ public class JoystickDrive extends Command {
     protected void initialize() {
     	oi = Robot.oi;
     	drivetrain = Robot.drivetrain;
+    	System.out.println("JoystickDrive Start");
     }
 	
 	protected void execute() {
 		//Joystick returns from -1 to 1, motor takes values from -1 to 1.
+		if (oi.button1.get() && DriveTrain.speedShifter.get() == DoubleSolenoid.Value.kForward)
+		{
+			drivetrain.changeToLoGear();
+		}
+		else if (!oi.button1.get() && DriveTrain.speedShifter.get() == DoubleSolenoid.Value.kReverse)
+		{
+			drivetrain.changeToHiGear();
+		}
 		yVal = oi.getY();
 		twistVal = oi.getTwist();
 		//System.out.println("Y Val: " + yVal);
