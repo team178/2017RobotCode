@@ -27,11 +27,11 @@ public class JoystickDrive extends Command {
 	
 	protected void execute() {
 		//Joystick returns from -1 to 1, motor takes values from -1 to 1.
-		if (oi.button1.get() && DriveTrain.speedShifter.get() == DoubleSolenoid.Value.kForward)
+		if (oi.button2.get() && DriveTrain.speedShifter.get() == DoubleSolenoid.Value.kForward)
 		{
 			drivetrain.changeToLoGear();
 		}
-		else if (!oi.button1.get() && DriveTrain.speedShifter.get() == DoubleSolenoid.Value.kReverse)
+		else if (!oi.button2.get() && DriveTrain.speedShifter.get() == DoubleSolenoid.Value.kReverse)
 		{
 			drivetrain.changeToHiGear();
 		}
