@@ -1,6 +1,7 @@
 package org.usfirst.frc.team178.robot.commands;
 
 import org.usfirst.frc.team178.robot.Robot;
+import org.usfirst.frc.team178.robot.subsystems.GearGobbler;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -10,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class MoveGobbler extends Command {
-	Gobbler gobbler;
+	GearGobbler geargobbler;
 	
 	
 	
@@ -20,7 +21,7 @@ public class MoveGobbler extends Command {
 	public MoveGobbler()
 	{
 		requires(Robot.GearGobbler);
-		gobbler = Robot.gobbler;
+		geargobbler = Robot.geargobbler;
 	}
 		
 		
@@ -37,7 +38,7 @@ public class MoveGobbler extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+    		geargobbler.moveGobbler();
     }
 
     // Make this return true when this Command no longer needs to run execute()
