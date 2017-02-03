@@ -15,13 +15,15 @@ public class GearGobbler extends Subsystem {
 		extendRetract = new DoubleSolenoid(2, 3);
 		ultrasonic = new AnalogInput(1);
 	}
-	
-	public void pewPew() {
+	public void moveGobbler() {
 		if(extendRetract.get() == DoubleSolenoid.Value.kForward){
 			extendRetract.set(DoubleSolenoid.Value.kReverse);
 		}
 		else if(extendRetract.get() == DoubleSolenoid.Value.kReverse){
+			
+			//if (getValue() > 0 && getValue() < 5)  {
 			extendRetract.set(DoubleSolenoid.Value.kForward);
+			//}
 		}
 	}
 	
