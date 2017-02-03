@@ -21,7 +21,7 @@ public class OI {
 	public Button button7 = new JoystickButton(Pooja, 7);
 	
 	Joystick Elizabeth = new Joystick(RobotMap.JoystickPortXbox);
-	public Button buttonA = new JoystickButton(Elizabeth, 1);
+	public Button buttonA = new JoystickButton(Elizabeth, 1);//used for GearGobbler command
 	public Button buttonX = new JoystickButton(Elizabeth, 3);
 	public Button buttonY = new JoystickButton(Elizabeth, 4);
 	public Button lBumper = new JoystickButton(Elizabeth, 6);
@@ -33,6 +33,7 @@ public class OI {
 	
 	public OI() {
 		//button1.whileHeld(new JoystickDriveLow());
+		buttonA.whenPressed(new MoveGobbler());
 	}
 	
 	 public double getX (){
