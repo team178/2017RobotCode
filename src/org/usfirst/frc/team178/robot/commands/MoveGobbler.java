@@ -9,14 +9,18 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ExtendGobbler extends Command {
+public class MoveGobbler extends Command {
+	Gobbler gobbler;
 	
 	
 	
 	
-	public ExtendGobbler()
+	
+	
+	public MoveGobbler()
 	{
 		requires(Robot.GearGobbler);
+		gobbler = Robot.gobbler;
 	}
 		
 		

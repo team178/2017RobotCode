@@ -22,6 +22,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveTrain drivetrain;
 	public static Pneumatics pneumatics;
+	public static GearGobbler geargobbler;
 	
 	
 
@@ -36,7 +37,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		drivetrain = new DriveTrain();
 		pneumatics = new Pneumatics();
-		
+		geargobbler = new GearGobbler();
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
