@@ -12,28 +12,22 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveGobbler extends Command {
 	GearGobbler geargobbler;
-	
-	
-	
-	
-	
+	DoubleSolenoid.Value initial;
 	
 	public MoveGobbler()
 	{
-		requires(Robot.GearGobbler);
+		requires(Robot.geargobbler);
 		geargobbler = Robot.geargobbler;
 	}
 		
 		
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    }
+    
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	doublesolenoid = Robot.doubleSolenoid;
-    	analoginput = Robot.analogInput;
-    	
+    	initial = geargobbler.getGobbler();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -43,7 +37,12 @@ public class MoveGobbler extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	geargobbler.getGobbler();
+    	if (initial == geargobbler.getGobbler()) {
+    		return false;
+    	} else {
+    		return true; 
+    	}
     }
 
     // Called once after isFinished returns true

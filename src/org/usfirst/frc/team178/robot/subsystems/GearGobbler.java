@@ -27,6 +27,10 @@ public class GearGobbler extends Subsystem {
 		}
 	}
 	
+	public DoubleSolenoid.Value getGobbler() {
+		return extendRetract.get();
+	}
+	
 	public int getValue() {
 		return ultrasonic.getValue(); //Check method?
 	}
