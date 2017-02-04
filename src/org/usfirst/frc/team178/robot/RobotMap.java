@@ -15,6 +15,7 @@ public class RobotMap {
 	public static int JoystickPort = 0; //computer
 	public static int JoystickPortXbox = 1; //computer
 	
+	//DM = DriveMotor
 	public static int DMTOPright = 1; //CAN
 	public static int DMMIDDLEright = 2; //CAN
 	public static int DMBOTTOMright = 3; //CAN
@@ -51,6 +52,9 @@ public class RobotMap {
 
 	public static int SHIFTHI = 0; // PCM Channel
 	public static int SHIFTLOW = 1; // PCM Channel
+	
+	public static int GEARGOBBLER1 = 2; //PCM Channel
+	public static int GEARGOBBLER2 = 3; //PCM Channel
 	
 	
 	// For example to map the left and right motors, you could define the
