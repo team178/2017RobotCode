@@ -23,8 +23,10 @@ public class VisionStreamer extends Subsystem {
 	
 	private final Object imgLock = new Object();
 	
+	private AxisCamera camera;
+	
 	public VisionStreamer(String cameraName, String host) {
-	    AxisCamera camera = new AxisCamera(cameraName, host);
+	    camera = new AxisCamera(cameraName, host);
 	    camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
 	    
 	    visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
@@ -38,6 +40,7 @@ public class VisionStreamer extends Subsystem {
 	    });
 	    visionThread.start();
 	}
+	
 	
 	/*alternative to implementing a thread 
 	 * public void processCurrentImage() {

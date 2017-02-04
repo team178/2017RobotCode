@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team178.robot;
 
+import org.usfirst.frc.team178.robot.commands.CenterOnAirship;
 import org.usfirst.frc.team178.robot.subsystems.*;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -76,7 +77,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
+		autonomousCommand = new CenterOnAirship();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
