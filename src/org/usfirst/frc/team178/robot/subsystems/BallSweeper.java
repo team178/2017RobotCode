@@ -19,7 +19,7 @@ public class BallSweeper extends Subsystem {
 		right = new CANTalon(RobotMap.BallSweep2);
 	}
 	
-	public void ballSweep(double speed) {
+	public void setSpeed(double speed) {
   		left.set(speed);
   		right.set(-speed);
 }
