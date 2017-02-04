@@ -32,10 +32,12 @@ public class DriveTrain extends Subsystem {
 		right1 = new CANTalon(RobotMap.DMTOPright);
 		right2 = new CANTalon(RobotMap.DMMIDDLEright);
 		right3 = new CANTalon(RobotMap.DMBOTTOMright);
-		right = new Encoder(RobotMap.DRIVEencoderRA, RobotMap.DRIVEencoderRB);
-		left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB);
+		right = new Encoder(RobotMap.DRIVEencoderRA, RobotMap.DRIVEencoderRB, true, Encoder.EncodingType.k4X);
+		left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB, false, Encoder.EncodingType.k4X);
 		speedShifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.SHIFTLOW, RobotMap.SHIFTHI);
-
+		
+		// TODO: set left and right encoder distance per pulse here! :)
+		
 		speedShifter.set(DoubleSolenoid.Value.kForward);
 
 	}
