@@ -24,7 +24,8 @@ public class Robot extends IterativeRobot {
 	public static Pneumatics pneumatics;
 	public static GearGobbler geargobbler;
 	public static BallSweeper ballsweeper;
-	
+	public static VisionStreamer frontCamera;
+	//public static VisionStreamer backCamera;
 	
 
 	Command autonomousCommand;
@@ -40,6 +41,8 @@ public class Robot extends IterativeRobot {
 		pneumatics = new Pneumatics();
 		geargobbler = new GearGobbler();
 		ballsweeper = new BallSweeper();
+		frontCamera = new VisionStreamer("frontCamera", "10.1.78.109");
+		//backCamera = new VisionStreamer("backCamera", "10.1.78.109");
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
