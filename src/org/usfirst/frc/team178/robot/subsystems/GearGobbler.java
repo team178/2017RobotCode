@@ -14,18 +14,15 @@ public class GearGobbler extends Subsystem {
     public static AnalogInput ultrasonic;    
 
 	public GearGobbler() {
-		extendRetract = new DoubleSolenoid(RobotMap.GEARGOBBLER1, RobotMap.GEARGOBBLER1);
+		extendRetract = new DoubleSolenoid(RobotMap.PCM, RobotMap.GEARGOBBLER2, RobotMap.GEARGOBBLER1);
 		ultrasonic = new AnalogInput(1);
 	}
 	public void moveGobbler() {
 		if(extendRetract.get() == DoubleSolenoid.Value.kForward){
 			extendRetract.set(DoubleSolenoid.Value.kReverse);
 		}
-		else if(extendRetract.get() == DoubleSolenoid.Value.kReverse){
-			
-			//if (getValue() > 0 && getValue() < 5)  {
+		else {			
 			extendRetract.set(DoubleSolenoid.Value.kForward);
-			//}
 		}
 	}
 	
