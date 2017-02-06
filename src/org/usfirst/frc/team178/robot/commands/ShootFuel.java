@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ShootFuel extends Command {
 	FuelShooter fuelshooter;
+	OI oi;
 
     public ShootFuel() {
     	requires (Robot.FuelShooter);
@@ -25,7 +26,13 @@ public class ShootFuel extends Command {
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	if oi.rBumper.whileHeld() {
+    	   return false;
+    	}
+    	else { 
+    		return true;
+    	}
+       
     }
 
     // Called once after isFinished returns true
