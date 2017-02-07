@@ -1,9 +1,4 @@
 bin/*
 build/org/*
 /bin/
-<<<<<<< Updated upstream
 .classpath
-=======
-
-.gitignore
->>>>>>> Stashed changes
