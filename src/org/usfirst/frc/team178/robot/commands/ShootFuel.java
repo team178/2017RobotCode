@@ -1,5 +1,8 @@
 package org.usfirst.frc.team178.robot.commands;
 
+import org.usfirst.frc.team178.robot.Robot;
+import org.usfirst.frc.team178.robot.subsystems.FuelShooter;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -9,7 +12,7 @@ public class ShootFuel extends Command {
 	FuelShooter fuelshooter;
 
     public ShootFuel() {
-    	requires (Robot.FuelShooter);
+    	requires (Robot.fuelshooter);
     	
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
