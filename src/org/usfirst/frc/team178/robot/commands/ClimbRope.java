@@ -1,13 +1,18 @@
 package org.usfirst.frc.team178.robot.commands;
 
+import org.usfirst.frc.team178.robot.Robot;
+import org.usfirst.frc.team178.robot.subsystems.RopeClimber;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
 public class ClimbRope extends Command {
+	RopeClimber ropeclimber;
 
     public ClimbRope() {
+    	requires (Robot.ropeclimber);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -18,6 +23,7 @@ public class ClimbRope extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	ropeclimber.climb(0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
