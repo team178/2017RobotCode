@@ -16,7 +16,7 @@ public class DriveDistance extends Command {
     	requires (Robot.drivetrain);
     	dRotation = rotation;
     	dRate = rate;
-    	speed = this.speed;
+    	this.speed = speed;
     }
 
     // Called just before this Command runs the first time
