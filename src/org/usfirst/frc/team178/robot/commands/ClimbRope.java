@@ -19,6 +19,7 @@ public class ClimbRope extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	ropeclimber = Robot.ropeclimber;
     }
 
     // Called repeatedly when this Command is scheduled to run

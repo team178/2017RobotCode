@@ -17,7 +17,6 @@ public class MoveGobbler extends Command {
 	public MoveGobbler()
 	{
 		requires(Robot.geargobbler);
-		geargobbler = Robot.geargobbler;
 	}
 		
 		
@@ -28,6 +27,7 @@ public class MoveGobbler extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	initial = geargobbler.getGobbler();
+		geargobbler = Robot.geargobbler;
     }
 
     // Called repeatedly when this Command is scheduled to run
