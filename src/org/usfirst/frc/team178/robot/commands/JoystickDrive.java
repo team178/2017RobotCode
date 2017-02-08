@@ -17,6 +17,7 @@ public class JoystickDrive extends Command {
 	public JoystickDrive()
 	{
 		requires(Robot.drivetrain);
+		requires(Robot.pneumatics);
 	}
 	
     protected void initialize() {
