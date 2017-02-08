@@ -40,7 +40,7 @@ public class DriveTrain extends Subsystem {
 		// TODO: set left and right encoder distance per pulse here! :)
 		
 		speedShifter.set(DoubleSolenoid.Value.kForward);
-		double dpp = (6*Math.pi)/1024; //distance per pulse (circumference/counts per revolution)
+		double dpp = (6*Math.PI)/1024; //distance per pulse (circumference/counts per revolution)
 		right.setDistancePerPulse(dpp); //must be changed for both right and left
 		left.setDistancePerPulse(dpp);
 		
@@ -59,13 +59,13 @@ public class DriveTrain extends Subsystem {
 		speedShifter.set(DoubleSolenoid.Value.kForward);
 	}
 
-	public void masterDrive(double speed) {
+	public void leftDrive(double speed) {
 		left1.set(speed);
 		left2.set(speed);
 		left3.set(speed);
 	}
 	
-	public void slaveDrive(double speed) {
+	public void rightDrive(double speed) {
 		right1.set(speed);
 		right2.set(speed);
 		right3.set(speed);

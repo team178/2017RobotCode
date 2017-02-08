@@ -11,9 +11,9 @@ public class DriveDistance extends Command {
 	DriveTrain drivetrain;
 	double distance;
 
-    public DriveDistance(double dist) {
+    public DriveDistance(/*double dist*/) {
     	requires (Robot.drivetrain);
-    	distance = dist;
+    	//distance = dist;
     }
 
     // Called just before this Command runs the first time
@@ -25,11 +25,10 @@ public class DriveDistance extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drivetrain.masterDrive(0.1); //left side drives
-    	drivetrain.slaveDrive(0.1); //right side drives
-    	double error = drivetrain.getLeftDistance() - drivetrain.getRightDistance(); //subtracts to find error value
-    	drivetrain.masterDrive(0.1); 
-    	drivetrain.slaveSet(0.1 + 0.01*error);
+    	drivetrain.drive(0.1, 0.1);
+    /*	double error = drivetrain.getLeftDistance() - drivetrain.getRightDistance(); //subtracts to find error value
+    	drivetrain.leftDrive(0.1); 
+    	drivetrain.rightDrive(0.1 + 0.1*error); */
     	
     	//System.out.println("Left: " + drivetrain.getELeft());
     	//System.out.println("Right: " + drivetrain.getERight());
@@ -38,17 +37,17 @@ public class DriveDistance extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (drivetrain.getLeftDistance() >= distance  && drivetrain.getRightDistance >= distance) {
+    	/*if (drivetrain.getLeftDistance() >= distance  && drivetrain.getRightDistance >= distance) {
     		return true;
     	}
-    	else {
+    	else {*/
         	return false;
-    	}
+    	
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	drivetrain.drive(0);
+    	drivetrain.drive(0,0);
     }
 
     // Called when another command which requires one or more of the same

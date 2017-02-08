@@ -26,7 +26,7 @@ public class Pneumatics extends Subsystem {
 		double current = airCompressor.getCompressorCurrent();
 		*/
 	}
-
+	
 	public double getPressure() {
 		return (pressureTransducer.getAverageVoltage() - .854) * 40.9276;
 	}
