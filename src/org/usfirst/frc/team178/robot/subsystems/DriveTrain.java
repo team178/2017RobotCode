@@ -32,8 +32,8 @@ public class DriveTrain extends Subsystem {
 		right1 = new CANTalon(RobotMap.DMTOPright);
 		right2 = new CANTalon(RobotMap.DMMIDDLEright);
 		right3 = new CANTalon(RobotMap.DMBOTTOMright);
-		right = new Encoder(RobotMap.DRIVEencoderRA, RobotMap.DRIVEencoderRB, true, Encoder.EncodingType.k4X);
-		left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB, false, Encoder.EncodingType.k4X);
+		right = new Encoder(RobotMap.DRIVEencoderRA, RobotMap.DRIVEencoderRB, false, Encoder.EncodingType.k4X);
+		left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
 		speedShifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.SHIFTLOW, RobotMap.SHIFTHI);
 		
 		
@@ -88,6 +88,14 @@ public class DriveTrain extends Subsystem {
 		return right.getDistance();
 	}
 
+	public double getRightSpeed() {
+		return right.getRate();
+	}
+	
+	public double getLeftSpeed() {
+		return left.getRate();
+	}
+	
 	public boolean isStraight() {
 		if (Math.abs(getLeftDistance() - getRightDistance()) < 0.1) {
 			return true;

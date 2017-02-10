@@ -37,6 +37,8 @@ public class JoystickDrive extends Command {
 		}
 		yVal = oi.getY();
 		twistVal = oi.getTwist();
+		System.out.println("Right Speed: " + drivetrain.getRightSpeed());
+    	System.out.println("Left Speed: " + drivetrain.getLeftSpeed());
 		//System.out.println("Y Val: " + yVal);
 		//System.out.println("Twist Val: " + twistVal);
 		//System.out.println("X Val: " + oi.getX());
