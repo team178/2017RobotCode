@@ -42,8 +42,8 @@ public class Robot extends IterativeRobot {
 		pneumatics = new Pneumatics();
 		geargobbler = new GearGobbler();
 		ballsweeper = new BallSweeper();
-		ropeclimber = new RopeClimber();
 		fuelshooter = new FuelShooter();
+		ropeclimber = new RopeClimber();
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);

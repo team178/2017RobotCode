@@ -33,8 +33,12 @@ public class OI {
 	
 	public OI() {
 		buttonA.whenPressed(new MoveGobbler());
+<<<<<<< Updated upstream
 		button4.whenPressed(new DriveDistance());
 		
+=======
+		rBumper.whenPressed(new ShootFuel());
+>>>>>>> Stashed changes
 	}
 	
 	 public double getX (){
