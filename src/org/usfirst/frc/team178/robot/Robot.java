@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team178.robot;
 
+import org.usfirst.frc.team178.robot.commands.CenterOnAirship;
 import org.usfirst.frc.team178.robot.subsystems.*;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -26,7 +27,8 @@ public class Robot extends IterativeRobot {
 	public static BallSweeper ballsweeper;
 	public static RopeClimber ropeclimber;
 	public static FuelShooter fuelshooter;
-	
+	public static VisionStreamer frontCamera;
+	//public static VisionStreamer backCamera;
 	
 
 	Command autonomousCommand;
@@ -44,6 +46,8 @@ public class Robot extends IterativeRobot {
 		ballsweeper = new BallSweeper();
 		ropeclimber = new RopeClimber();
 		fuelshooter = new FuelShooter();
+		frontCamera = new VisionStreamer("frontCamera", "10.1.78.109");
+		//backCamera = new VisionStreamer("backCamera", "10.1.78.109");
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
@@ -78,7 +82,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
+		autonomousCommand = new CenterOnAirship();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
