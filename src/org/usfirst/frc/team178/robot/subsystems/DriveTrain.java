@@ -36,12 +36,21 @@ public class DriveTrain extends Subsystem {
 		left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB, false, Encoder.EncodingType.k4X);
 		speedShifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.SHIFTLOW, RobotMap.SHIFTHI);
 		
+		
 		// TODO: set left and right encoder distance per pulse here! :)
 		
 		speedShifter.set(DoubleSolenoid.Value.kForward);
-
+		double dpp = (6*Math.PI)/1024; //distance per pulse (circumference/counts per revolution)
+		right.setDistancePerPulse(dpp); //must be changed for both right and left
+		left.setDistancePerPulse(dpp);
+		
 	}
-
+	
+	public void resetEncoders()	{
+		right.reset();
+		left.reset();
+	}
+	
 	public void changeToLoGear() {
 		speedShifter.set(DoubleSolenoid.Value.kReverse);
 	}
@@ -50,6 +59,18 @@ public class DriveTrain extends Subsystem {
 		speedShifter.set(DoubleSolenoid.Value.kForward);
 	}
 
+	public void leftDrive(double speed) {
+		left1.set(speed);
+		left2.set(speed);
+		left3.set(speed);
+	}
+	
+	public void rightDrive(double speed) {
+		right1.set(speed);
+		right2.set(speed);
+		right3.set(speed);
+	}
+	
 	public void drive(double leftMotors, double rightMotors) {
 		left1.set(leftMotors);
 		left2.set(leftMotors);
@@ -59,16 +80,16 @@ public class DriveTrain extends Subsystem {
 		right3.set(rightMotors);
 	}
 
-	public double getELeft() {
-		return left.getRate();
+	public double getLeftDistance() {
+		return left.getDistance();
 	}
 
-	public double getERight() {
-		return right.getRate();
+	public double getRightDistance() {
+		return right.getDistance();
 	}
 
 	public boolean isStraight() {
-		if (Math.abs(getELeft() - getERight()) < 0.1) {
+		if (Math.abs(getLeftDistance() - getRightDistance()) < 0.1) {
 			return true;
 		} else {
 			return false;

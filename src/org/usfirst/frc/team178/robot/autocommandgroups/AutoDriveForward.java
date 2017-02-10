@@ -1,4 +1,4 @@
-package org.usfirst.team178.robot.autocommandgroups;
+package org.usfirst.frc.team178.robot.autocommandgroups;
 
 import org.usfirst.frc.team178.robot.commands.DriveDistance;
 
@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoDriveForward extends CommandGroup {
 
     public AutoDriveForward() {
-    	addSequential(new DriveDistance(2,0.5,0.5));  	
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

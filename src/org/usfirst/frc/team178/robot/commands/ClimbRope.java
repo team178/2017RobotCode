@@ -1,49 +1,35 @@
 package org.usfirst.frc.team178.robot.commands;
 
 import org.usfirst.frc.team178.robot.Robot;
-import org.usfirst.frc.team178.robot.subsystems.GearGobbler;
+import org.usfirst.frc.team178.robot.subsystems.RopeClimber;
 
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class MoveGobbler extends Command {
-	GearGobbler geargobbler;
-	DoubleSolenoid.Value initial;
-	
-	public MoveGobbler()
-	{
-		requires(Robot.geargobbler);
-	}
-		
-		
+public class ClimbRope extends Command {
+	RopeClimber ropeclimber;
+
+    public ClimbRope() {
+    	requires (Robot.ropeclimber);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    
+    }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	initial = geargobbler.getGobbler();
-		geargobbler = Robot.geargobbler;
+    	ropeclimber = Robot.ropeclimber;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		geargobbler.moveGobbler();
+    	ropeclimber.climb(0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	geargobbler.getGobbler();
-    	if (initial != geargobbler.getGobbler()) {
-    		System.out.println("finished");
-    		return false;
-    	} else {
-    		return true; 
-    	}
+        return false;
     }
 
     // Called once after isFinished returns true
