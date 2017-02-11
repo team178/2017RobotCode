@@ -33,7 +33,6 @@ public class OI {
 	
 	public OI() {
 		buttonA.whenPressed(new MoveGobbler());
-		button4.whenPressed(new DriveDistance());
 		
 	}
 	
