@@ -3,7 +3,7 @@ package org.usfirst.frc.team178.robot.subsystems;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
-import org.usfirst.frc.team178.robot.GripPipeline;
+import org.usfirst.frc.team178.robot.AirshipGripPipeline;
 import org.usfirst.frc.team178.robot.RobotMap;
 
 import edu.wpi.cscore.AxisCamera;
@@ -20,6 +20,8 @@ public class VisionStreamer extends Subsystem {
 	private VisionThread visionThread;
 	private double centerX = 0.0;
 	private double centerY = 0.0;
+	private double rectWidth = 0.0;
+	private double rectHeight = 0.0;
 	
 	private final Object imgLock = new Object();
 	
@@ -29,12 +31,14 @@ public class VisionStreamer extends Subsystem {
 	    camera = new AxisCamera(cameraName, host);
 	    camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
 	    
-	    visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
+	    visionThread = new VisionThread(camera, new AirshipGripPipeline(), pipeline -> {
 	        if (!pipeline.filterContoursOutput().isEmpty()) {
 	            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
 	            synchronized (imgLock) {
 	                centerX = r.x + (r.width / 2);
 	                centerY = r.y + (r.height / 2);
+	                rectWidth = 0.0;
+	                rectHeight = 0.0;
 	            }
 	        }
 	    });
@@ -64,6 +68,12 @@ public class VisionStreamer extends Subsystem {
 	}
 	public double getIMG_HEIGHT(){
 		return IMG_HEIGHT;
+	}
+	public double getWidth(){
+		return rectWidth;
+	}
+	public double getHeight(){
+		return rectHeight;
 	}
 	
 	
