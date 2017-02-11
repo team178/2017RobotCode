@@ -39,4 +39,4 @@ public class AutoGearSequence extends CommandGroup {
     	//Center: Drive forward, center, place gear
     	//Left or right: Drive forward, rotate, center, place gear 
     }
-}
+
