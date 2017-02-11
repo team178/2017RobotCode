@@ -13,7 +13,7 @@ public class AutoGearSequence extends CommandGroup {
     public AutoGearSequence() {
     	DriverStation ds = DriverStation.getInstance();
     	
-    	if(ds.getLocation()==1) {
+    	if(ds.getLocation() == 1) { //It's either 1 or 3
     		addSequential(new DriveDistance(0.7, 2)); //Change speed after testing
     		addSequential(new CenterOnAirship()); 
     		addSequential(new MoveGobbler());
@@ -28,7 +28,6 @@ public class AutoGearSequence extends CommandGroup {
     		addSequential(new MoveGobbler());
     	}
     	//Right alignment
-    	else{
     		addSequential(new AutoTurn(0.5, 0));
     		addSequential(new DriveDistance(0.7, 2));
     		addSequential(new AutoTurn(0, 0.5));
