@@ -23,6 +23,7 @@ public class DriveDistance extends Command {
     protected void initialize() {
     	oi= Robot.oi;
     	drivetrain= Robot.drivetrain;
+    	drivetrain.resetEncoders();
     	adjustedSpeed = -robotSpeed;
     	drivetrain.drive(robotSpeed,-robotSpeed); //sets drivetrain to speed
     }
@@ -32,10 +33,13 @@ public class DriveDistance extends Command {
     	double error = drivetrain.getLeftSpeed() - drivetrain.getRightSpeed(); //subtracts to find error value
     	if (Math.abs(error) > 0.001)	{ //checks to see if the error value is greater than .001
     		drivetrain.leftDrive(robotSpeed); //drives only left side
-    		adjustedSpeed += 0.0001*error; //changes adjustedSpeed to adjustedSpeed + a constant*error
+    		adjustedSpeed -= 0.0001*error; //changes adjustedSpeed to adjustedSpeed + a constant*error
         	drivetrain.rightDrive(adjustedSpeed); //sets right side to adjustedSpeed
-        	System.out.println("LeftDistance: " + drivetrain.getLeftDistance());
-        	System.out.println("RightDistance: " + drivetrain.getRightDistance());
+        	//System.out.println("LeftDistance: " + drivetrain.getLeftDistance());
+        	//System.out.println("RightDistance: " + drivetrain.getRightDistance());
+        	System.out.println("RightSpeed: " + drivetrain.getRightSpeed());
+        	System.out.println("LeftSpeed: " + drivetrain.getLeftSpeed());
+        	
         	//we did all of this to make the robot drive straight, as naturally, it doesn't
     	}
     	
