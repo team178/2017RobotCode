@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team178.robot;
 
+import org.usfirst.frc.team178.robot.commands.DoNothing;
 import org.usfirst.frc.team178.robot.commands.DriveDistance;
 import org.usfirst.frc.team178.robot.subsystems.*;
 import org.usfirst.frc.team178.robot.autocommandgroups.AutoDriveForward;
@@ -61,6 +62,7 @@ public class Robot extends IterativeRobot {
 		chooser = new SendableChooser<Command>();
 		chooser.addObject("AutoDriveForward", new AutoDriveForward());
 		chooser.addObject("AutoGearSequence", new AutoGearSequence());
+		chooser.addObject("LightShow", new DoNothing());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
