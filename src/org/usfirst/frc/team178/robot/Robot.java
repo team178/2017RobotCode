@@ -1,8 +1,11 @@
 
 package org.usfirst.frc.team178.robot;
 
-import org.usfirst.frc.team178.robot.commands.CenterOnAirship;
+import org.usfirst.frc.team178.robot.commands.DriveDistance;
 import org.usfirst.frc.team178.robot.subsystems.*;
+import org.usfirst.frc.team178.robot.autocommandgroups.AutoDriveForward;
+import org.usfirst.frc.team178.robot.autocommandgroups.AutoGearSequence;
+import org.usfirst.frc.team178.robot.autocommandgroups.AutoLightRobot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -32,7 +35,7 @@ public class Robot extends IterativeRobot {
 	
 
 	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	SendableChooser<Command> chooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -49,9 +52,11 @@ public class Robot extends IterativeRobot {
 		frontCamera = new VisionStreamer("frontCamera", "10.1.78.109", VisionPipeline pipeline);
 		//backCamera = new VisionStreamer("backCamera", "10.1.78.109");
 		oi = new OI();
-		// chooser.addObject("My Auto", new MyAutoCommand());
+			
+		chooser = new SendableChooser<Command>();
+		chooser.addObject("AutoDriveForward", new AutoDriveForward());
+		chooser.addObject("AutoGearSequence", new AutoGearSequence());
 		SmartDashboard.putData("Auto mode", chooser);
-
 	}
 
 	/**
@@ -82,7 +87,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = new CenterOnAirship();
+		autonomousCommand = (Command) chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
