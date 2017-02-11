@@ -31,6 +31,7 @@ public class Robot extends IterativeRobot {
 	public static RopeClimber ropeclimber;
 	public static FuelShooter fuelshooter;
 	public static VisionStreamer frontCamera;
+	public static LightsSubsystem lights;
 	//public static VisionStreamer backCamera;
 	
 
@@ -50,6 +51,7 @@ public class Robot extends IterativeRobot {
 		ropeclimber = new RopeClimber();
 		fuelshooter = new FuelShooter();
 		frontCamera = new VisionStreamer("frontCamera", "10.1.78.109", VisionPipeline pipeline);
+		lights = new LightsSubsystem();
 		//backCamera = new VisionStreamer("backCamera", "10.1.78.109");
 		oi = new OI();
 			
@@ -132,6 +134,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+		
 		LiveWindow.run();
 	}
 }
