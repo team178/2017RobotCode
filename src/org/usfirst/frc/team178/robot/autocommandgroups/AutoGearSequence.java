@@ -14,25 +14,25 @@ public class AutoGearSequence extends CommandGroup {
     	DriverStation ds = DriverStation.getInstance();
     	
     	if(ds.getLocation()==1) {
-    		addSequential(new DriveDistance(0.7), 2); //Change speed after testing
+    		addSequential(new DriveDistance(0.7, 2)); //Change speed after testing
     		addSequential(new CenterOnAirship()); 
     		addSequential(new MoveGobbler());
     	}
     	//Left alignment
     	else if(ds.getLocation() == 2){
-    		addSequential(new AutoTurn(0, 0.5), 0.5); //Adjust values after testing
-    		addSequential(new DriveDistance(0.7), 2); 
-    		addSequential(new AutoTurn(0.5, 0), 1);
-    		addSequential(new DriveDistance(0.5), 1);
+    		addSequential(new AutoTurn(0, 0.5)); //Adjust values after testing
+    		addSequential(new DriveDistance(0.7, 2)); 
+    		addSequential(new AutoTurn(0.5, 0));
+    		addSequential(new DriveDistance(0.5, 1));
     		addSequential(new CenterOnAirship());
     		addSequential(new MoveGobbler());
     	}
     	//Right alignment
     	else{
-    		addSequential(new AutoTurn(0.5, 0), 0.5);
-    		addSequential(new DriveDistance(0.7), 2);
-    		addSequential(new AutoTurn(0, 0.5), 1);
-    		addSequential(new DriveDistance(0.5), 1);
+    		addSequential(new AutoTurn(0.5, 0));
+    		addSequential(new DriveDistance(0.7, 2));
+    		addSequential(new AutoTurn(0, 0.5));
+    		addSequential(new DriveDistance(0.5, 1));
     		addSequential(new CenterOnAirship());
     		addSequential(new MoveGobbler());
     	}
