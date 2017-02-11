@@ -11,7 +11,6 @@ public class AutoGearSequence extends CommandGroup {
 
     public AutoGearSequence() {
     	//Center alignment
-    	if()
     	addSequential(new CenterOnAirship());
     	addSequential(new MoveGobbler());
         //General sequence for autonomous gears, may need variations
