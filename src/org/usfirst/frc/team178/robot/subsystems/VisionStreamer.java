@@ -41,8 +41,8 @@ public class VisionStreamer extends Subsystem {
 	                rectHeight = 0.0;
 	            }
 	        }
-	    });
-	    visionThread.start();
+	    });*/
+	    //visionThread.start();
 	}
 	
 	
@@ -50,7 +50,6 @@ public class VisionStreamer extends Subsystem {
 	 * public void processCurrentImage() {
 		GripPipeline.process();
 	}*/
-	
 	public double getTapeCenterX(){
 		return centerX;
 	}
