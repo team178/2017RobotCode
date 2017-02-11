@@ -50,7 +50,7 @@ public class Robot extends IterativeRobot {
 		ballsweeper = new BallSweeper();
 		ropeclimber = new RopeClimber();
 		fuelshooter = new FuelShooter();
-		frontCamera = new VisionStreamer("frontCamera", "10.1.78.109", VisionPipeline pipeline);
+		frontCamera = new VisionStreamer("frontCamera", "10.1.78.109");
 		lights = new LightsSubsystem();
 		//backCamera = new VisionStreamer("backCamera", "10.1.78.109");
 		oi = new OI();
