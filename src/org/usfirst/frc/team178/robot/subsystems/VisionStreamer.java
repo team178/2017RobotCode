@@ -41,7 +41,7 @@ public class VisionStreamer extends Subsystem {
 	                rectHeight = 0.0;
 	            }
 	        }
-	    });*/
+	    });
 	    //visionThread.start();
 	}
 	
