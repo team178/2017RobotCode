@@ -12,45 +12,42 @@ public class DriveDistance extends Command {
 	double distance;
 	double adjustedSpeed;
 
-    public DriveDistance(/*double dist*/) {
+    public DriveDistance(double dist) {
     	requires (Robot.drivetrain);
-    	//distance = dist;
+    	distance = dist;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	oi= Robot.oi;
     	drivetrain= Robot.drivetrain;
-    	adjustedSpeed = -0.1;
-    	drivetrain.drive(0.1,-0.1);
+    	adjustedSpeed = -0.3;
+    	drivetrain.drive(0.3,-0.3); //sets drivetrain to speed
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double error = drivetrain.getLeftSpeed() - drivetrain.getRightSpeed(); //subtracts to find error value
-    	if (Math.abs(error) > 0.001){
-    		drivetrain.leftDrive(0.1);
-    		adjustedSpeed += 0.0001*error;
-        	drivetrain.rightDrive(adjustedSpeed); 
-        	System.out.println(error);
-        	
+    	if (Math.abs(error) > 0.001)	{ //checks to see if the error value is greater than .001
+    		drivetrain.leftDrive(0.3); //drives only left side
+    		adjustedSpeed += 0.0001*error; //changes adjustedSpeed to adjustedSpeed + a constant*error
+        	drivetrain.rightDrive(adjustedSpeed); //sets right side to adjustedSpeed
+        	System.out.println("LeftDistance: " + drivetrain.getLeftDistance());
+        	System.out.println("RightDistance: " + drivetrain.getRightDistance());
+        	//we did all of this to make the robot drive straight, as naturally, it doesn't
     	}
     	
-    	
-    	//System.out.println("Left: " + drivetrain.getELeft());
-    	//System.out.println("Right: " + drivetrain.getERight());
-    	//System.out.println("isStraight: " + drivetrain.isStraight());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	double passedTime = timeSinceInitialized();
-    	if (passedTime == 2) {
-    		return true;
-    	}
-    	else {
-        	return false;
-    	}
+    	if (drivetrain.getLeftDistance() >= distance  && drivetrain.getRightDistance() >= distance) {
+      		return true;
+      	}
+     	else {
+ 
+          	return false;
+     	}
     }
 
     // Called once after isFinished returns true
