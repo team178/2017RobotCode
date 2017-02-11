@@ -11,25 +11,27 @@ public class DriveDistance extends Command {
 	DriveTrain drivetrain;
 	double distance;
 	double adjustedSpeed;
+	double robotSpeed;
 
-    public DriveDistance(double dist) {
+    public DriveDistance(double dist, double speed) {
     	requires (Robot.drivetrain);
     	distance = dist;
+    	robotSpeed = speed;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	oi= Robot.oi;
     	drivetrain= Robot.drivetrain;
-    	adjustedSpeed = -0.3;
-    	drivetrain.drive(0.3,-0.3); //sets drivetrain to speed
+    	adjustedSpeed = -robotSpeed;
+    	drivetrain.drive(robotSpeed,-robotSpeed); //sets drivetrain to speed
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double error = drivetrain.getLeftSpeed() - drivetrain.getRightSpeed(); //subtracts to find error value
     	if (Math.abs(error) > 0.001)	{ //checks to see if the error value is greater than .001
-    		drivetrain.leftDrive(0.3); //drives only left side
+    		drivetrain.leftDrive(robotSpeed); //drives only left side
     		adjustedSpeed += 0.0001*error; //changes adjustedSpeed to adjustedSpeed + a constant*error
         	drivetrain.rightDrive(adjustedSpeed); //sets right side to adjustedSpeed
         	System.out.println("LeftDistance: " + drivetrain.getLeftDistance());
