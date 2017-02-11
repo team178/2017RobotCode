@@ -33,6 +33,7 @@ public class OI {
 	
 	public OI() {
 		buttonA.whenPressed(new MoveGobbler());
+		button3.whenPressed(new LIDARDistance());
 		
 	}
 	
