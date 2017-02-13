@@ -6,22 +6,24 @@ import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team178.robot.GripPipeline;
 import org.usfirst.frc.team178.robot.RobotMap;
 
+
 import edu.wpi.cscore.AxisCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.vision.VisionPipeline;
 import edu.wpi.first.wpilibj.vision.VisionThread;
 
 public class VisionStreamer extends Subsystem {
 	
 	//actual values to be determined after final physical setup implemented
-	private static final int IMG_WIDTH = 320;
-	private static final int IMG_HEIGHT = 240;
+	private static final int IMG_WIDTH = 800;
+	private static final int IMG_HEIGHT = 600;
 	private VisionThread visionThread;
-	private double centerX = 0.0;
-	private double centerY = 0.0;
-	private double rectWidth = 0.0;
-	private double rectHeight = 0.0;
+	private double[] centerX = {0.0, 0.0};
+	private double[] centerY = {0.0, 0.0};
+	private double[] rectWidth = {0.0, 0.0};
+	private double[] rectHeight = {0.0, 0.0};
 	
 	private final Object imgLock = new Object();
 	
@@ -33,16 +35,18 @@ public class VisionStreamer extends Subsystem {
 	    
 	    visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
 	        if (!pipeline.filterContoursOutput().isEmpty()) {
-	            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+	        	for (int i = 0; i < 2; i++) {
+	            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(i));
 	            synchronized (imgLock) {
-	                centerX = r.x + (r.width / 2);
-	                centerY = r.y + (r.height / 2);
-	                rectWidth = 0.0;
-	                rectHeight = 0.0;
-	            }
+	                centerX[i] = r.x + (r.width / 2);
+	                centerY[i] = r.y + (r.height / 2);
+	                rectWidth[i] = r.width;
+	                rectHeight[i] = r.height;
+	            	}
+	        	}
 	        }
 	    });
-	    //visionThread.start();
+	    visionThread.start();
 	}
 	
 	
@@ -50,17 +54,18 @@ public class VisionStreamer extends Subsystem {
 	 * public void processCurrentImage() {
 		GripPipeline.process();
 	}*/
-	public double getTapeCenterX(){
-		return centerX;
+	
+	public double getBlendedCenterX(){
+		return ((centerX[0]+centerX[1])/2);
 	}
 	public double getCenterXfromCameraCenterX(){
-		return ((IMG_WIDTH/2)-centerX);
+		return ((IMG_WIDTH/2) - getBlendedCenterX());
 	}
-	public double getTapeCenterY(){
-		return centerY;
+	public double getBlendedCenterY(){
+		return ((centerY[0]+centerY[1])/2);
 	}
 	public double getCenterYfromCameraCenterY(){
-		return ((IMG_HEIGHT/2)-centerY);
+		return ((IMG_HEIGHT/2) - getBlendedCenterY());
 	}
 	public double getIMG_WIDTH(){
 		return IMG_WIDTH;
@@ -68,11 +73,17 @@ public class VisionStreamer extends Subsystem {
 	public double getIMG_HEIGHT(){
 		return IMG_HEIGHT;
 	}
-	public double getWidth(){
-		return rectWidth;
+	public double getAirshipWidth(){
+		return ((Math.abs(centerX[1]-centerX[0]))+(rectWidth[1]/2)+(rectWidth[0]/2));
 	}
-	public double getHeight(){
-		return rectHeight;
+	public double getAirshipHeight(){
+		return ((rectHeight[0]+rectHeight[1])/2);
+	}
+	public double getBoilerWidth(){
+		return ((rectWidth[0]+rectWidth[1])/2);
+	}
+	public double getBoilerHeight(){
+		return ((Math.abs(centerY[1]-centerY[0]))+(rectHeight[1]/2)+(rectHeight[0]/2));
 	}
 	
 	
