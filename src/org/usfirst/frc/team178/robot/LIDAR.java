@@ -65,6 +65,10 @@ public class LIDAR implements PIDSource{
 		System.out.println(distance[0] + " " + distance[1]);
 	}
 	
+	public boolean getWrite(){
+		return i2c.write(LIDAR_CONFIG_REGISTER, 0x04);
+	}
+	
 	// Timer task to keep distance updated
 	private class LIDARUpdater extends TimerTask {
 		public void run() {

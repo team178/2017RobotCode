@@ -26,6 +26,7 @@ public class LIDARDistance extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	lidar.pidGet();
+    	System.out.println(lidar.getWrite());
     	//System.out.println("distance: " + lidar.pidGet());
     }
 
