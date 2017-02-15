@@ -37,10 +37,7 @@ public class OI {
 		buttonA.whenPressed(new MoveGobbler());
 		button3.whenPressed(new LIDARDistance());
 		buttonX.whenPressed(new CenterOnAirship());
-		
-=======
 		rBumper.whenPressed(new ShootFuel());
->>>>>>> Stashed changes
 	}
 	
 	 public double getX (){
