@@ -22,7 +22,6 @@ public class JoystickDrive extends Command {
     protected void initialize() {
     	oi = Robot.oi;
     	drivetrain = Robot.drivetrain;
-    	System.out.println("JoystickDrive Start");
     }
 	
 	protected void execute() {

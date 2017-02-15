@@ -3,6 +3,8 @@ package org.usfirst.frc.team178.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
+import org.usfirst.frc.team178.commands.CenterOnAirship;
 import org.usfirst.frc.team178.robot.commands.*;
 
 /**
@@ -33,8 +35,8 @@ public class OI {
 	
 	public OI() {
 		buttonA.whenPressed(new MoveGobbler());
-<<<<<<< Updated upstream
-		button4.whenPressed(new DriveDistance());
+		button3.whenPressed(new LIDARDistance());
+		buttonX.whenPressed(new CenterOnAirship());
 		
 =======
 		rBumper.whenPressed(new ShootFuel());

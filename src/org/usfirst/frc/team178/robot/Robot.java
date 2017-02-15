@@ -1,14 +1,22 @@
 
 package org.usfirst.frc.team178.robot;
 
+import org.usfirst.frc.team178.robot.commands.DoNothing;
+import org.usfirst.frc.team178.robot.commands.DriveDistance;
 import org.usfirst.frc.team178.robot.subsystems.*;
+import org.usfirst.frc.team178.robot.autocommandgroups.AutoDriveForward;
+import org.usfirst.frc.team178.robot.autocommandgroups.AutoGearSequence;
+import org.usfirst.frc.team178.robot.autocommandgroups.AutoLightRobot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.I2C.Port;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,17 +28,20 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
+	public static LIDAR lidar;
 	public static DriveTrain drivetrain;
 	public static Pneumatics pneumatics;
 	public static GearGobbler geargobbler;
 	public static BallSweeper ballsweeper;
 	public static RopeClimber ropeclimber;
 	public static FuelShooter fuelshooter;
-	
+	public static VisionStreamer frontCamera;
+	public static LightsSubsystem lights;
+	//public static VisionStreamer backCamera;
 	
 
 	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	SendableChooser<Command> chooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -43,11 +54,19 @@ public class Robot extends IterativeRobot {
 		geargobbler = new GearGobbler();
 		ballsweeper = new BallSweeper();
 		fuelshooter = new FuelShooter();
+		frontCamera = new VisionStreamer("frontCamera", "10.1.78.109");
+		lights = new LightsSubsystem();
+		//backCamera = new VisionStreamer("backCamera", "10.1.78.109");
 		ropeclimber = new RopeClimber();
 		oi = new OI();
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		lidar = new LIDAR(Port.kOnboard);
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
+		camera.setResolution(1920, 1080);
+		chooser = new SendableChooser<Command>();
+		chooser.addObject("AutoDriveForward", new AutoDriveForward());
+		chooser.addObject("AutoGearSequence", new AutoGearSequence());
+		chooser.addObject("LightShow", new DoNothing());
 		SmartDashboard.putData("Auto mode", chooser);
-
 	}
 
 	/**
@@ -78,7 +97,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
+		autonomousCommand = (Command) chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -123,6 +142,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+		
 		LiveWindow.run();
 	}
 }
