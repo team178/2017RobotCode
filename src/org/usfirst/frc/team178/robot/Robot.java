@@ -8,6 +8,8 @@ import org.usfirst.frc.team178.robot.autocommandgroups.AutoDriveForward;
 import org.usfirst.frc.team178.robot.autocommandgroups.AutoGearSequence;
 import org.usfirst.frc.team178.robot.autocommandgroups.AutoLightRobot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -58,7 +60,8 @@ public class Robot extends IterativeRobot {
 		//backCamera = new VisionStreamer("backCamera", "10.1.78.109");
 		oi = new OI();
 		lidar = new LIDAR(Port.kOnboard);
-			
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
+		camera.setResolution(1920, 1080);
 		chooser = new SendableChooser<Command>();
 		chooser.addObject("AutoDriveForward", new AutoDriveForward());
 		chooser.addObject("AutoGearSequence", new AutoGearSequence());
