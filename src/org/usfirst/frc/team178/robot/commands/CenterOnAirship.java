@@ -38,7 +38,7 @@ public class CenterOnAirship extends Command {
 			centerX = camera.getTapeCenterX();
 		}
 		double turn = centerX - (camera.getIMG_WIDTH() / 2);
-		drivetrain.drive(-0.6, turn * 0.005);
+		drivetrain.drive(-0.1, turn * 0.005);
 		System.out.println("Turn: " + turn);
 		System.out.println("CenterX: " + centerX);
     }

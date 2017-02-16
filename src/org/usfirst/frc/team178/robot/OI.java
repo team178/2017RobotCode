@@ -3,6 +3,8 @@ package org.usfirst.frc.team178.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
+import org.usfirst.frc.team178.robot.commands.CenterOnAirship;
 import org.usfirst.frc.team178.robot.commands.*;
 
 /**
@@ -34,6 +36,7 @@ public class OI {
 	public OI() {
 		//button1.whileHeld(new JoystickDriveLow());
 		buttonA.whenPressed(new MoveGobbler());
+		button6.whenPressed(new CenterOnAirship());
 	}
 	
 	 public double getX (){
