@@ -22,7 +22,9 @@ public class LightsSubsystem extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    public void sendMessage(String message) {
+    public void sendMessage(int subsystem, String pattern) {
+    	String message = subsystem + pattern;
+    	System.out.println(message);
     	arduino.writeBulk(message.getBytes());
     }
 }
