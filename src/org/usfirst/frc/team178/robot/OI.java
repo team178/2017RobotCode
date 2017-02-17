@@ -27,7 +27,7 @@ public class OI {
 	public Button buttonX = new JoystickButton(Elizabeth, 3);
 	public Button buttonY = new JoystickButton(Elizabeth, 4);
 	public Button lBumper = new JoystickButton(Elizabeth, 6);
-	public static Button rBumper = new JoystickButton(Elizabeth, 5);
+	public Button rBumper = new JoystickButton(Elizabeth, 5);
 	public Button buttonB = new JoystickButton(Elizabeth, 2);
 	public Button backButton = new JoystickButton(Elizabeth, 7);
 	public Button startButton = new JoystickButton(Elizabeth, 8); 
@@ -39,7 +39,7 @@ public class OI {
 		buttonX.whenPressed(new CenterOnAirship());
 		buttonA.whenPressed(new ShootFuel());
 		lBumper.whenPressed(new SweepBalls());
-		rBumper.whenPressed(new ClimbRope());
+		rBumper.whileHeld(new ClimbRope());
 	}
 	
 	
@@ -54,6 +54,10 @@ public class OI {
 	    public double getTwist (){
 	    	return Pooja.getRawAxis(3); //3 is axis for rotate 
 	    }
+	public double getXBoxY() {
+		return Elizabeth.getRawAxis(5); //5 is axis for movement value
+		//Up is negative, down is positive
+	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.

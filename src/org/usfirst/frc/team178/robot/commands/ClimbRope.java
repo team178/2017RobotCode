@@ -1,5 +1,6 @@
 package org.usfirst.frc.team178.robot.commands;
 
+import org.usfirst.frc.team178.robot.OI;
 import org.usfirst.frc.team178.robot.Robot;
 import org.usfirst.frc.team178.robot.subsystems.RopeClimber;
 
@@ -10,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ClimbRope extends Command {
 	RopeClimber ropeclimber;
+	OI oi;
 
     public ClimbRope() {
     	requires (Robot.ropeclimber);
@@ -20,11 +22,12 @@ public class ClimbRope extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	ropeclimber = Robot.ropeclimber;
+    	oi = Robot.oi;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	ropeclimber.climb(0.5);
+    	ropeclimber.climb(oi.getXBoxY());
     }
 
     // Make this return true when this Command no longer needs to run execute()
