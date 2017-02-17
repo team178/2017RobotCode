@@ -34,11 +34,14 @@ public class OI {
  
 	
 	public OI() {
-		buttonA.whenPressed(new MoveGobbler());
+		buttonB.whenPressed(new MoveGobbler());
 		button3.whenPressed(new LIDARDistance());
 		buttonX.whenPressed(new CenterOnAirship());
-		rBumper.whenPressed(new ShootFuel());
+		buttonA.whenPressed(new ShootFuel());
+		lBumper.whenPressed(new SweepBalls());
+		rBumper.whenPressed(new ClimbRope());
 	}
+	
 	
 	 public double getX (){
 	    	return Pooja.getX();
