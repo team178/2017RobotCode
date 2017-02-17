@@ -1,5 +1,6 @@
 package org.usfirst.frc.team178.robot.commands;
 
+import org.usfirst.frc.team178.robot.OI;
 import org.usfirst.frc.team178.robot.Robot;
 import org.usfirst.frc.team178.robot.subsystems.FuelShooter;
 
@@ -11,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShootFuel extends Command {
 	FuelShooter fuelshooter;
 	OI oi;
+	public boolean checkshooter = false;
 
     public ShootFuel() {
     	requires (Robot.fuelshooter);
@@ -27,15 +29,18 @@ public class ShootFuel extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	fuelshooter.shoot(1,1);
+    
+    	if (checkshooter == false) {
+    		fuelshooter.shoot(1, 1);
+    		checkshooter = true;
+    	} else if (checkshooter == true) {
+    		fuelshooter.stop();
+    		checkshooter = false;
+    	}
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if oi.rBumper.whileHeld() {
-    	   return false;
-    	}
-    	else { 
-    		return true;
-    	}
+    	return true;
        
     }
 

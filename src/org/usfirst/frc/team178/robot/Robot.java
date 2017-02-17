@@ -58,13 +58,15 @@ public class Robot extends IterativeRobot {
 		lights = new LightsSubsystem();
 		//backCamera = new VisionStreamer("backCamera", "10.1.78.109");
 		ropeclimber = new RopeClimber();
-		oi = new OI();
-		lidar = new LIDAR(Port.kOnboard);
-		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
-		camera.setResolution(1920, 1080);
-		chooser = new SendableChooser<Command>();
-		chooser.addObject("AutoDriveForward", new AutoDriveForward());
-		chooser.addObject("AutoGearSequence", new AutoGearSequence());
+		  //backCamera = new VisionStreamer("backCamera", "10.1.78.109"); 
+	    oi = new OI(); 
+	    lidar = new LIDAR(Port.kOnboard); 
+	       
+	    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0); 
+	    camera.setResolution(1920, 1080); 
+	    chooser = new SendableChooser<Command>(); 
+	    chooser.addObject("AutoDriveForward", new AutoDriveForward()); 
+	    chooser.addObject("AutoGearSequence", new AutoGearSequence()); 
 		chooser.addObject("LightShow", new DoNothing());
 		SmartDashboard.putData("Auto mode", chooser);
 	}

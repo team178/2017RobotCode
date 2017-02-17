@@ -22,12 +22,12 @@ public class OI {
 	public Button button6 = new JoystickButton(Pooja, 6);
 	public Button button7 = new JoystickButton(Pooja, 7);
 	
-	Joystick Elizabeth = new Joystick(RobotMap.JoystickPortXbox);
+	static Joystick Elizabeth = new Joystick(RobotMap.JoystickPortXbox);
 	public Button buttonA = new JoystickButton(Elizabeth, 1);//used for GearGobbler command
 	public Button buttonX = new JoystickButton(Elizabeth, 3);
 	public Button buttonY = new JoystickButton(Elizabeth, 4);
 	public Button lBumper = new JoystickButton(Elizabeth, 6);
-	public Button rBumper = new JoystickButton(Elizabeth, 5);
+	public static Button rBumper = new JoystickButton(Elizabeth, 5);
 	public Button buttonB = new JoystickButton(Elizabeth, 2);
 	public Button backButton = new JoystickButton(Elizabeth, 7);
 	public Button startButton = new JoystickButton(Elizabeth, 8); 
