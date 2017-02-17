@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DoNothing extends Command {
 	LightsSubsystem lights;
+	double time;
 	
     public DoNothing() {
         // Use requires() here to declare subsystem dependencies
