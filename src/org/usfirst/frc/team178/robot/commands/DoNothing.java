@@ -26,13 +26,26 @@ public class DoNothing extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	lights.sendMessage("420");
+    	time = timeSinceInitialized();
+    	System.out.println(time);
+    	if (time <= 1){
+    		lights.sendMessage(0, "Ocean");
+    	}
+    	else if (time <= 2){
+    		lights.sendMessage(1, "red");
+    	}
+    	else if (time <= 3){
+    		lights.sendMessage(2, "Rainbow");
+    	}
     	System.out.println("Execute");
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return false;
+    	if (time >= 4){
+    		return true;
+    	}
+    	else return false;
     }
 
     // Called once after isFinished returns true
