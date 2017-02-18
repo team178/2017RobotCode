@@ -20,8 +20,8 @@ public class BallSweeper extends Subsystem {
 	}
 	
 	public void setSpeed(double speed) {
-  		left.set(speed);
-  		right.set(-speed);
+  		left.set(-speed);
+  		right.set(speed);
 }
 
     public void initDefaultCommand() {

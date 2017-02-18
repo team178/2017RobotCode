@@ -38,8 +38,7 @@ public class OI {
 		button3.whenPressed(new LIDARDistance());
 		buttonX.whenPressed(new CenterOnAirship());
 		buttonA.whenPressed(new ShootFuel());
-		lBumper.whenPressed(new SweepBalls());
-		rBumper.whileHeld(new ClimbRope());
+		rBumper.whenPressed(new SweepBalls());
 	}
 	
 	
