@@ -36,7 +36,7 @@ public class OI {
 	public OI() {
 		//button1.whileHeld(new JoystickDriveLow());
 		buttonA.whenPressed(new MoveGobbler());
-		button6.whenPressed(new CenterOnAirship());
+		button6.whileHeld(new CenterOnAirship());
 	}
 	
 	 public double getX (){
