@@ -1,4 +1,4 @@
-package org.usfirst.frc.team178.commands;
+package org.usfirst.frc.team178.robot.commands;
 
 import org.usfirst.frc.team178.robot.Robot;
 import org.usfirst.frc.team178.robot.subsystems.DriveTrain;
@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class CenterOnAirship extends Command {
 
 	private RobotDrive drive;
-	private VisionStreamer frontCamera = new VisionStreamer("frontCamera", "10.1.78.109");
+	private VisionStreamer frontCamera; //= new VisionStreamer("frontCamera", "10.1.78.109");
 
 
 	private final Object imgLock = new Object();
@@ -24,6 +24,8 @@ public class CenterOnAirship extends Command {
     public CenterOnAirship() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.frontCamera);
+    	frontCamera = Robot.frontCamera;
     }
     public void centerAndAdvance() {
 		double centerX;

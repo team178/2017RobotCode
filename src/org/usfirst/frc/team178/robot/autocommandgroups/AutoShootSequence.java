@@ -1,6 +1,6 @@
 package org.usfirst.frc.team178.robot.autocommandgroups;
 
-import org.usfirst.frc.team178.commands.CenterOnAirship;
+import org.usfirst.frc.team178.robot.commands.CenterOnAirship;
 import org.usfirst.frc.team178.robot.commands.*;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;

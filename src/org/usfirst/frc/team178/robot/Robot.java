@@ -54,7 +54,7 @@ public class Robot extends IterativeRobot {
 		geargobbler = new GearGobbler();
 		ballsweeper = new BallSweeper();
 		fuelshooter = new FuelShooter();
-		frontCamera = new VisionStreamer("frontCamera", "10.1.78.109");
+		frontCamera = new VisionStreamer("frontCamera", "axis-camera-intake.local");
 		lights = new LightsSubsystem();
 		//backCamera = new VisionStreamer("backCamera", "10.1.78.109");
 		ropeclimber = new RopeClimber();
@@ -63,7 +63,7 @@ public class Robot extends IterativeRobot {
 	    lidar = new LIDAR(Port.kOnboard); 
 	       
 	    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0); 
-	    camera.setResolution(1920, 1080); 
+	    camera.setResolution(400, 200); 
 	    chooser = new SendableChooser<Command>(); 
 	    chooser.addObject("AutoDriveForward", new AutoDriveForward()); 
 	    chooser.addObject("AutoGearSequence", new AutoGearSequence()); 
