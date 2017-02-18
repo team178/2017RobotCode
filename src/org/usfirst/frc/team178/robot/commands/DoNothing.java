@@ -38,12 +38,15 @@ public class DoNothing extends Command {
     	else if (time <= 3){
     		lights.sendMessage(2, "Rainbow");
     	}
+    	else if (time <= 4){
+    		lights.sendMessage(3, "Fire");
+    	}
     	System.out.println("Execute");
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (time >= 4){
+    	if (time >= 5){
     		return true;
     	}
     	else return false;
