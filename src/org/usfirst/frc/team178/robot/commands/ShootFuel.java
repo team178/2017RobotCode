@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShootFuel extends Command {
 	FuelShooter fuelshooter;
 	OI oi;
-	public boolean checkshooter = false;
+	double time;
 
     public ShootFuel() {
     	requires (Robot.fuelshooter);
@@ -21,6 +21,10 @@ public class ShootFuel extends Command {
         // eg. requires(chassis);
     }
 
+    public ShootFuel(double timeParameter) {
+    	time = timeParameter;
+    	requires(Robot.fuelshooter);
+    }
     // Called just before this Command runs the first time
     protected void initialize() {
     	fuelshooter = Robot.fuelshooter;
@@ -28,29 +32,30 @@ public class ShootFuel extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	fuelshooter.shoot(1,1);
-    
-    	if (checkshooter == false) {
-    		fuelshooter.shoot(1, 1);
-    		checkshooter = true;
-    	} else if (checkshooter == true) {
-    		fuelshooter.stop();
-    		checkshooter = false;
-    	}
+    	fuelshooter.shoot(1);
+  
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return true;
+    	double passedTime = timeSinceInitialized();
+    	if (passedTime >= time) {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
        
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	fuelshooter.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	fuelshooter.stop();
     }
     
 
