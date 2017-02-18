@@ -30,16 +30,16 @@ public class DoNothing extends Command {
     	time = timeSinceInitialized();
     	System.out.println(time);
     	if (time <= 1){
-    		lights.sendMessage(0, "Ocean");
+    		lights.sendMessage(0, "enforcers");
     	}
     	else if (time <= 2){
-    		lights.sendMessage(1, "red");
+    		lights.sendMessage(1, "fire");
     	}
     	else if (time <= 3){
-    		lights.sendMessage(2, "Rainbow");
+    		lights.sendMessage(2, "enforcers");
     	}
     	else if (time <= 4){
-    		lights.sendMessage(3, "Fire");
+    		lights.sendMessage(3, "fire");
     	}
     	System.out.println("Execute");
     }
