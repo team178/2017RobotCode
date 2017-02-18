@@ -20,10 +20,19 @@ public class GearGobbler extends Subsystem {
 	public void moveGobbler() {
 		if(extendRetract.get() == DoubleSolenoid.Value.kForward){
 			extendRetract.set(DoubleSolenoid.Value.kReverse);
+			System.out.println("in");
 		}
 		else {			
 			extendRetract.set(DoubleSolenoid.Value.kForward);
+
+			System.out.println("out");
 		}
+	}
+	public void retractGobbler() {
+		extendRetract.set(DoubleSolenoid.Value.kReverse);
+	}
+	public void extendGobbler() {
+		extendRetract.set(DoubleSolenoid.Value.kForward);
 	}
 	
 	public DoubleSolenoid.Value getGobbler() {
