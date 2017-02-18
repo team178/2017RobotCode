@@ -34,14 +34,7 @@ public class ClimbRope extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-
-		if (oi.lBumper.get() == false) {
-			return true;
-		} else {
-			{
-				return false;
-			}
-		}
+		return false;
 	}
 
 	// Called once after isFinished returns true
@@ -52,5 +45,6 @@ public class ClimbRope extends Command {
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+		ropeclimber.climb(0);
 	}
 }
