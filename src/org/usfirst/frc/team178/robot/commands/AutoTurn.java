@@ -2,8 +2,9 @@ package org.usfirst.frc.team178.robot.commands;
  
 import org.usfirst.frc.team178.robot.OI; 
 import org.usfirst.frc.team178.robot.Robot; 
-import org.usfirst.frc.team178.robot.subsystems.*; 
- 
+import org.usfirst.frc.team178.robot.subsystems.*;
+
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.Command; 
  
 /** 
@@ -11,33 +12,43 @@ import edu.wpi.first.wpilibj.command.Command;
  */ 
 public class AutoTurn extends Command { 
   OI oi; 
-  DriveTrain drivetrain; 
-  double lSpeed, rSpeed; 
+  DriveTrain drivetrain;
+  AnalogGyro gyro;
+  double lSpeed, rSpeed, targetAngle, currentAngle; 
  
-    public AutoTurn(double left, double right) { 
+    public AutoTurn(double tAngle, double speed) { 
         requires(Robot.drivetrain); 
-        lSpeed = left; 
-        rSpeed = right; 
+        targetAngle = tAngle;
+        lSpeed = speed;
+        rSpeed = speed;
+        currentAngle = gyro.getAngle();
     } 
  
     // Called just before this Command runs the first time 
     protected void initialize() { 
       oi = Robot.oi; 
       drivetrain = Robot.drivetrain; 
+      gyro = Robot.gyro;
     } 
  
     // Called repeatedly when this Command is scheduled to run 
-    protected void execute() { 
-      drivetrain.drive(lSpeed, rSpeed); 
+    protected void execute() {
+      gyro.reset();
+      while(currentAngle < targetAngle){
+    	  drivetrain.drive(lSpeed, rSpeed);
+    	  System.out.println(currentAngle);
+      }
+     
     } 
  
     // Make this return true when this Command no longer needs to run execute() 
     protected boolean isFinished() { 
-        return isTimedOut(); 
+        return currentAngle >= targetAngle; 
     } 
  
     // Called once after isFinished returns true 
     protected void end() { 
+    	drivetrain.drive(0, 0);
     } 
  
     // Called when another command which requires one or more of the same 
