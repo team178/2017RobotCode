@@ -63,7 +63,7 @@ public class Robot extends IterativeRobot {
 	    lidar = new LIDAR(Port.kOnboard); 
 	       
 	    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0); 
-	    camera.setResolution(400, 200); 
+	    camera.setResolution(1920, 1080); 
 	    chooser = new SendableChooser<Command>(); 
 	    chooser.addObject("AutoDriveForward", new AutoDriveForward()); 
 	    chooser.addObject("AutoGearSequence", new AutoGearSequence()); 
