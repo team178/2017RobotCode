@@ -63,7 +63,7 @@ public class Robot extends IterativeRobot {
 		  //backCamera = new VisionStreamer("backCamera", "10.1.78.109"); 
 	    oi = new OI(); 
 	    lidar = new LIDAR(Port.kOnboard); 
-	    gyro = new AnalogGyro(1);
+	    gyro = new AnalogGyro(RobotMap.GYRO);
 	       
 	    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0); 
 	    camera.setResolution(1920, 1080); 

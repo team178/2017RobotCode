@@ -21,7 +21,6 @@ public class AutoTurn extends Command {
         targetAngle = tAngle;
         lSpeed = speed;
         rSpeed = speed;
-        currentAngle = gyro.getAngle();
     } 
  
     // Called just before this Command runs the first time 
@@ -29,6 +28,7 @@ public class AutoTurn extends Command {
       oi = Robot.oi; 
       drivetrain = Robot.drivetrain; 
       gyro = Robot.gyro;
+      currentAngle = gyro.getAngle();
     } 
  
     // Called repeatedly when this Command is scheduled to run 
