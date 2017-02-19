@@ -45,7 +45,8 @@ public class RobotMap {
 	public static int SHOOTERencoderB = 5; //DIO
 	
 	public static int PRESSURETRANSDUCER = 0; //Analog
-	public static int ULTRASONIC = 1; //Analog
+	//public static int ULTRASONIC = 1; //Analog
+	public static int GYRO = 1; //Analog
 	
 	public static int CAMERA1 = 1; //USB
 	public static int CAMERA2 = 2; //USB

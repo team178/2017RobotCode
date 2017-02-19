@@ -23,13 +23,13 @@ public class FuelShooter extends Subsystem {
 	}
 	
 	//used to shoot and to turn off shooter
-	public void shoot(double shootSpeed, double intakeSpeed) {
+	public void shoot(double shootSpeed) {
 		shooter1.set(shootSpeed);
-		shooter2.set(shootSpeed);
+		shooter2.set(-shootSpeed);
 	}
 	
 	public void stop() {
-		shoot(0,0);
+		shoot(0);
 	}
 	public double getEncoderValue() {
 		return encoder.getRate();

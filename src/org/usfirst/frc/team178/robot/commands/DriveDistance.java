@@ -32,14 +32,22 @@ public class DriveDistance extends Command {
     protected void execute() {
     	double error = drivetrain.getLeftSpeed() - drivetrain.getRightSpeed(); //subtracts to find error value
     	if (Math.abs(error) > 0.001)	{ //checks to see if the error value is greater than .001
-    		drivetrain.leftDrive(robotSpeed); //drives only left side
+    		 //drives only left side
     		adjustedSpeed -= 0.0001*error; //changes adjustedSpeed to adjustedSpeed + a constant*error
-        	drivetrain.rightDrive(adjustedSpeed); //sets right side to adjustedSpeed
-        	//System.out.println("LeftDistance: " + drivetrain.getLeftDistance());
-        	//System.out.println("RightDistance: " + drivetrain.getRightDistance());
-        	System.out.println("RightSpeed: " + drivetrain.getRightSpeed());
-        	System.out.println("LeftSpeed: " + drivetrain.getLeftSpeed());
-        	
+        	System.out.println("LeftDistance: " + drivetrain.getLeftDistance());
+        	System.out.println("RightDistance: " + drivetrain.getRightDistance());
+        	//System.out.println("RightSpeed: " + drivetrain.getRightSpeed());
+        	//System.out.println("LeftSpeed: " + drivetrain.getLeftSpeed());
+        	double speedChange = (distance-drivetrain.getRightDistance())/distance;
+        	if (drivetrain.getLeftDistance() >= (distance*.5))
+        	{
+        		drivetrain.drive(robotSpeed*speedChange, adjustedSpeed*speedChange);
+        	}
+        	else
+        	{
+        		drivetrain.leftDrive(robotSpeed);
+        		drivetrain.rightDrive(adjustedSpeed);//sets right side to adjustedSpeed
+        	}
         	//we did all of this to make the robot drive straight, as naturally, it doesn't
     	}
     	
@@ -47,7 +55,7 @@ public class DriveDistance extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (drivetrain.getLeftDistance() >= distance  && drivetrain.getRightDistance() >= distance) {
+    	if (drivetrain.getLeftDistance() >= distance) {
       		return true;
       	}
      	else {

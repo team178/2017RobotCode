@@ -1,62 +1,50 @@
 package org.usfirst.frc.team178.robot.commands;
 
-import org.usfirst.frc.team178.robot.OI;
 import org.usfirst.frc.team178.robot.Robot;
-import org.usfirst.frc.team178.robot.subsystems.FuelShooter;
+import org.usfirst.frc.team178.robot.subsystems.GearGobbler;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ShootFuel extends Command {
-	FuelShooter fuelshooter;
-	OI oi;
-	double time;
-
-    public ShootFuel() {
-    	requires (Robot.fuelshooter);
-    	
+public class ExtendGobbler extends Command {
+		GearGobbler geargobbler;
+		DoubleSolenoid.Value initial;
+    public ExtendGobbler() {
+    	requires(Robot.geargobbler);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
-    public ShootFuel(double timeParameter) {
-    	time = timeParameter;
-    	requires(Robot.fuelshooter);
-    }
     // Called just before this Command runs the first time
     protected void initialize() {
-    	fuelshooter = Robot.fuelshooter;
+    	geargobbler = Robot.geargobbler;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	fuelshooter.shoot(1);
-  
+    	geargobbler.extendGobbler();
     }
+
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	double passedTime = timeSinceInitialized();
-    	if (passedTime >= time) {
+    	if (geargobbler.getGobbler() == DoubleSolenoid.Value.kForward)
+    	{
     		return true;
     	}
     	else {
-    		return false;
+        return false;
     	}
-       
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	fuelshooter.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	fuelshooter.stop();
     }
-    
-
 }

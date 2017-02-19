@@ -9,6 +9,7 @@ import org.usfirst.frc.team178.robot.autocommandgroups.AutoGearSequence;
 import org.usfirst.frc.team178.robot.autocommandgroups.AutoLightRobot;
 
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -37,6 +38,7 @@ public class Robot extends IterativeRobot {
 	public static FuelShooter fuelshooter;
 	public static VisionStreamer frontCamera;
 	public static LightsSubsystem lights;
+	public static AnalogGyro gyro;
 	//public static VisionStreamer backCamera;
 	
 
@@ -54,13 +56,14 @@ public class Robot extends IterativeRobot {
 		geargobbler = new GearGobbler();
 		ballsweeper = new BallSweeper();
 		fuelshooter = new FuelShooter();
-		frontCamera = new VisionStreamer("frontCamera", "10.1.78.109");
+		frontCamera = new VisionStreamer("frontCamera", "axis-camera-intake.local");
 		lights = new LightsSubsystem();
 		//backCamera = new VisionStreamer("backCamera", "10.1.78.109");
 		ropeclimber = new RopeClimber();
 		  //backCamera = new VisionStreamer("backCamera", "10.1.78.109"); 
 	    oi = new OI(); 
 	    lidar = new LIDAR(Port.kOnboard); 
+	    gyro = new AnalogGyro(RobotMap.GYRO);
 	       
 	    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0); 
 	    camera.setResolution(1920, 1080); 

@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-import org.usfirst.frc.team178.commands.CenterOnAirship;
+import org.usfirst.frc.team178.robot.commands.CenterOnAirship;
 import org.usfirst.frc.team178.robot.commands.*;
 
 /**
@@ -26,8 +26,8 @@ public class OI {
 	public Button buttonA = new JoystickButton(Elizabeth, 1);//used for GearGobbler command
 	public Button buttonX = new JoystickButton(Elizabeth, 3);
 	public Button buttonY = new JoystickButton(Elizabeth, 4);
-	public Button lBumper = new JoystickButton(Elizabeth, 6);
-	public Button rBumper = new JoystickButton(Elizabeth, 5);
+	public Button lBumper = new JoystickButton(Elizabeth, 5);
+	public Button rBumper = new JoystickButton(Elizabeth, 6);
 	public Button buttonB = new JoystickButton(Elizabeth, 2);
 	public Button backButton = new JoystickButton(Elizabeth, 7);
 	public Button startButton = new JoystickButton(Elizabeth, 8); 
@@ -37,9 +37,12 @@ public class OI {
 		buttonB.whenPressed(new MoveGobbler());
 		button3.whenPressed(new LIDARDistance());
 		buttonX.whenPressed(new CenterOnAirship());
-		buttonA.whenPressed(new ShootFuel());
-		lBumper.whenPressed(new SweepBalls());
-		rBumper.whileHeld(new ClimbRope());
+		buttonA.whileHeld(new ShootFuel());
+		rBumper.whileHeld(new SweepBalls());
+		lBumper.whileHeld(new ClimbRope());
+		buttonY.whenPressed(new AutoTurn(90, 0.3));
+		//button4.whenPressed(new ExtendGobbler());
+		//button5.whenPressed(new RetractGobbler());
 	}
 	
 	

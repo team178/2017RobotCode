@@ -37,7 +37,7 @@ public class VisionStreamer extends Subsystem {
 	        if (pipeline.filterContoursOutput().size() == 2) {
 	        	for (int i = 0; i < 2; i++) {
 	            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(i));
-	            System.out.println(pipeline.filterContoursOutput());
+	            //System.out.println(pipeline.filterContoursOutput());
 	            synchronized (imgLock) {
 	            	centerX[i] = r.x + (r.width / 2);
 	                centerY[i] = r.y + (r.height / 2);
