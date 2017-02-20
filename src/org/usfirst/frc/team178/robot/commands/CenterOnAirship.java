@@ -7,53 +7,91 @@ import org.usfirst.frc.team178.robot.subsystems.VisionStreamer;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Command;
 
-
 /**
  *
  */
 public class CenterOnAirship extends Command {
 
-	private RobotDrive drive;
-	private VisionStreamer frontCamera; //= new VisionStreamer("frontCamera", "10.1.78.109");
-
-
 	private final Object imgLock = new Object();
 	DriveTrain drivetrain;
 	VisionStreamer camera;
-	
-    public CenterOnAirship() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.frontCamera);
-    	frontCamera = Robot.frontCamera;
-    }
-    public void centerAndAdvance() {
-		double centerX;
-		synchronized (imgLock) {
-			centerX = camera.getBlendedCenterX();
+	double turn;
+	int threshold;
+
+	public CenterOnAirship() {
+		requires(Robot.drivetrain);
+		drivetrain = Robot.drivetrain;
+		requires(Robot.frontCamera);
+		camera = Robot.frontCamera;
+		threshold = 30;
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+	}
+
+	// Called just before this Command runs the first time
+	protected void initialize() {
+		turn = -.1;
+		drivetrain.changeToLoGear();
+	}
+
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+
+		double error = camera.getCenterXfromCameraCenterX();//(camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2);
+		if ((Math.abs(error) > threshold) && (Math.abs(error) < 400)) {
+			turn = -.0015 * error;
+			drivetrain.drive(turn/2, turn/2);
+			//System.out.println("CenterX: " + centerX);
+		}else if(Math.abs(error) > 400){
+			
+		}else{
+			drivetrain.drive(0, 0);
 		}
-		double turn = centerX - (camera.getIMG_WIDTH() / 2);
-		drivetrain.drive(0.6, -(turn * 0.005));
-		System.out.println("Turn: " + turn);
-		System.out.println("CenterX: " + centerX);
-    }
+		//print statements for testing & scaling
+		if (((timeSinceInitialized()*1000)%250) <= 20) {
+			System.out.println("BlendedCenter: " + camera.getBlendedCenterX());
+			System.out.println("Error: " + error);
+			System.out.println("Turn: " + turn);
+		}
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	if (Math.abs(camera.getCenterXfromCameraCenterX()) < 10) {
-    		return true;
-    	}
-    	else {
-    		return false;
-    	}
-    }
+/*
+		int errorFlexibility = 50;
+		if (error > errorFlexibility) {
+		//if true, the camera center is to right of the tape, needs to turn left
+			turn += .00001 * error;
+			drivetrain.drive(turn, 0.1);
+			error = camera.getCenterXfromCameraCenterX();//(camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2);
+		}else if (error < (-1*errorFlexibility)) {
+		//if true, the camera center is to left of the tape, needs to turn right
+			turn += .00001 * error;
+			drivetrain.drive(0.1, turn);
+			error = camera.getCenterXfromCameraCenterX();//(camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2);
+		}else{
+		drivetrain.drive(0, 0);
+		}
+ */
 
-    // Called once after isFinished returns true
-    protected void end() {
-    }
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		if (Math.abs(camera.getCenterXfromCameraCenterX()) < threshold || Math.abs(camera.getCenterXfromCameraCenterX()) > 400) {
+			System.out.println("THRESHOLD END: " + ((camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2)));
+			drivetrain.drive(0, 0);
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+	// Called once after isFinished returns true
+	protected void end() {
+		drivetrain.drive(0, 0);
+		drivetrain.changeToHiGear();
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+		drivetrain.drive(0, 0);
+	}
 }

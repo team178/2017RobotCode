@@ -6,12 +6,10 @@ import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team178.robot.GripPipeline;
 import org.usfirst.frc.team178.robot.RobotMap;
 
-
 import edu.wpi.cscore.AxisCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.vision.VisionPipeline;
 import edu.wpi.first.wpilibj.vision.VisionThread;
 
 public class VisionStreamer extends Subsystem {
@@ -34,17 +32,22 @@ public class VisionStreamer extends Subsystem {
 	    camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
 	    
 	    visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
-	        if (pipeline.filterContoursOutput().size() == 2) {
+	        if (pipeline.filterContoursOutput().size()>=2) {
 	        	for (int i = 0; i < 2; i++) {
 	            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(i));
-	            //System.out.println(pipeline.filterContoursOutput());
 	            synchronized (imgLock) {
-	            	centerX[i] = r.x + (r.width / 2);
+	                centerX[i] = r.x + (r.width / 2);
 	                centerY[i] = r.y + (r.height / 2);
 	                rectWidth[i] = r.width;
 	                rectHeight[i] = r.height;
-	            	} 
+	            	}
 	        	}
+	        }
+	        else {
+	        	centerX[0] = 1000; //out of range = 1000
+	        	centerY[0] = 1000;
+	        	centerX[1] = 1000;
+	        	centerY[1] = 1000;
 	        }
 	    });
 	    visionThread.start();
@@ -94,3 +97,4 @@ public class VisionStreamer extends Subsystem {
 		//TODO Auto-generated method stuff
 	}
 }
+
