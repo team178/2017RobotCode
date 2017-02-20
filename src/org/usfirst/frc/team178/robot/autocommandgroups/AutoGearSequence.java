@@ -17,7 +17,7 @@ public class AutoGearSequence extends CommandGroup {
     	//Left alignment
     	if(ds.getLocation() == 1) { //It's either 1 or 3
     		addSequential(new DriveDistance(691.25, 0.5));
-    		addSequential(new AutoTurn(90, 0.5));
+    		addSequential(new AutoTurn(90, 0.3));
     		addSequential(new DriveDistance(103.845, 0.5));
     		addSequential(new CenterOnAirship());
     		addSequential(new MoveGobbler());
@@ -31,7 +31,7 @@ public class AutoGearSequence extends CommandGroup {
     	//Right alignment
     	else {
     		addSequential(new DriveDistance(691.25, 0.5));
-    		addSequential(new AutoTurn(90, -0.5));
+    		addSequential(new AutoTurn(90, -0.3));
     		addSequential(new DriveDistance(103.845, 0.5));
     		addSequential(new CenterOnAirship());
     		addSequential(new MoveGobbler());

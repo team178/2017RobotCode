@@ -66,7 +66,7 @@ public class Robot extends IterativeRobot {
 	    gyro = new AnalogGyro(RobotMap.GYRO);
 	       
 	    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0); 
-	    camera.setResolution(1920, 1080); 
+	    camera.setResolution(1920,1080); 
 	    chooser = new SendableChooser<Command>(); 
 	    chooser.addObject("AutoDriveForward", new AutoDriveForward()); 
 	    chooser.addObject("AutoGearSequence", new AutoGearSequence()); 

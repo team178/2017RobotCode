@@ -40,7 +40,6 @@ public class OI {
 		buttonA.whileHeld(new ShootFuel());
 		rBumper.whileHeld(new SweepBalls());
 		lBumper.whileHeld(new ClimbRope());
-		buttonY.whenPressed(new AutoTurn(90, 0.3));
 		//button4.whenPressed(new ExtendGobbler());
 		//button5.whenPressed(new RetractGobbler());
 	}
