@@ -54,11 +54,11 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void changeToLoGear() {
-		speedShifter.set(DoubleSolenoid.Value.kForward);
+		speedShifter.set(DoubleSolenoid.Value.kForward); //forward is low gear, port 1
 	}
 
 	public void changeToHiGear() {
-		speedShifter.set(DoubleSolenoid.Value.kReverse);
+		speedShifter.set(DoubleSolenoid.Value.kReverse); //forward is hi gear, port 0
 	}
 
 	public void leftDrive(double speed) {

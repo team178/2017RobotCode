@@ -25,7 +25,7 @@ public class LIDARDrive extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires (Robot.drivetrain);
-    	requires (Robot.lidar);
+    	//requires (Robot.lidar);
     	distance = dist;
     	robotSpeed = speed;
     	

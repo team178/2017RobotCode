@@ -2,6 +2,7 @@ package org.usfirst.frc.team178.robot.commands;
 
 import org.usfirst.frc.team178.robot.Robot;
 import org.usfirst.frc.team178.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team178.robot.subsystems.LIDAR;
 import org.usfirst.frc.team178.robot.subsystems.VisionStreamer;
 
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -15,11 +16,14 @@ public class CenterOnAirship extends Command {
 	private final Object imgLock = new Object();
 	DriveTrain drivetrain;
 	VisionStreamer camera;
+	LIDAR lidar;
 	double turn;
 	int threshold;
 
 	public CenterOnAirship() {
 		requires(Robot.drivetrain);
+		requires(Robot.lidar);
+		lidar = Robot.lidar;
 		drivetrain = Robot.drivetrain;
 		requires(Robot.frontCamera);
 		camera = Robot.frontCamera;
@@ -36,12 +40,13 @@ public class CenterOnAirship extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-
-		double error = camera.getCenterXfromCameraCenterX();//(camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2);
+		double x = lidar.getDistance();
+		double adjustedCenter = 0.0284*(Math.pow(x, 2)) - 7.75*x + 994.5;
+		double error = adjustedCenter - (camera.getBlendedCenterX());
 		if ((Math.abs(error) > threshold) && (Math.abs(error) < 400)) {
 			turn = -.0015 * error;
-			drivetrain.drive(turn/2, turn/2);
-			//System.out.println("CenterX: " + centerX);
+			//drivetrain.drive(turn/2, turn/2);
+			
 		}else if(Math.abs(error) > 400){
 			
 		}else{
@@ -50,8 +55,9 @@ public class CenterOnAirship extends Command {
 		//print statements for testing & scaling
 		if (((timeSinceInitialized()*1000)%250) <= 20) {
 			System.out.println("BlendedCenter: " + camera.getBlendedCenterX());
-			System.out.println("Error: " + error);
-			System.out.println("Turn: " + turn);
+			System.out.println("Distance: " + lidar.getDistance());
+			//System.out.println("Error: " + error);
+			//System.out.println("Turn: " + turn);
 		}
 	}
 
@@ -75,9 +81,9 @@ public class CenterOnAirship extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		if (Math.abs(camera.getCenterXfromCameraCenterX()) < threshold || Math.abs(camera.getCenterXfromCameraCenterX()) > 400) {
-			System.out.println("THRESHOLD END: " + ((camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2)));
+			//System.out.println("THRESHOLD END: " + ((camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2)));
 			drivetrain.drive(0, 0);
-			return true;
+			return false;
 		} else {
 			return false;
 		}

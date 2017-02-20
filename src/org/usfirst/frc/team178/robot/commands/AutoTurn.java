@@ -35,10 +35,9 @@ public class AutoTurn extends Command {
 	protected void execute() {
 		currentAngle = gyro.getAngle();
 		double speedChange = ((targetAngle - currentAngle) / targetAngle);
-
+		
 		if (Math.abs(currentAngle) >= (Math.abs(targetAngle)/2)) {
-			drivetrain.drive(lSpeed * speedChange, rSpeed * speedChange);
-
+			 drivetrain.drive(lSpeed * speedChange, rSpeed * speedChange);
 		} else {
 			drivetrain.drive(lSpeed, rSpeed);
 		}
@@ -48,6 +47,7 @@ public class AutoTurn extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		if (Math.abs(currentAngle) >= Math.abs(targetAngle)) {
+			System.out.println("done " + currentAngle);
 			return true;
 		} else {
 			return false;
@@ -62,5 +62,6 @@ public class AutoTurn extends Command {
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+		System.out.println("?????");
 	}
 }

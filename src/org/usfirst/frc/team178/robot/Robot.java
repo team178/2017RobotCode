@@ -1,8 +1,9 @@
 
 package org.usfirst.frc.team178.robot;
 
-import org.usfirst.frc.team178.robot.commands.DoNothing;
+//import org.usfirst.frc.team178.robot.commands.DoNothing;
 import org.usfirst.frc.team178.robot.commands.DriveDistance;
+import org.usfirst.frc.team178.robot.commands.LIDARDistance;
 import org.usfirst.frc.team178.robot.subsystems.*;
 import org.usfirst.frc.team178.robot.autocommandgroups.AutoDriveForward;
 import org.usfirst.frc.team178.robot.autocommandgroups.AutoGearSequence;
@@ -39,8 +40,7 @@ public class Robot extends IterativeRobot {
 	public static VisionStreamer frontCamera;
 	public static LightsSubsystem lights;
 	public static AnalogGyro gyro;
-	//public static VisionStreamer backCamera;
-	
+	// public static VisionStreamer backCamera;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser;
@@ -58,19 +58,21 @@ public class Robot extends IterativeRobot {
 		fuelshooter = new FuelShooter();
 		frontCamera = new VisionStreamer("frontCamera", "axis-camera-intake.local");
 		lights = new LightsSubsystem();
-		//backCamera = new VisionStreamer("backCamera", "10.1.78.109");
+		// backCamera = new VisionStreamer("backCamera", "10.1.78.109");
 		ropeclimber = new RopeClimber();
-		  //backCamera = new VisionStreamer("backCamera", "10.1.78.109"); 
-	    oi = new OI(); 
-	    lidar = new LIDAR(Port.kMXP); 
-	    gyro = new AnalogGyro(RobotMap.GYRO);
-	       
-	    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0); 
-	    camera.setResolution(1920,1080); 
-	    chooser = new SendableChooser<Command>(); 
-	    chooser.addObject("AutoDriveForward", new AutoDriveForward()); 
-	    chooser.addObject("AutoGearSequence", new AutoGearSequence()); 
-		chooser.addObject("LightShow", new DoNothing());
+		// backCamera = new VisionStreamer("backCamera", "10.1.78.109");
+		lidar = new LIDAR(Port.kOnboard);
+		gyro = new AnalogGyro(RobotMap.GYRO);
+
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
+		camera.setResolution(1920, 1080);
+
+		oi = new OI(); // NEEDS to be after subsystems
+
+		chooser = new SendableChooser<Command>();
+		chooser.addObject("AutoDriveForward", new AutoDriveForward());
+		chooser.addObject("AutoGearSequence", new AutoGearSequence());
+		// chooser.addObject("LightShow", new DoNothing());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
@@ -139,6 +141,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		SmartDashboard.putNumber("Distance: ", lidar.getDistance());
 		Scheduler.getInstance().run();
 	}
 
@@ -147,7 +150,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		
+
 		LiveWindow.run();
 	}
 }

@@ -23,6 +23,8 @@ public class LIDAR extends Subsystem{
 		distance = new byte[2];
 		
 		updater = new java.util.Timer();
+		
+		start();
 	}
 	
 	// Distance in cm
