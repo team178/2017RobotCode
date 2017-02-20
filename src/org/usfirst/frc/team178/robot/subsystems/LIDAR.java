@@ -1,13 +1,14 @@
-package org.usfirst.frc.team178.robot;
+package org.usfirst.frc.team178.robot.subsystems;
 
 import java.util.TimerTask;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
 
-public class LIDAR implements PIDSource{
+public class LIDAR extends Subsystem{
 	private I2C i2c;
 	private byte[] distance;
 	private java.util.Timer updater;
@@ -29,9 +30,6 @@ public class LIDAR implements PIDSource{
 		return (int)Integer.toUnsignedLong(distance[0] << 8) + Byte.toUnsignedInt(distance[1]);
 	}
 
-	public double pidGet() {
-		return getDistance();
-	}
 	
 	// Start 10Hz polling
 	public void start() {
@@ -88,14 +86,8 @@ public class LIDAR implements PIDSource{
 	}
 
 	@Override
-	public void setPIDSourceType(PIDSourceType pidSource) {
+	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public PIDSourceType getPIDSourceType() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
