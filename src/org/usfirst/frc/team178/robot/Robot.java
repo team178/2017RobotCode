@@ -60,7 +60,7 @@ public class Robot extends IterativeRobot {
 		ropeclimber = new RopeClimber();
 		  //backCamera = new VisionStreamer("backCamera", "10.1.78.109"); 
 	    oi = new OI(); 
-	    lidar = new LIDAR(Port.kOnboard); 
+	    lidar = new LIDAR(Port.kMXP); 
 	       
 	    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0); 
 	    camera.setResolution(400, 200); 
