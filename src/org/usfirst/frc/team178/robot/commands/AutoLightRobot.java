@@ -10,11 +10,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DoNothing extends Command {
+public class AutoLightRobot extends Command {
 	LightsSubsystem lights;
 	double time;
 	
-    public DoNothing() {
+    public AutoLightRobot() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.lights);
@@ -30,16 +30,16 @@ public class DoNothing extends Command {
     	time = timeSinceInitialized();
     	System.out.println(time);
     	if (time <= 1){
-    		lights.sendMessage(0, "enforcers");
+    		lights.sendMessage(0, "Enforcers");
     	}
     	else if (time <= 2){
-    		lights.sendMessage(1, "fire");
+    		lights.sendMessage(1, "Fire");
     	}
     	else if (time <= 3){
-    		lights.sendMessage(2, "enforcers");
+    		lights.sendMessage(2, "Enforcers");
     	}
     	else if (time <= 4){
-    		lights.sendMessage(3, "fire");
+    		lights.sendMessage(3, "Fire");
     	}
     	System.out.println("Execute");
     }

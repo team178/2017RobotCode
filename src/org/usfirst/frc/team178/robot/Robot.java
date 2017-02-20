@@ -9,6 +9,7 @@ import org.usfirst.frc.team178.robot.autocommandgroups.AutoGearSequence;
 import org.usfirst.frc.team178.robot.autocommandgroups.AutoLightRobot;
 
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -37,6 +38,7 @@ public class Robot extends IterativeRobot {
 	public static FuelShooter fuelshooter;
 	public static VisionStreamer frontCamera;
 	public static LightsSubsystem lights;
+	public static AnalogGyro gyro;
 	//public static VisionStreamer backCamera;
 	
 
@@ -61,9 +63,10 @@ public class Robot extends IterativeRobot {
 		  //backCamera = new VisionStreamer("backCamera", "10.1.78.109"); 
 	    oi = new OI(); 
 	    lidar = new LIDAR(Port.kMXP); 
+	    gyro = new AnalogGyro(RobotMap.GYRO);
 	       
 	    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0); 
-	    camera.setResolution(400, 200); 
+	    camera.setResolution(1920, 1080); 
 	    chooser = new SendableChooser<Command>(); 
 	    chooser.addObject("AutoDriveForward", new AutoDriveForward()); 
 	    chooser.addObject("AutoGearSequence", new AutoGearSequence()); 

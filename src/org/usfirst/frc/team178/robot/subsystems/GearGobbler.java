@@ -15,7 +15,7 @@ public class GearGobbler extends Subsystem {
 
 	public GearGobbler() {
 		extendRetract = new DoubleSolenoid(RobotMap.PCM, RobotMap.GEARGOBBLER2, RobotMap.GEARGOBBLER1);
-		ultrasonic = new AnalogInput(1);
+		//ultrasonic = new AnalogInput(RobotMap.ULTRASONIC);
 	}
 	public void moveGobbler() {
 		if(extendRetract.get() == DoubleSolenoid.Value.kForward){

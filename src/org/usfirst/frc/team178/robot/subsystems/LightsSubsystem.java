@@ -24,6 +24,7 @@ public class LightsSubsystem extends Subsystem {
     
     public void sendMessage(int subsystem, String pattern) {
     	String message = subsystem + pattern;
+    	message = message.toLowerCase();
     	System.out.println(message);
     	arduino.writeBulk(message.getBytes());
     }
