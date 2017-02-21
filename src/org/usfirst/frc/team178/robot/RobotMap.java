@@ -43,6 +43,7 @@ public class RobotMap {
 	public static int DRIVEencoderLB = 3; //DIO
 	public static int SHOOTERencoderA = 4; //DIO
 	public static int SHOOTERencoderB = 5; //DIO
+	public static int GGLimitSwitch = 6; //DIO
 	
 	public static int PRESSURETRANSDUCER = 0; //Analog
 	//public static int ULTRASONIC = 1; //Analog

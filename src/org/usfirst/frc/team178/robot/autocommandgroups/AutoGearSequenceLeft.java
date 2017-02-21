@@ -14,10 +14,10 @@ public class AutoGearSequenceLeft extends CommandGroup {
 	DriverStation ds = DriverStation.getInstance();
 
     public AutoGearSequenceLeft() {
-    		addSequential(new DriveDistance(197.75, 0.3));
-    		addSequential(new AutoTurn(90, 0.3));
+    		addSequential(new DriveDistance(131.83, 0.3));
+    		addSequential(new AutoTurn(30, 0.3));
     		addSequential(new CenterOnAirship());
-    		addSequential(new DriveDistance(103.845, 0.5));
+    		addSequential(new DriveDistance(103.845, 0.3));
     		addSequential(new MoveGobbler());
         //General sequence for autonomous gears, may need variations
     	//Center: Drive forward, center, place gear
