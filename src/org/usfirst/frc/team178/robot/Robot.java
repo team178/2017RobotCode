@@ -5,9 +5,7 @@ package org.usfirst.frc.team178.robot;
 import org.usfirst.frc.team178.robot.commands.DriveDistance;
 import org.usfirst.frc.team178.robot.commands.LIDARDistance;
 import org.usfirst.frc.team178.robot.subsystems.*;
-import org.usfirst.frc.team178.robot.autocommandgroups.AutoDriveForward;
-import org.usfirst.frc.team178.robot.autocommandgroups.AutoGearSequence;
-import org.usfirst.frc.team178.robot.autocommandgroups.AutoLightRobot;
+import org.usfirst.frc.team178.robot.autocommandgroups.*;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.AnalogGyro;
@@ -71,7 +69,9 @@ public class Robot extends IterativeRobot {
 
 		chooser = new SendableChooser<Command>();
 		chooser.addObject("AutoDriveForward", new AutoDriveForward());
-		chooser.addObject("AutoGearSequence", new AutoGearSequence());
+		chooser.addObject("AutoGear Left (1)", new AutoGearSequenceLeft());
+		chooser.addObject("AutoGear Middle (2)", new AutoGearSequenceMiddle());
+		chooser.addObject("AutoGear Right (3)", new AutoGearSequenceRight());
 		// chooser.addObject("LightShow", new DoNothing());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
