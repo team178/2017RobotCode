@@ -42,10 +42,13 @@ public class CenterOnAirship extends Command {
 	protected void execute() {
 		double x = lidar.getDistance();
 		double adjustedCenter = 0.0284*(Math.pow(x, 2)) - 7.75*x + 994.5;
+		System.out.println(adjustedCenter);
+		System.out.println("BLENDED CENTER: " + camera.getBlendedCenterX());
 		double error = adjustedCenter - (camera.getBlendedCenterX());
+		//System.out.println("error: " + error);
 		if ((Math.abs(error) > threshold) && (Math.abs(error) < 400)) {
 			turn = -.0015 * error;
-			//drivetrain.drive(turn/2, turn/2);
+			drivetrain.drive(turn/2, turn/2);
 			
 		}else if(Math.abs(error) > 400){
 			
@@ -54,8 +57,8 @@ public class CenterOnAirship extends Command {
 		}
 		//print statements for testing & scaling
 		if (((timeSinceInitialized()*1000)%250) <= 20) {
-			System.out.println("BlendedCenter: " + camera.getBlendedCenterX());
-			System.out.println("Distance: " + lidar.getDistance());
+			//System.out.println("BlendedCenter: " + camera.getBlendedCenterX());
+			//System.out.println("Distance: " + lidar.getDistance());
 			//System.out.println("Error: " + error);
 			//System.out.println("Turn: " + turn);
 		}
