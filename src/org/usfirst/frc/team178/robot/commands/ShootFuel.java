@@ -4,6 +4,7 @@ import org.usfirst.frc.team178.robot.OI;
 import org.usfirst.frc.team178.robot.Robot;
 import org.usfirst.frc.team178.robot.subsystems.FuelShooter;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -33,6 +34,8 @@ public class ShootFuel extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	fuelshooter.shoot(1);
+    	Timer.delay(3);
+    	fuelshooter.moveServo(0.5);
   
     }
     // Make this return true when this Command no longer needs to run execute()
