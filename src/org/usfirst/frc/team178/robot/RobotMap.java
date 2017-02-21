@@ -57,6 +57,11 @@ public class RobotMap {
 	public static int GEARGOBBLER1 = 2; //PCM Channel
 	public static int GEARGOBBLER2 = 3; //PCM Channel
 	
+		
+	public enum SubsystemIndex {
+		ALL, SHOOTER, GOBBLER, CLIMBER
+	}
+	
 	
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.

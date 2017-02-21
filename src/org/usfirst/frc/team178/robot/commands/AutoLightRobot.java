@@ -1,8 +1,7 @@
 package org.usfirst.frc.team178.robot.commands;
 
 import org.usfirst.frc.team178.robot.Robot;
-
-
+import org.usfirst.frc.team178.robot.RobotMap.SubsystemIndex;
 import org.usfirst.frc.team178.robot.subsystems.LightsSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -30,16 +29,17 @@ public class AutoLightRobot extends Command {
     	time = timeSinceInitialized();
     	System.out.println(time);
     	if (time <= 1){
-    		lights.sendMessage(0, "Enforcers");
+    	//	lights.sendMessage(SubsystemIndex.ALL, "Enforcers");
+    		lights.setBaseColor(SubsystemIndex.ALL);
     	}
     	else if (time <= 2){
-    		lights.sendMessage(1, "Fire");
+    		lights.sendMessage(SubsystemIndex.SHOOTER, "Fire");
     	}
     	else if (time <= 3){
-    		lights.sendMessage(2, "Enforcers");
+    		lights.sendMessage(SubsystemIndex. GOBBLER, "Enforcers");
     	}
     	else if (time <= 4){
-    		lights.sendMessage(3, "Fire");
+    		lights.sendMessage(SubsystemIndex.CLIMBER, "Fire");
     	}
     	System.out.println("Execute");
     }
