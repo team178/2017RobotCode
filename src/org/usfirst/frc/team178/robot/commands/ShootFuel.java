@@ -36,7 +36,6 @@ public class ShootFuel extends Command {
     	fuelshooter.shoot(1);
     	Timer.delay(3);
     	fuelshooter.moveServo(0.5);
-  
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -52,6 +51,7 @@ public class ShootFuel extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	System.out.println("end");
     	fuelshooter.stop();
     }
 
