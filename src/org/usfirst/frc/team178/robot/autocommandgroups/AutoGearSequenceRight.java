@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoGearSequenceRight extends CommandGroup {
 
     public AutoGearSequenceRight() {
-    	addSequential(new DriveDistance(197.75, 0.3));
-		addSequential(new AutoTurn(-90, -0.3));
+    	addSequential(new DriveDistance(131.83, 0.3));
+		addSequential(new AutoTurn(-30, -0.3));
 		addSequential(new CenterOnAirship());
 		addSequential(new DriveDistance(103.845, 0.5));
 		addSequential(new MoveGobbler());
