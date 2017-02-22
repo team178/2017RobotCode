@@ -35,7 +35,7 @@ public class JoystickDrive extends Command {
 			drivetrain.changeToHiGear();
 		}
 		yVal = oi.getY();
-		twistVal = 0.9*(oi.getTwist());
+		twistVal = 0.5*(oi.getTwist());
 		//System.out.println("Y Val: " + yVal);
 		//System.out.println("Twist Val: " + twistVal);
 		//System.out.println("X Val: " + oi.getX());
