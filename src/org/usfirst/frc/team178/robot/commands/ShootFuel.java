@@ -34,7 +34,7 @@ public class ShootFuel extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	fuelshooter.shoot(1);
+    	fuelshooter.shoot(0.95);
     	System.out.println(fuelshooter.getEncoderValue());
     	if (fuelshooter.getEncoderValue() >= 3000) { //rpm
     		fuelshooter.moveServo(0.5); 
