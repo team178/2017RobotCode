@@ -28,6 +28,8 @@ public class AutoTurn extends Command {
 		oi = Robot.oi;
 		drivetrain = Robot.drivetrain;
 		gyro = Robot.gyro;
+		System.out.println("i ahve startesdf");
+		drivetrain.changeToLoGear();
 		gyro.reset();
 	}
 
@@ -36,8 +38,21 @@ public class AutoTurn extends Command {
 		currentAngle = gyro.getAngle();
 		double speedChange = ((targetAngle - currentAngle) / targetAngle);
 		
-		if (Math.abs(currentAngle) >= (Math.abs(targetAngle)/2)) {
-			 drivetrain.drive(lSpeed * speedChange, rSpeed * speedChange);
+		if (Math.abs(currentAngle) >= (0.7*(Math.abs(targetAngle)))) {
+			double leftSpd = lSpeed * speedChange;
+			double rightSpd = rSpeed * speedChange;
+			double minSpeed = .1;
+			if (Math.abs(leftSpd) <= minSpeed && leftSpd > 0) {
+				leftSpd = minSpeed;
+			} else if (Math.abs(leftSpd) <= minSpeed && leftSpd < 0) {
+				leftSpd = -minSpeed;
+			} 
+
+			if (Math.abs(rightSpd) <= minSpeed && rightSpd > 0) {
+				rightSpd = minSpeed;
+			} else if (Math.abs(rightSpd) <= minSpeed && rightSpd < 0) {
+				rightSpd = -minSpeed;
+			} 
 		} else {
 			drivetrain.drive(lSpeed, rSpeed);
 		}
@@ -56,6 +71,7 @@ public class AutoTurn extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
+		System.out.println("End turn");
 		drivetrain.drive(0, 0);
 	}
 

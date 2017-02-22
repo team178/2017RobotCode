@@ -81,6 +81,13 @@ public class DriveTrain extends Subsystem {
 		right2.set(rightMotors);
 		right3.set(rightMotors);
 	}
+	public void correctSpeed() {
+	if(Math.abs(getLeftSpeed()) <= .1 && Math.abs(getRightSpeed()) <= .1)
+	{
+		drive(.15, .15);
+		System.out.println("WORK");
+	}
+	}
 
 	public double getLeftDistance() {
 		return left.getDistance();

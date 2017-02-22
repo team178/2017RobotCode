@@ -15,8 +15,8 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 public class VisionStreamer extends Subsystem {
 	
 	//actual values to be determined after final physical setup implemented
-	private static final int IMG_WIDTH = 800;
-	private static final int IMG_HEIGHT = 600;
+	private static final int IMG_HEIGHT = 800;
+	private static final int IMG_WIDTH = 600;
 	private VisionThread visionThread;
 	private double[] centerX = {0.0, 0.0};
 	private double[] centerY = {0.0, 0.0};
@@ -32,6 +32,7 @@ public class VisionStreamer extends Subsystem {
 	    camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
 	    
 	    visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
+        	//System.out.println("rectangle count: " + pipeline.filterContoursOutput().size());
 	        if (pipeline.filterContoursOutput().size()>=2) {
 	        	for (int i = 0; i < 2; i++) {
 	            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(i));
@@ -77,16 +78,16 @@ public class VisionStreamer extends Subsystem {
 	public double getIMG_HEIGHT(){
 		return IMG_HEIGHT;
 	}
-	public double getAirshipWidth(){
+	public double getBoilerWidth(){
 		return ((Math.abs(centerX[1]-centerX[0]))+(rectWidth[1]/2)+(rectWidth[0]/2));
 	}
-	public double getAirshipHeight(){
+	public double getBoilerHeight(){
 		return ((rectHeight[0]+rectHeight[1])/2);
 	}
-	public double getBoilerWidth(){
+	public double getAirshipWidth(){
 		return ((rectWidth[0]+rectWidth[1])/2);
 	}
-	public double getBoilerHeight(){
+	public double getAirshipHeight(){
 		return ((Math.abs(centerY[1]-centerY[0]))+(rectHeight[1]/2)+(rectHeight[0]/2));
 	}
 	

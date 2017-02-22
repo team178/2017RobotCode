@@ -26,49 +26,40 @@ public class DriveDistance extends Command {
 		drivetrain = Robot.drivetrain;
 		drivetrain.resetEncoders();
 		adjustedSpeed = -robotSpeed;
+		drivetrain.changeToLoGear();
 		drivetrain.drive(robotSpeed, -robotSpeed); // sets drivetrain to speed
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		double error = drivetrain.getLeftSpeed() - drivetrain.getRightSpeed(); // subtracts
-																				// to
-																				// find
-																				// error
-																				// value
-		if (Math.abs(error) > 0.001) { // checks to see if the error value is
-										// greater than .001
+		double error = drivetrain.getLeftSpeed() - drivetrain.getRightSpeed(); // subtracts to find error value
+		if (Math.abs(error) > 0.001) { // checks to see if the error value is greater than .001
 			// drives only left side
-			adjustedSpeed -= 0.0001 * error; // changes adjustedSpeed to
-												// adjustedSpeed + a
-												// constant*error
+			adjustedSpeed -= 0.0001 * error; // changes adjustedSpeed to adjustedSpeed + a constant*error
 			// System.out.println("LeftDistance: " +
 			// drivetrain.getLeftDistance());
 			// System.out.println("RightDistance: " +
 			// drivetrain.getRightDistance());
 			// System.out.println("RightSpeed: " + drivetrain.getRightSpeed());
 			// System.out.println("LeftSpeed: " + drivetrain.getLeftSpeed());
-			double speedChange = (distance - drivetrain.getRightDistance()) / distance;
+			double speedChange = .5 + (distance - drivetrain.getRightDistance()) / distance;
 			if (drivetrain.getLeftDistance() >= (distance * .7)) {
 				double leftSpd = robotSpeed * speedChange;
 				double rightSpd = adjustedSpeed * speedChange;
-				if (Math.abs(leftSpd) <= .2 && leftSpd > 0) {
-					leftSpd = .2;
-					//System.out.println("positive leftSpeed");
-				} else if (Math.abs(leftSpd) <= .2 && leftSpd < 0) {
-					leftSpd = -.2;
-					//System.out.println("negative leftSpeed");
+				double minSpeed = .1;
+				if (Math.abs(leftSpd) <= minSpeed && leftSpd > 0) {
+					leftSpd = minSpeed;
+				} else if (Math.abs(leftSpd) <= minSpeed && leftSpd < 0) {
+					leftSpd = -minSpeed;
 				} 
 
-				if (Math.abs(rightSpd) <= .2 && rightSpd > 0) {
-					rightSpd = .2;
-					//System.out.println("positive rightSpeed");
-				} else if (Math.abs(rightSpd) <= .2 && rightSpd < 0) {
-					rightSpd = -.2;
-					//System.out.println("negative rightSpeed");
+				if (Math.abs(rightSpd) <= minSpeed && rightSpd > 0) {
+					rightSpd = minSpeed;
+				} else if (Math.abs(rightSpd) <= minSpeed && rightSpd < 0) {
+					rightSpd = -minSpeed;
 				} 
 				drivetrain.drive(leftSpd, rightSpd);
-				System.out.println("should be .2: " + leftSpd + " " + rightSpd);
+				System.out.println("Distance: " + drivetrain.getLeftDistance());
 			} else {
 				drivetrain.leftDrive(robotSpeed);
 				drivetrain.rightDrive(adjustedSpeed);// sets right side to
@@ -77,7 +68,7 @@ public class DriveDistance extends Command {
 			}
 			// we did all of this to make the robot drive straight, as
 			// naturally, it doesn't
-		}
+		} 
 
 	}
 
@@ -85,7 +76,7 @@ public class DriveDistance extends Command {
 	protected boolean isFinished() {
 		 System.out.println("leftdistance: " + drivetrain.getLeftDistance() +
 		 " distance: " + distance);
-		if (drivetrain.getLeftDistance() >= distance) {
+		if (Math.abs(drivetrain.getLeftDistance()) >= Math.abs(distance)) {
 			return true;
 		} else {
 

@@ -36,10 +36,13 @@ public class OI {
 	public OI() {
 		buttonB.whenPressed(new MoveGobbler());
 		button3.whenPressed(new LIDARDistance());
-		buttonX.whenPressed(new CenterOnAirship());
 		buttonA.whileHeld(new ShootFuel());
 		rBumper.whileHeld(new SweepBalls());
 		lBumper.whileHeld(new ClimbRope());
+		//buttonY.whenPressed(new DriveDistance(30, 0.2));
+		//button5.whenPressed(new AutoTurn(-120, -0.2));
+		//buttonX.whenPressed(new CenterOnAirship());
+
 		//button4.whenPressed(new ExtendGobbler());
 		//button5.whenPressed(new RetractGobbler());
 	}
