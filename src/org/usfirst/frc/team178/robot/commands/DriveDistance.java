@@ -59,12 +59,12 @@ public class DriveDistance extends Command {
 					rightSpd = -minSpeed;
 				} 
 				drivetrain.drive(leftSpd, rightSpd);
-				System.out.println("Distance: " + drivetrain.getLeftDistance());
+				//System.out.println("Distance: " + drivetrain.getLeftDistance());
 			} else {
 				drivetrain.leftDrive(robotSpeed);
 				drivetrain.rightDrive(adjustedSpeed);// sets right side to
 														// adjustedSpeed
-				System.out.println("should be numbers: " + robotSpeed + " " + adjustedSpeed);
+				//System.out.println("should be numbers: " + robotSpeed + " " + adjustedSpeed);
 			}
 			// we did all of this to make the robot drive straight, as
 			// naturally, it doesn't
@@ -74,8 +74,8 @@ public class DriveDistance extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		 System.out.println("leftdistance: " + drivetrain.getLeftDistance() +
-		 " distance: " + distance);
+		 //System.out.println("leftdistance: " + drivetrain.getLeftDistance() +
+		// " distance: " + distance);
 		if (Math.abs(drivetrain.getLeftDistance()) >= Math.abs(distance)) {
 			return true;
 		} else {
