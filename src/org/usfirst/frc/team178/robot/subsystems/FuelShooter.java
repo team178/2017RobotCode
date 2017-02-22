@@ -20,9 +20,11 @@ public class FuelShooter extends Subsystem {
 	
 	shooter1 = new CANTalon(RobotMap.Shooter1);
 	shooter2 = new CANTalon(RobotMap.Shooter2);
-	encoder = new Encoder(RobotMap.SHOOTERencoderA, RobotMap.SHOOTERencoderB);
+	encoder = new Encoder(RobotMap.SHOOTERencoderA, RobotMap.SHOOTERencoderB, true, Encoder.EncodingType.k4X);
 	servo = new Servo(RobotMap.SERVO);
 	
+	double dpp = (60.0/1024.0);
+	encoder.setDistancePerPulse(dpp);
 	}
 	
 	//used to shoot and to turn off shooter
@@ -40,6 +42,9 @@ public class FuelShooter extends Subsystem {
 	
 	public void moveServo(double value){
 		servo.set(value);
+	}
+	public double getServo(){
+		return servo.getPosition();
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

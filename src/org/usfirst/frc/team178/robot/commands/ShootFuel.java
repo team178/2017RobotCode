@@ -16,6 +16,7 @@ public class ShootFuel extends Command {
 	double time;
 
     public ShootFuel() {
+    	time = 100000000;
     	requires (Robot.fuelshooter);
     	
         // Use requires() here to declare subsystem dependencies
@@ -34,8 +35,11 @@ public class ShootFuel extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	fuelshooter.shoot(1);
-    	Timer.delay(3); 
-        fuelshooter.moveServo(0.5); 
+    	System.out.println(fuelshooter.getEncoderValue());
+    	if (fuelshooter.getEncoderValue() >= 3000) { //rpm
+    		fuelshooter.moveServo(0.5); 
+    	}
+        
 
     }
     // Make this return true when this Command no longer needs to run execute()
@@ -55,12 +59,15 @@ public class ShootFuel extends Command {
     	System.out.println("end");
     	fuelshooter.stop();
     	fuelshooter.moveServo(0); 
+    	System.out.println("end: " +fuelshooter.getServo());
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	fuelshooter.stop();
+    	fuelshooter.moveServo(0);
+    	System.out.println("end: " +fuelshooter.getServo());
     }
     
 
