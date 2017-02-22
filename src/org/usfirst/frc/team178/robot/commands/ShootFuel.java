@@ -34,8 +34,10 @@ public class ShootFuel extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	fuelshooter.shoot(1);
-    	Timer.delay(3);
-    	fuelshooter.moveServo(0.5);
+    	if (fuelshooter.getEncoderValue() >= 1) {
+    		fuelshooter.moveServo(0.5);
+    	}
+
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -53,6 +55,7 @@ public class ShootFuel extends Command {
     protected void end() {
     	System.out.println("end");
     	fuelshooter.stop();
+    	fuelshooter.moveServo(0.5);
     }
 
     // Called when another command which requires one or more of the same
