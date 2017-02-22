@@ -18,7 +18,7 @@ public class AutoShootSequence extends CommandGroup {
     		addSequential(new DriveDistance(41.5, 0.3));
     		addSequential(new AutoTurn(-90, -0.3));
     		addSequential(new DriveDistance(69.25, 0.5));
-    		addSequential(new CenterOnAirship()); //Replace w/ LineUpToShoot
+    		addSequential(new CenterOnBoiler()); 
     		addSequential(new ShootFuel());    	  
        //General sequence based off of positioning
        //Drive forward, turn, aim
