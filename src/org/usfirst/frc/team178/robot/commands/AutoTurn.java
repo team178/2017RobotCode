@@ -33,7 +33,7 @@ public class AutoTurn extends Command {
 		gyro.reset();
 	}
 
-	// Called repeatedly when this Command is scheduled to run
+	// Consistently changes Angle until it is at a "targetAngle"
 	protected void execute() {
 		currentAngle = gyro.getAngle();
 		double speedChange = ((targetAngle - currentAngle) / targetAngle);
@@ -59,7 +59,7 @@ public class AutoTurn extends Command {
 
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
+	//When the currentAngle is the same or equal to the targetAngle, this is finished.
 	protected boolean isFinished() {
 		if (Math.abs(currentAngle) >= Math.abs(targetAngle)) {
 			System.out.println("done " + currentAngle);
@@ -69,14 +69,13 @@ public class AutoTurn extends Command {
 		}
 	}
 
-	// Called once after isFinished returns true
+	// The robot won't spin aimlessly after this is finished.
 	protected void end() {
 		System.out.println("End turn");
 		drivetrain.drive(0, 0);
 	}
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
+	// Idek what this is
 	protected void interrupted() {
 		System.out.println("?????");
 	}

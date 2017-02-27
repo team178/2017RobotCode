@@ -18,17 +18,17 @@ public class ExtendGobbler extends Command {
         // eg. requires(chassis);
     }
 
-    // Called just before this Command runs the first time
+    // This calls the geargobbler and starts the code for the first time.
     protected void initialize() {
     	geargobbler = Robot.geargobbler;
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    // This consistently runs the command when it is called upon.
     protected void execute() {
     	geargobbler.extendGobbler();
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    //This basically ends the code if it can sense that the gear is in the gobbler and the code returns true. 
     protected boolean isFinished() {
     	if (geargobbler.getGobbler() == DoubleSolenoid.Value.kForward)
     	{
@@ -39,12 +39,9 @@ public class ExtendGobbler extends Command {
     	}
     }
 
-    // Called once after isFinished returns true
     protected void end() {
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
     }
 }

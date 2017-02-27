@@ -9,21 +9,20 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class JoystickDrive extends Command {
 	
-	//Encoders encoders;
 	OI oi;
 	DriveTrain drivetrain;
 	double yVal,twistVal;
-	
+	//This shows where the code for JoystickDrive is coming from.
 	public JoystickDrive()
 	{
 		requires(Robot.drivetrain);
 	}
-	
+	//This is where the code gets the oi and drivetrain and starts the code.
     protected void initialize() {
     	oi = Robot.oi;
     	drivetrain = Robot.drivetrain;
     }
-	
+	//This is where the direction of the Joystick os determined depending upon the value received from the DoubleSolenoid. 
 	protected void execute() {
 		//Joystick returns from -1 to 1, motor takes values from -1 to 1.
 		if (oi.button2.get() && DriveTrain.speedShifter.get() == DoubleSolenoid.Value.kReverse)

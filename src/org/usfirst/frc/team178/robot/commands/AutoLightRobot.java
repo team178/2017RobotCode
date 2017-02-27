@@ -14,9 +14,9 @@ public class AutoLightRobot extends Command {
 	LightsSubsystem lights;
 	double time;
 	
+	// Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
     public AutoLightRobot() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(Robot.lights);
     }
 
@@ -25,7 +25,10 @@ public class AutoLightRobot extends Command {
     	lights = Robot.lights;
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    // If time is between 0 and 1, do Enforcers lights.
+    //If time is between 1 and 2, do Fire lights.
+    //If time is between 2 and 3, do enforcers lights.
+    //If time is between 3 and 4, do Fire lights.
     protected void execute() {
     	time = timeSinceInitialized();
     	System.out.println(time);

@@ -19,11 +19,8 @@ public class LIDAR extends Subsystem{
 	
 	public LIDAR(Port port) {
 		i2c = new I2C(port, LIDAR_ADDR);
-		
 		distance = new byte[2];
-		
 		updater = new java.util.Timer();
-		
 		start();
 	}
 	
@@ -31,7 +28,7 @@ public class LIDAR extends Subsystem{
 	public int getDistance() {
 		return (int)Integer.toUnsignedLong(distance[0] << 8) + Byte.toUnsignedInt(distance[1]);
 	}
-
+	
 	
 	// Start 10Hz polling
 	public void start() {
@@ -50,7 +47,7 @@ public class LIDAR extends Subsystem{
 		i2c.write(0x04, 0x08);
 		i2c.write(0x1c, 0x00);
 	}
-	
+	//stops timer at end of the match
 	public void stop() {
 		updater.cancel();
 		updater = new java.util.Timer();
