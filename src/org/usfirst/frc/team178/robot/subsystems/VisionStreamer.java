@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.vision.VisionThread;
 
+//This is where the height and width are assigned for the camera, whch decides the quality.
+//The center, width, and height are given to use in the camera.
 public class VisionStreamer extends Subsystem {
 	
 	//actual values to be determined after final physical setup implemented
@@ -23,10 +25,12 @@ public class VisionStreamer extends Subsystem {
 	private double[] rectWidth = {0.0, 0.0};
 	private double[] rectHeight = {0.0, 0.0};
 	
+	//This is where the imgLock is entered using the new Object().
 	private final Object imgLock = new Object();
-	
+	//The Axis Camera is defined.
 	private AxisCamera camera;
 	
+	//The information for the center, width, and height used in the VisionStreamer are given.
 	public VisionStreamer(String cameraName, String host) {
 	    camera = new AxisCamera(cameraName, host);
 	    camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
@@ -59,7 +63,7 @@ public class VisionStreamer extends Subsystem {
 	 * public void processCurrentImage() {
 		GripPipeline.process();
 	}*/
-	
+	//The VisionCamera is finding the dimensions and returning all the information in order to find the information.
 	public double getBlendedCenterX(){
 		return ((centerX[0]+centerX[1])/2);
 	}

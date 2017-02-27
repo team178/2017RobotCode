@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
+
+//idk cuz programming didn't work on this
 public class LightsSubsystem extends Subsystem {
 
     // Put methods for controlling this subsystem
