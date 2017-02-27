@@ -14,13 +14,14 @@ public class DriveDistance extends Command {
 	double adjustedSpeed;
 	double robotSpeed;
 
+	//Creates distance and speed variables
 	public DriveDistance(double dist, double speed) {
 		requires(Robot.drivetrain);
 		distance = dist;
 		robotSpeed = speed;
 	}
 
-	// Called just before this Command runs the first time
+	// this sets the driveTrain to a certain speed
 	protected void initialize() {
 		oi = Robot.oi;
 		drivetrain = Robot.drivetrain;
@@ -30,7 +31,7 @@ public class DriveDistance extends Command {
 		drivetrain.drive(robotSpeed, -robotSpeed); // sets drivetrain to speed
 	}
 
-	// Called repeatedly when this Command is scheduled to run
+	// Makes it so that the robot goes straight
 	protected void execute() {
 		double error = drivetrain.getLeftSpeed() - drivetrain.getRightSpeed(); // subtracts to find error value
 		if (Math.abs(error) > 0.001) { // checks to see if the error value is greater than .001
@@ -84,14 +85,13 @@ public class DriveDistance extends Command {
 		}
 	}
 
-	// Called once after isFinished returns true
+	// Whuuuuuuuuttttttttt
 	protected void end() {
 		drivetrain.drive(0, 0);
 		System.out.println("yeeeeee boiiiiiii");
 	}
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
+	// When it fails, it lets the drive team know by telling them
 	protected void interrupted() {
 		System.out.println("maybe im interrupted");
 	}

@@ -34,7 +34,7 @@ public class CenterOnAirship extends Command {
 		drivetrain.changeToLoGear();
 	}
 
-	// Called repeatedly when this Command is scheduled to run
+	// This is what happens when the robot is to center directly on the airship using vision
 	protected void execute() {
 		double error = camera.getCenterXfromCameraCenterX();//(camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2);
 		if ((Math.abs(error) > threshold) && (Math.abs(error) < 350)) {
@@ -55,24 +55,7 @@ public class CenterOnAirship extends Command {
 		}
 	}
 
-/*
-		int errorFlexibility = 50;
-		if (error > errorFlexibility) {
-		//if true, the camera center is to right of the tape, needs to turn left
-			turn += .00001 * error;
-			drivetrain.drive(turn, 0.1);
-			error = camera.getCenterXfromCameraCenterX();//(camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2);
-		}else if (error < (-1*errorFlexibility)) {
-		//if true, the camera center is to left of the tape, needs to turn right
-			turn += .00001 * error;
-			drivetrain.drive(0.1, turn);
-			error = camera.getCenterXfromCameraCenterX();//(camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2);
-		}else{
-		drivetrain.drive(0, 0);
-		}
- */
-
-	// Make this return true when this Command no longer needs to run execute()
+	// Checks to see if vision was correct
 	protected boolean isFinished() {
 		if (Math.abs(camera.getCenterXfromCameraCenterX()) < threshold )  {// || Math.abs(camera.getCenterXfromCameraCenterX()) > 400) {
 			System.out.println("THRESHOLD END: " + ((camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2)));
@@ -83,7 +66,7 @@ public class CenterOnAirship extends Command {
 		}
 	}
 
-	// Called once after isFinished returns true
+	// Finishes
 	protected void end() {
 		drivetrain.drive(0, 0);
 	}

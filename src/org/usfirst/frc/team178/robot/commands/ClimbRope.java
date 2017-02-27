@@ -21,29 +21,28 @@ public class ClimbRope extends Command {
 		// eg. requires(chassis);
 	}
 
-	// Called just before this Command runs the first time
+	// Calls for the rope climber and oi
 	protected void initialize() {
 		ropeclimber = Robot.ropeclimber;
 		oi = Robot.oi;
 	}
 
-	// Called repeatedly when this Command is scheduled to run
+	//Simply has the rope climb at a speed of 1
 	protected void execute() {
 		ropeclimber.climb(1);
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
+	// This is in the endgame, so there is no need for this stuff
 	protected boolean isFinished() {
 		return false;
 	}
 
-	// Called once after isFinished returns true
+	//Rope speed is 0
 	protected void end() {
 		ropeclimber.climb(0);
 	}
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
+	//Abandons this if something goes wrong since it is in the endgame
 	protected void interrupted() {
 		ropeclimber.climb(0);
 	}
