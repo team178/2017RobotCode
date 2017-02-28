@@ -25,11 +25,11 @@ public class JoystickDrive extends Command {
 	//This is where the direction of the Joystick os determined depending upon the value received from the DoubleSolenoid. 
 	protected void execute() {
 		//Joystick returns from -1 to 1, motor takes values from -1 to 1.
-		if (oi.button2.get() && DriveTrain.speedShifter.get() == DoubleSolenoid.Value.kReverse)
+		if (oi.button1.get() && DriveTrain.speedShifter.get() == DoubleSolenoid.Value.kReverse)
 		{
 			drivetrain.changeToLoGear();
 		}
-		else if (!oi.button2.get() && DriveTrain.speedShifter.get() == DoubleSolenoid.Value.kForward)
+		else if (!oi.button1.get() && DriveTrain.speedShifter.get() == DoubleSolenoid.Value.kForward)
 		{
 			drivetrain.changeToHiGear();
 		}
