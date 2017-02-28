@@ -35,13 +35,28 @@ public class CenterOnBoiler extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double error = camera.getCenterYfromCameraCenterY();
-		if ((Math.abs(error) > threshold) && (Math.abs(error) < 350)) {
-			drive = -.0015 * error;
-			drivetrain.drive(drive/2, -drive/2);
+    	System.out.println("Start");
+    	double yError = camera.getCenterYfromCameraCenterY();
+    	double xError = camera.getCenterXfromCameraCenterX();
+    	//Adjust horizontal
+    	if ((Math.abs(xError) > threshold) && (Math.abs(xError) < 350)) {
+			drive = -.0015 * xError;
+			drivetrain.drive(drive/2, drive/2);
+			//System.out.println("CenterX: " + centerX);
 			drivetrain.correctSpeed();
-		}else if(Math.abs(error) > 300){
-		System.out.println("still not really sure what this does, but hey, if it works");
+		}else if(Math.abs(xError) > 300){
+			System.out.println("WHAT THE ACTUAL HECK IS THIS?????");
+		}else{
+			drivetrain.drive(0, 0);
+		}
+    	//Adjust vertical
+		if ((Math.abs(yError) > threshold) && (Math.abs(yError) < 350)) {
+			/*drive = -.0015 * yError;
+			drivetrain.drive(drive/2, -drive/2);
+			drivetrain.correctSpeed();*/
+			System.out.println(camera.getCenterYfromCameraCenterY());
+		}else if(Math.abs(yError) > 300){
+			System.out.println("still not really sure what this does, but hey, if it works");
 		}else{
 			drivetrain.drive(0, 0);
 		}
@@ -49,10 +64,11 @@ public class CenterOnBoiler extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Math.abs(camera.getCenterXfromCameraCenterX()) < threshold )  {
-		System.out.println("THRESHOLD END: " + ((camera.getBlendedCenterY()) - (camera.getIMG_HEIGHT() / 2)));
-		drivetrain.drive(0, 0);
-		return true;
+    	if (Math.abs(camera.getCenterYfromCameraCenterY()) < threshold &&
+    			Math.abs(camera.getCenterXfromCameraCenterX()) < threshold)  {
+    		System.out.println("THRESHOLD END: " + ((camera.getBlendedCenterY()) - (camera.getIMG_HEIGHT() / 2)));
+    		drivetrain.drive(0, 0);
+    		return true;
 	} else {
 		return false;
 		}
@@ -60,6 +76,7 @@ public class CenterOnBoiler extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	System.out.println("Finished");
     	drivetrain.drive(0, 0);
     }
 
