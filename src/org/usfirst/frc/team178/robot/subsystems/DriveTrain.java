@@ -116,13 +116,9 @@ public class DriveTrain extends Subsystem {
 		}
 	}
 
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
-
+	//Used when DriveTrain ends whatever previous command
+	//Basically when DriveTrain is idling 
 	public void initDefaultCommand() {
 		setDefaultCommand(new JoystickDrive());
-
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
 	}
 }
