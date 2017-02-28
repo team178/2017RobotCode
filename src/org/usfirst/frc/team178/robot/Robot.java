@@ -73,7 +73,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("AutoGear Middle (2)", new AutoGearSequenceMiddle());
 		chooser.addObject("AutoGear Right (3)", new AutoGearSequenceRight());
 		// chooser.addObject("LightShow", new DoNothing());
-		chooser.addObject("Delay", new PauseRobot(2));
+		chooser.addObject("AutoGear with Delay", new AutoGearRightDelay());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
