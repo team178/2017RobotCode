@@ -4,6 +4,7 @@ package org.usfirst.frc.team178.robot;
 //import org.usfirst.frc.team178.robot.commands.DoNothing;
 import org.usfirst.frc.team178.robot.commands.DriveDistance;
 import org.usfirst.frc.team178.robot.commands.LIDARDistance;
+import org.usfirst.frc.team178.robot.commands.PauseRobot;
 import org.usfirst.frc.team178.robot.subsystems.*;
 import org.usfirst.frc.team178.robot.autocommandgroups.*;
 
@@ -72,6 +73,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("AutoGear Middle (2)", new AutoGearSequenceMiddle());
 		chooser.addObject("AutoGear Right (3)", new AutoGearSequenceRight());
 		// chooser.addObject("LightShow", new DoNothing());
+		chooser.addObject("AutoGear with Delay", new AutoGearRightDelay());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
