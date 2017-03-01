@@ -55,14 +55,14 @@ public class Robot extends IterativeRobot {
 		geargobbler = new GearGobbler();
 		ballsweeper = new BallSweeper();
 		fuelshooter = new FuelShooter();
-		gearCamera = new VisionStreamer("gearCamera", "178-gear-camera.local");
+		gearCamera = new VisionStreamer("gearCamera", "178-gear-camera.local", false);
 		lights = new LightsSubsystem();
-		shooterCamera = new VisionStreamer("shooterCamera", "178-shooter-camera.local");
+		shooterCamera = new VisionStreamer("shooterCamera", "178-shooter-camera.local", true);
 		ropeclimber = new RopeClimber();
 		lidar = new LIDAR(Port.kOnboard);
 		gyro = new AnalogGyro(RobotMap.GYRO);
 
-		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(1);
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
 		camera.setResolution(400, 200);
 
 		oi = new OI(); // NEEDS to be after subsystems
