@@ -19,7 +19,7 @@ public class AutoDoubleSequence extends CommandGroup {
         //AutoShootSequence +180 turn
 		addSequential(new DriveDistance(-45, -0.3)); //Reverse in case of barriers
 		addSequential(new AutoTurn(180, 0.3)); //Or some value close to 180
-		addSequential(new DriveDistance(60, 0.8));
+		addSequential(new DriveDistance(53, 0.8));
 		addSequential(new CenterOnBoiler());
 		addSequential(new ShootFuel(5)); //Or at least until end of auto
 		//There are two barriers, which are on the sides of the middle peg

@@ -39,6 +39,7 @@ public class OI {
 		buttonA.whileHeld(new ShootFuel());
 		rBumper.whileHeld(new SweepBalls());
 		lBumper.whileHeld(new ClimbRope());
+		buttonX.whenPressed(new CenterOnBoiler());
 		//buttonY.whenPressed(new DriveDistance(30, 0.2));
 		//button5.whenPressed(new AutoTurn(-120, -0.2));
 		//buttonX.whenPressed(new CenterOnAirship());

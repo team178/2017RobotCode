@@ -6,6 +6,7 @@ import org.usfirst.frc.team178.robot.commands.JoystickDrive;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -25,6 +26,7 @@ public class DriveTrain extends Subsystem {
 	public static Encoder right;
 	public static Encoder left;
 	public static DoubleSolenoid speedShifter;
+	public static AnalogInput ultrasonic;
 	
 	//This is where the motors in the DriveTrain are given a direction to move in.
 	public DriveTrain() {
@@ -38,9 +40,8 @@ public class DriveTrain extends Subsystem {
 		right = new Encoder(RobotMap.DRIVEencoderRA, RobotMap.DRIVEencoderRB, false, Encoder.EncodingType.k4X);
 		left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
 		speedShifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.SHIFTLOW, RobotMap.SHIFTHI);
-	
-		
-		
+		ultrasonic = new AnalogInput(RobotMap.ULTRASONICDT);
+				
 		// TODO: set left and right encoder distance per pulse here! :)
 		
 		speedShifter.set(DoubleSolenoid.Value.kReverse);
@@ -115,14 +116,12 @@ public class DriveTrain extends Subsystem {
 			return false;
 		}
 	}
-
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
-
+	public double getDistanceDT(){
+		return ultrasonic.getVoltage();
+	}
+	//Used when DriveTrain ends whatever previous command
+	//Basically when DriveTrain is idling 
 	public void initDefaultCommand() {
 		setDefaultCommand(new JoystickDrive());
-
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
 	}
 }

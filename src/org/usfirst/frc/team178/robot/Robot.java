@@ -4,6 +4,7 @@ package org.usfirst.frc.team178.robot;
 //import org.usfirst.frc.team178.robot.commands.DoNothing;
 import org.usfirst.frc.team178.robot.commands.DriveDistance;
 import org.usfirst.frc.team178.robot.commands.LIDARDistance;
+import org.usfirst.frc.team178.robot.commands.PauseRobot;
 import org.usfirst.frc.team178.robot.subsystems.*;
 import org.usfirst.frc.team178.robot.autocommandgroups.*;
 
@@ -54,14 +55,14 @@ public class Robot extends IterativeRobot {
 		geargobbler = new GearGobbler();
 		ballsweeper = new BallSweeper();
 		fuelshooter = new FuelShooter();
-		gearCamera = new VisionStreamer("gearCamera", "178-gear-camera.local");
+		gearCamera = new VisionStreamer("gearCamera", "178-gear-camera.local", false);
 		lights = new LightsSubsystem();
-		shooterCamera = new VisionStreamer("shooterCamera", "178-shooter-camera.local");
+		shooterCamera = new VisionStreamer("shooterCamera", "178-shooter-camera.local", true);
 		ropeclimber = new RopeClimber();
 		lidar = new LIDAR(Port.kOnboard);
 		gyro = new AnalogGyro(RobotMap.GYRO);
 
-		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(1);
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
 		camera.setResolution(400, 200);
 
 		oi = new OI(); // NEEDS to be after subsystems
@@ -72,6 +73,8 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("AutoGear Middle (2)", new AutoGearSequenceMiddle());
 		chooser.addObject("AutoGear Right (3)", new AutoGearSequenceRight());
 		// chooser.addObject("LightShow", new DoNothing());
+		chooser.addObject("AutoGear w/ Delay, right (RED ALLIANCE)", new AutoGearRightDelay());
+		chooser.addObject("AutoGear w/ Delay, left (BLUE ALLIANCE)", new AutoGearLeftDelay());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
@@ -141,8 +144,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		SmartDashboard.putNumber("Distance: ", lidar.getDistance());
-		SmartDashboard.putBoolean("Gear in gobbler: ", geargobbler.getToggled());
+		SmartDashboard.putNumber("Distance GearGobbler: ", geargobbler.getDistanceGG());
+		SmartDashboard.putNumber("Distance DriveTrain", drivetrain.getDistanceDT());
+		//SmartDashboard.putBoolean("Gear in gobbler: ", geargobbler.getToggled());
 		Scheduler.getInstance().run();
 	}
 
