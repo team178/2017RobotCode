@@ -117,7 +117,7 @@ public class DriveTrain extends Subsystem {
 		}
 	}
 	public double getDistanceDT(){
-		return ultrasonic.getValue();
+		return ultrasonic.getVoltage();
 	}
 	//Used when DriveTrain ends whatever previous command
 	//Basically when DriveTrain is idling 

@@ -49,8 +49,8 @@ public class GearGobbler extends Subsystem {
 	}
 	
 	//gets value of ultrasonic
-	public int getDistanceGG() {
-		return ultrasonic.getValue(); 
+	public double getDistanceGG() {
+		return ultrasonic.getVoltage(); 
 	}
 	
     public void initDefaultCommand() {
