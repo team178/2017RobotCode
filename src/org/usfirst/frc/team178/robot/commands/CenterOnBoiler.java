@@ -15,12 +15,14 @@ public class CenterOnBoiler extends Command {
 	DriveTrain drivetrain;
 	VisionStreamer camera;
 	double drive;
-	int threshold;
+	int thresholdX;
+	int thresholdY;
 	
     public CenterOnBoiler() {
     	requires(Robot.drivetrain);
 		drivetrain = Robot.drivetrain;
-		threshold = 70;
+		thresholdX = 70;
+		thresholdY = 332;
 		camera = Robot.shooterCamera;
 		requires(Robot.shooterCamera);
         // Use requires() here to declare subsystem dependencies
@@ -36,10 +38,10 @@ public class CenterOnBoiler extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	System.out.println("Start");
-    	double yError = camera.getCenterYfromCameraCenterY();
+    	double yError = camera.getCenterYfromCameraCenterY()+262;
     	double xError = camera.getCenterXfromCameraCenterX();
     	//Adjust horizontal
-    	if ((Math.abs(xError) > threshold) && (Math.abs(xError) < 350)) {
+    	if ((Math.abs(xError) > thresholdX) && (Math.abs(xError) < 350)) {
 			drive = -.0015 * xError;
 			drivetrain.drive(drive/2, drive/2);
 			//System.out.println("CenterX: " + centerX);
@@ -50,10 +52,10 @@ public class CenterOnBoiler extends Command {
 			drivetrain.drive(0, 0);
 		}
     	//Adjust vertical
-		if ((Math.abs(yError) > threshold) && (Math.abs(yError) < 350)) {
-			/*drive = -.0015 * yError;
+		if ((Math.abs(yError) > thresholdY) && (Math.abs(yError) < 350)) {
+			drive = -.0015 * yError;
 			drivetrain.drive(drive/2, -drive/2);
-			drivetrain.correctSpeed();*/
+			drivetrain.correctSpeed();
 			System.out.println(camera.getCenterYfromCameraCenterY());
 		}else if(Math.abs(yError) > 300){
 			System.out.println("still not really sure what this does, but hey, if it works");
@@ -64,8 +66,8 @@ public class CenterOnBoiler extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Math.abs(camera.getCenterYfromCameraCenterY()) < threshold &&
-    			Math.abs(camera.getCenterXfromCameraCenterX()) < threshold)  {
+    	if (Math.abs(camera.getCenterYfromCameraCenterY()) < thresholdY &&
+    			Math.abs(camera.getCenterXfromCameraCenterX()) < thresholdX)  {
     		System.out.println("THRESHOLD END: " + ((camera.getBlendedCenterY()) - (camera.getIMG_HEIGHT() / 2)));
     		drivetrain.drive(0, 0);
     		return true;
