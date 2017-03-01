@@ -17,8 +17,7 @@ public class GearGobbler extends Subsystem {
 	//gets robot map and shows where the gobbler is on the robot. Also identifies the gobbler's switch
     public GearGobbler() {
 		extendRetract = new DoubleSolenoid(RobotMap.PCM, RobotMap.GEARGOBBLER2, RobotMap.GEARGOBBLER1);
-		limitSwitch = new DigitalInput(RobotMap.GGLimitSwitch);
-		//ultrasonic = new AnalogInput(RobotMap.ULTRASONIC);
+		ultrasonic = new AnalogInput(RobotMap.ULTRASONICGG);
 	}
     
    //gets the doublesolenoid value, and if it is a certain value, then the system prints "in". If not, prints "out."
@@ -50,12 +49,8 @@ public class GearGobbler extends Subsystem {
 	}
 	
 	//gets value of ultrasonic
-	public int getValue() {
+	public int getDistanceGG() {
 		return ultrasonic.getValue(); 
-	}
-	
-	public boolean getToggled(){
-		return limitSwitch.get();
 	}
 	
     public void initDefaultCommand() {

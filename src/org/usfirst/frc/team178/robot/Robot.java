@@ -144,8 +144,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		SmartDashboard.putNumber("Distance: ", lidar.getDistance());
-		SmartDashboard.putBoolean("Gear in gobbler: ", geargobbler.getToggled());
+		SmartDashboard.putNumber("Distance GearGobbler: ", geargobbler.getDistanceGG());
+		SmartDashboard.putNumber("Distance DriveTrain", drivetrain.getDistanceDT());
+		//SmartDashboard.putBoolean("Gear in gobbler: ", geargobbler.getToggled());
 		Scheduler.getInstance().run();
 	}
 
