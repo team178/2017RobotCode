@@ -13,7 +13,7 @@ public class AutoGearSequenceMiddle extends CommandGroup {
 
     public AutoGearSequenceMiddle() {
     	addSequential(new DriveDistance(46.63, 0.3)); //Change speed after testing
-		addSequential(new CenterOnAirship()); 
+    	addSequential(new CenterOnAirship(), 2);
 		addSequential(new DriveDistance(46.63, 0.3));
     }
 }

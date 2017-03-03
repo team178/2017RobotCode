@@ -16,7 +16,7 @@ public class AutoGearSequenceLeft extends CommandGroup {
     	addSequential(new DriveDistance(65, 0.8));
 		addSequential(new AutoTurn(30, 0.3));
 		//addSequential(Timer.delay(4));
-		addSequential(new CenterOnAirship());
+		addSequential(new CenterOnAirship(), 2);
 		addSequential(new DriveDistance(50, 0.6));
         //General sequence for autonomous gears, may need variations
     	//Center: Drive forward, center, place gear

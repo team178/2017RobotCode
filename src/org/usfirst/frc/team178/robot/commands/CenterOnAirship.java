@@ -21,7 +21,7 @@ public class CenterOnAirship extends Command {
 	public CenterOnAirship() {
 		requires(Robot.drivetrain);
 		drivetrain = Robot.drivetrain;
-		threshold = 70;
+		threshold = 5;
 		camera = Robot.gearCamera;
 		requires(Robot.gearCamera);
 		// Use requires() here to declare subsystem dependencies
