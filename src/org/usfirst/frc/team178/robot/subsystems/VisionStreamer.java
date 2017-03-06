@@ -17,8 +17,8 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 public class VisionStreamer extends Subsystem {
 
 	// actual values to be determined after final physical setup implemented
-	private static int IMG_HEIGHT = 800;
-	private static int IMG_WIDTH = 600;
+	private static int IMG_HEIGHT;
+	private static int IMG_WIDTH;
 	private VisionThread visionThread;
 	private double[] centerX = { 0.0, 0.0 };
 	private double[] centerY = { 0.0, 0.0 };
@@ -36,25 +36,28 @@ public class VisionStreamer extends Subsystem {
 
 		camera = new AxisCamera(cameraName, host);
 		if (isVertical) { // vertical
-			IMG_WIDTH = 800;
-			IMG_HEIGHT = 600;
-		} else { // horizontal
 			IMG_WIDTH = 600;
 			IMG_HEIGHT = 800;
+		} else { // horizontal
+			IMG_WIDTH = 800;
+			IMG_HEIGHT = 600;
 		}
-		camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+		// camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
 
 		visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
-			// System.out.println("rectangle count: " +
-			// pipeline.filterContoursOutput().size());
 			if (pipeline.filterContoursOutput().size() >= 2) {
-				for (int i = 0; i < 2; i++) {
+				int currentRectangleIndex = 0;
+				//System.out.println(pipeline.filterContoursOutput().size());
+				for (int i = 0; i < pipeline.filterContoursOutput().size(); i++) {
 					Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(i));
 					synchronized (imgLock) {
-						centerX[i] = r.x + (r.width / 2);
-						centerY[i] = r.y + (r.height / 2);
-						rectWidth[i] = r.width;
-						rectHeight[i] = r.height;
+						if (r.y >= 400 && currentRectangleIndex < 2) {
+							centerX[currentRectangleIndex] = r.x + (r.width / 2);
+							centerY[currentRectangleIndex] = r.y + (r.height / 2);
+							rectWidth[currentRectangleIndex] = r.width;
+							rectHeight[currentRectangleIndex] = r.height;
+							currentRectangleIndex++;
+						}
 					}
 				}
 			} else {

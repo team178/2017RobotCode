@@ -58,7 +58,8 @@ public class RobotMap {
 	public static int GEARGOBBLER1 = 2; //PCM Channel
 	public static int GEARGOBBLER2 = 3; //PCM Channel
 	
-	public static int SERVO = 0; //PWM 
+	public static int SERVO_shooter = 0; //PWM 
+	public static int SERVO_drivetrain = 1; //PWM
 	
 	
 	// For example to map the left and right motors, you could define the

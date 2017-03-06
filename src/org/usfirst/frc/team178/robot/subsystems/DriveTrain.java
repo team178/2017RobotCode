@@ -6,6 +6,7 @@ import org.usfirst.frc.team178.robot.commands.JoystickDrive;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -27,6 +28,7 @@ public class DriveTrain extends Subsystem {
 	public static Encoder left;
 	public static DoubleSolenoid speedShifter;
 	public static AnalogInput ultrasonic;
+	public static Servo servo;
 	
 	//This is where the motors in the DriveTrain are given a direction to move in.
 	public DriveTrain() {
@@ -41,6 +43,7 @@ public class DriveTrain extends Subsystem {
 		left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
 		speedShifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.SHIFTLOW, RobotMap.SHIFTHI);
 		ultrasonic = new AnalogInput(RobotMap.ULTRASONICDT);
+		servo = new Servo(RobotMap.SERVO_drivetrain);
 				
 		// TODO: set left and right encoder distance per pulse here! :)
 		
@@ -58,6 +61,7 @@ public class DriveTrain extends Subsystem {
 	//This is where the DoubleSolenoid value is set to forward, which causes it to move in low gear.
 	public void changeToLoGear() {
 		speedShifter.set(DoubleSolenoid.Value.kForward); //forward is low gear, port 1
+		System.out.println("switch");
 	}
 	//This is where the DoubleSolenoid value is set to reverse, which causes it to move in high gear.
 	public void changeToHiGear() {
@@ -118,6 +122,15 @@ public class DriveTrain extends Subsystem {
 	}
 	public double getDistanceDT(){
 		return ultrasonic.getVoltage();
+	}
+	
+	public void moveServo(double value){
+		servo.set(value);
+	}
+	
+	//This tells the Servo the position it is supposed to be in and is currently in.
+	public double getServo(){
+		return servo.getPosition();
 	}
 	//Used when DriveTrain ends whatever previous command
 	//Basically when DriveTrain is idling 

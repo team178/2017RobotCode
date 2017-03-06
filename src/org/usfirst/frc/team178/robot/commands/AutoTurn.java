@@ -62,7 +62,7 @@ public class AutoTurn extends Command {
 	//When the currentAngle is the same or equal to the targetAngle, this is finished.
 	protected boolean isFinished() {
 		if (Math.abs(currentAngle) >= Math.abs(targetAngle)) {
-			System.out.println("done " + currentAngle);
+			System.out.println("done " + currentAngle + "      " + targetAngle);
 			return true;
 		} else {
 			return false;

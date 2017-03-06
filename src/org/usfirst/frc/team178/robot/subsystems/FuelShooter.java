@@ -23,7 +23,7 @@ public class FuelShooter extends Subsystem {
 	shooter1 = new CANTalon(RobotMap.Shooter1);
 	shooter2 = new CANTalon(RobotMap.Shooter2);
 	encoder = new Encoder(RobotMap.SHOOTERencoderA, RobotMap.SHOOTERencoderB, true, Encoder.EncodingType.k4X);
-	servo = new Servo(RobotMap.SERVO);
+	servo = new Servo(RobotMap.SERVO_shooter);
 	
 	//This is where the distance per pulse is found for the encoder.
 	double dpp = (60.0/1024.0);
