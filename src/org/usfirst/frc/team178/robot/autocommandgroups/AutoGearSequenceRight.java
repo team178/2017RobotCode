@@ -19,7 +19,7 @@ public class AutoGearSequenceRight extends CommandGroup {
     	addSequential(new DriveDistance(RobotMap.AutoGearDistA, 0.8));
 		addSequential(new AutoTurn(-RobotMap.AutoGearTurn, -0.3));
 		//addSequential(Timer.delay(4));
-		//addSequential(new CenterOnAirship(), 3);
+		addSequential(new CenterOnAirship(), 3);
 		addSequential(new DriveDistance(RobotMap.AutoGearDistB, 0.6));
     }
 }

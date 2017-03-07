@@ -15,7 +15,7 @@ public class AutoDoubleSequence extends CommandGroup {
     	addSequential(new DriveDistance(-0.01, -0.1), 1);
     	addSequential(new DriveDistance(RobotMap.AutoGearDistA, 0.8));
 		addSequential(new AutoTurn(RobotMap.AutoGearTurn, 0.3));
-		//addSequential(new CenterOnAirship(), 3);
+		addSequential(new CenterOnAirship(), 3);
 		addSequential(new DriveDistance(RobotMap.AutoGearDistB, 0.6));
         //AutoShootSequence +180 turn
 		addSequential(new DriveDistance(-45, -0.3)); //Reverse in case of barriers
