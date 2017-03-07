@@ -35,10 +35,10 @@ public class Robot extends IterativeRobot {
 	public static BallSweeper ballsweeper;
 	public static RopeClimber ropeclimber;
 	public static FuelShooter fuelshooter;
-	public static VisionStreamer frontCamera;
+	public static VisionStreamer gearCamera;
 	public static LightsSubsystem lights;
 	public static AnalogGyro gyro;
-	// public static VisionStreamer backCamera;
+	public static VisionStreamer shooterCamera;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser;
@@ -54,11 +54,10 @@ public class Robot extends IterativeRobot {
 		geargobbler = new GearGobbler();
 		ballsweeper = new BallSweeper();
 		fuelshooter = new FuelShooter();
-		frontCamera = new VisionStreamer("frontCamera", "axis-camera-intake.local");
+		gearCamera = new VisionStreamer("gearCamera", "178-gear-camera.local");
 		lights = new LightsSubsystem();
-		// backCamera = new VisionStreamer("backCamera", "10.1.78.109");
+		shooterCamera = new VisionStreamer("shooterCamera", "178-shooter-camera.local");
 		ropeclimber = new RopeClimber();
-		// backCamera = new VisionStreamer("backCamera", "10.1.78.109");
 		lidar = new LIDAR(Port.kOnboard);
 		gyro = new AnalogGyro(RobotMap.GYRO);
 
@@ -142,6 +141,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		SmartDashboard.putNumber("Distance: ", lidar.getDistance());
+		SmartDashboard.putBoolean("Gear in gobbler: ", geargobbler.getToggled());
 		Scheduler.getInstance().run();
 	}
 

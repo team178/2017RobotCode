@@ -43,6 +43,7 @@ public class RobotMap {
 	public static int DRIVEencoderLB = 3; //DIO
 	public static int SHOOTERencoderA = 4; //DIO
 	public static int SHOOTERencoderB = 5; //DIO
+	public static int GGLimitSwitch = 6; //DIO
 	
 	public static int PRESSURETRANSDUCER = 0; //Analog
 	//public static int ULTRASONIC = 1; //Analog
@@ -56,11 +57,12 @@ public class RobotMap {
 	
 	public static int GEARGOBBLER1 = 2; //PCM Channel
 	public static int GEARGOBBLER2 = 3; //PCM Channel
+	public static int SERVO = 0; //PWM 
 	
-		
 	public enum SubsystemIndex {
 		ALL, SHOOTER, GOBBLER, CLIMBER
 	}
+
 	
 	
 	// For example to map the left and right motors, you could define the

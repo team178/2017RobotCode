@@ -1,7 +1,7 @@
 <grip:Pipeline>
   <sources>
     <grip:Camera>
-      <property name="address" value="http://10.1.78.109"/>
+      <property name="address" value="http://10.1.78.12"/>
     </grip:Camera>
   </sources>
   <steps>
@@ -9,8 +9,8 @@
       <grip:Input step="0" socket="0"/>
       <grip:Input step="0" socket="1">
         <value>
-          <double>84.17266187050359</double>
-          <double>95.75757575757574</double>
+          <double>56.6546762589928</double>
+          <double>111.11593753231978</double>
         </value>
       </grip:Input>
       <grip:Input step="0" socket="2">
@@ -63,7 +63,7 @@
     <grip:Step name="Filter Contours">
       <grip:Input step="4" socket="0"/>
       <grip:Input step="4" socket="1">
-        <value>2000.0</value>
+        <value>0.0</value>
       </grip:Input>
       <grip:Input step="4" socket="2">
         <value>0.0</value>
@@ -103,16 +103,8 @@
   </steps>
   <connections>
     <grip:Connection>
-      <grip:Output step="1" socket="0" previewed="false"/>
-      <grip:Input step="2" socket="0"/>
-    </grip:Connection>
-    <grip:Connection>
       <grip:Output step="2" socket="0" previewed="false"/>
       <grip:Input step="3" socket="0"/>
-    </grip:Connection>
-    <grip:Connection>
-      <grip:Output step="3" socket="0" previewed="false"/>
-      <grip:Input step="4" socket="0"/>
     </grip:Connection>
     <grip:Connection>
       <grip:Output step="0" socket="0" previewed="true"/>
@@ -121,6 +113,14 @@
     <grip:Connection>
       <grip:Output source="0" socket="0" previewed="true"/>
       <grip:Input step="0" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="1" socket="0" previewed="false"/>
+      <grip:Input step="2" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="3" socket="0" previewed="false"/>
+      <grip:Input step="4" socket="0"/>
     </grip:Connection>
   </connections>
   <settings>
@@ -136,7 +136,7 @@
     <language>Java</language>
     <className>GripPipeline</className>
     <implementWpilibPipeline>true</implementWpilibPipeline>
-    <saveDir>C:\Users\Hunter\workspace\2017RobotCode\src\org\usfirst\frc\team178\robot</saveDir>
+    <saveDir>C:\Users\178DS\GRIP</saveDir>
     <packageName>org.usfirst.frc.team178.robot</packageName>
     <moduleName>grip</moduleName>
   </codeGenerationSettings>

@@ -25,8 +25,8 @@ public class CenterOnAirship extends Command {
 		requires(Robot.lidar);
 		lidar = Robot.lidar;
 		drivetrain = Robot.drivetrain;
-		requires(Robot.frontCamera);
-		camera = Robot.frontCamera;
+		requires(Robot.gearCamera);
+		camera = Robot.gearCamera;
 		threshold = 30;
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);

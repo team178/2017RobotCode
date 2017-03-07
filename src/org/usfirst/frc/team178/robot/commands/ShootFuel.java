@@ -6,6 +6,7 @@ import org.usfirst.frc.team178.robot.RobotMap.SubsystemIndex;
 import org.usfirst.frc.team178.robot.subsystems.FuelShooter;
 import org.usfirst.frc.team178.robot.subsystems.LightsSubsystem;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -39,7 +40,8 @@ public class ShootFuel extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	fuelshooter.shoot(1);
-  
+    	Timer.delay(3);
+    	fuelshooter.moveServo(0.5);
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -55,6 +57,7 @@ public class ShootFuel extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	System.out.println("end");
     	fuelshooter.stop();
     	lights.setBaseColor(SubsystemIndex.SHOOTER);
     }
