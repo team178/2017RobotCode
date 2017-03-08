@@ -37,17 +37,17 @@ public class RobotMap {
 	public static int Shooter2 = 13; //CAN
 	public static int Shooter3 = 14; //CAN
 	
-	public static int DRIVEencoderRA = 0; //DIO
-	public static int DRIVEencoderRB = 1; //DIO
-	public static int DRIVEencoderLA = 2; //DIO
-	public static int DRIVEencoderLB = 3; //DIO
+	public static int DRIVEencoderRA = 0;  //DIO
+	public static int DRIVEencoderRB = 1;  //DIO
+	public static int DRIVEencoderLA = 2;  //DIO
+	public static int DRIVEencoderLB = 3;  //DIO
 	public static int SHOOTERencoderA = 4; //DIO
 	public static int SHOOTERencoderB = 5; //DIO
-	public static int GGLimitSwitch = 6; //DIO
 	
 	public static int PRESSURETRANSDUCER = 0; //Analog
-	//public static int ULTRASONIC = 1; //Analog
 	public static int GYRO = 1; //Analog
+	public static int ULTRASONICGG = 2; //Analog
+	public static int ULTRASONICDT = 3; //Analog
 	
 	public static int CAMERA1 = 1; //USB
 	public static int CAMERA2 = 2; //USB
@@ -57,14 +57,15 @@ public class RobotMap {
 	
 	public static int GEARGOBBLER1 = 2; //PCM Channel
 	public static int GEARGOBBLER2 = 3; //PCM Channel
-	public static int SERVO = 0; //PWM 
-	
+	public static int SERVO_shooter = 0; //PWM 
+	public static int SERVO_drivetrain = 1; //PWM
 	public enum SubsystemIndex {
 		ALL, SHOOTER, GOBBLER, CLIMBER
 	}
-
 	
-	
+	public static int AutoGearDistA = 80;  //Value for AG driving 1 
+	public static int AutoGearDistB = 75;  //Value for AG driving 2
+	public static int AutoGearTurn = 50;   //Value for AG turning
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;

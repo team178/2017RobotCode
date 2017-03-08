@@ -2,7 +2,6 @@ package org.usfirst.frc.team178.robot.commands;
 
 import org.usfirst.frc.team178.robot.Robot;
 import org.usfirst.frc.team178.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team178.robot.subsystems.LIDAR;
 import org.usfirst.frc.team178.robot.subsystems.VisionStreamer;
 
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -16,18 +15,15 @@ public class CenterOnAirship extends Command {
 	private final Object imgLock = new Object();
 	DriveTrain drivetrain;
 	VisionStreamer camera;
-	LIDAR lidar;
 	double turn;
 	int threshold;
 
 	public CenterOnAirship() {
 		requires(Robot.drivetrain);
-		requires(Robot.lidar);
-		lidar = Robot.lidar;
 		drivetrain = Robot.drivetrain;
-		requires(Robot.gearCamera);
+		threshold = 50;
 		camera = Robot.gearCamera;
-		threshold = 30;
+		requires(Robot.gearCamera);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 	}
@@ -38,64 +34,54 @@ public class CenterOnAirship extends Command {
 		drivetrain.changeToLoGear();
 	}
 
-	// Called repeatedly when this Command is scheduled to run
+	// This is what happens when the robot is to center directly on the airship
+	// using vision
 	protected void execute() {
-		double x = lidar.getDistance();
-		double adjustedCenter = 0.0284*(Math.pow(x, 2)) - 7.75*x + 994.5;
-		System.out.println(adjustedCenter);
-		System.out.println("BLENDED CENTER: " + camera.getBlendedCenterX());
-		double error = adjustedCenter - (camera.getBlendedCenterX());
-		//System.out.println("error: " + error);
-		if ((Math.abs(error) > threshold) && (Math.abs(error) < 400)) {
+		double error = camera.getCenterXfromCameraCenterX();// (camera.getBlendedCenterX())
+															// -
+															// (camera.getIMG_WIDTH()
+															// / 2);
+		if ((Math.abs(error) > threshold) && (Math.abs(error) < 350)) {
 			turn = -.0015 * error;
-			drivetrain.drive(turn/2, turn/2);
-			
-		}else if(Math.abs(error) > 400){
-			
-		}else{
+			if ((turn / 2) <= .15 && (turn / 2) >= 0) {
+				drivetrain.drive(.15, .15);
+			} else if ((turn / 2) >= -.15 && (turn / 2) <= 0) {
+				drivetrain.drive(-.15, -.15);
+			} else {
+				drivetrain.drive(turn / 2, turn / 2);
+			}
+			// System.out.println("CenterX: " + centerX);
+		} else if (Math.abs(error) > 300) {
+			//System.out.println("WHAT THE ACTUAL HECK IS THIS?????");
+		} else {
 			drivetrain.drive(0, 0);
 		}
-		//print statements for testing & scaling
-		if (((timeSinceInitialized()*1000)%250) <= 20) {
-			//System.out.println("BlendedCenter: " + camera.getBlendedCenterX());
-			//System.out.println("Distance: " + lidar.getDistance());
-			//System.out.println("Error: " + error);
-			//System.out.println("Turn: " + turn);
+		// print statements for testing & scaling
+		if (((timeSinceInitialized() * 1000) % 250) <= 20) {
+			System.out.println("BlendedCenter: " + camera.getBlendedCenterX());
+			System.out.println("Error: " + error);
+			System.out.println("Turn: " + turn);
 		}
 	}
 
-/*
-		int errorFlexibility = 50;
-		if (error > errorFlexibility) {
-		//if true, the camera center is to right of the tape, needs to turn left
-			turn += .00001 * error;
-			drivetrain.drive(turn, 0.1);
-			error = camera.getCenterXfromCameraCenterX();//(camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2);
-		}else if (error < (-1*errorFlexibility)) {
-		//if true, the camera center is to left of the tape, needs to turn right
-			turn += .00001 * error;
-			drivetrain.drive(0.1, turn);
-			error = camera.getCenterXfromCameraCenterX();//(camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2);
-		}else{
-		drivetrain.drive(0, 0);
-		}
- */
-
-	// Make this return true when this Command no longer needs to run execute()
+	// Checks to see if vision was correct
 	protected boolean isFinished() {
-		if (Math.abs(camera.getCenterXfromCameraCenterX()) < threshold || Math.abs(camera.getCenterXfromCameraCenterX()) > 400) {
-			//System.out.println("THRESHOLD END: " + ((camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2)));
+		if (Math.abs(camera.getCenterXfromCameraCenterX()) < threshold) {// ||
+																			// Math.abs(camera.getCenterXfromCameraCenterX())
+																			// >
+																			// 400)
+																			// {
+			System.out.println("THRESHOLD END: " + ((camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2)));
 			drivetrain.drive(0, 0);
-			return false;
+			return true;
 		} else {
 			return false;
 		}
 	}
 
-	// Called once after isFinished returns true
+	// Finishes
 	protected void end() {
 		drivetrain.drive(0, 0);
-		drivetrain.changeToHiGear();
 	}
 
 	// Called when another command which requires one or more of the same

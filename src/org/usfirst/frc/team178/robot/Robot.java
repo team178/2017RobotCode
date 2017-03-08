@@ -4,6 +4,7 @@ package org.usfirst.frc.team178.robot;
 //import org.usfirst.frc.team178.robot.commands.DoNothing;
 import org.usfirst.frc.team178.robot.commands.DriveDistance;
 import org.usfirst.frc.team178.robot.commands.LIDARDistance;
+import org.usfirst.frc.team178.robot.commands.PauseRobot;
 import org.usfirst.frc.team178.robot.subsystems.*;
 import org.usfirst.frc.team178.robot.autocommandgroups.*;
 
@@ -54,9 +55,9 @@ public class Robot extends IterativeRobot {
 		geargobbler = new GearGobbler();
 		ballsweeper = new BallSweeper();
 		fuelshooter = new FuelShooter();
-		gearCamera = new VisionStreamer("gearCamera", "178-gear-camera.local");
+		gearCamera = new VisionStreamer("gearCamera", "178-gear-camera.local", true);
 		lights = new LightsSubsystem();
-		shooterCamera = new VisionStreamer("shooterCamera", "178-shooter-camera.local");
+		shooterCamera = new VisionStreamer("shooterCamera", "178-shooter-camera.local", true);
 		ropeclimber = new RopeClimber();
 		lidar = new LIDAR(Port.kOnboard);
 		gyro = new AnalogGyro(RobotMap.GYRO);
@@ -71,7 +72,9 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("AutoGear Left (1)", new AutoGearSequenceLeft());
 		chooser.addObject("AutoGear Middle (2)", new AutoGearSequenceMiddle());
 		chooser.addObject("AutoGear Right (3)", new AutoGearSequenceRight());
-		// chooser.addObject("LightShow", new DoNothing());
+		chooser.addObject("Do Nothing", new PauseRobot(15));
+		chooser.addObject("AutoGear w/ Delay, right (RED ALLIANCE)", new AutoGearRightDelay());
+		chooser.addObject("AutoGear w/ Delay, left (BLUE ALLIANCE)", new AutoGearLeftDelay());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
@@ -131,8 +134,9 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
+		if (autonomousCommand != null) 
 			autonomousCommand.cancel();
+		drivetrain.changeToHiGear();
 	}
 
 	/**
@@ -140,8 +144,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		SmartDashboard.putNumber("Distance: ", lidar.getDistance());
-		SmartDashboard.putBoolean("Gear in gobbler: ", geargobbler.getToggled());
+		SmartDashboard.putNumber("Distance GearGobbler: ", geargobbler.getDistanceGG());
+		SmartDashboard.putNumber("Distance DriveTrain", drivetrain.getDistanceDT());
+		//SmartDashboard.putBoolean("Gear in gobbler: ", geargobbler.getToggled());
 		Scheduler.getInstance().run();
 	}
 

@@ -14,6 +14,7 @@ public class Pneumatics extends Subsystem {
 	public static Compressor airCompressor;
 	public static AnalogInput pressureTransducer;
 
+	//identifies where the pneumatics are on the robot map
 	public Pneumatics() {
 
 		pressureTransducer = new AnalogInput(RobotMap.PRESSURETRANSDUCER);
@@ -27,6 +28,7 @@ public class Pneumatics extends Subsystem {
 		*/
 	}
 	
+	//gets the average pressure from the pneumatics
 	public double getPressure() {
 		return (pressureTransducer.getAverageVoltage() - .854) * 40.9276;
 	}
