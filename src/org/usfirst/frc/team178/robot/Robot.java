@@ -55,9 +55,9 @@ public class Robot extends IterativeRobot {
 		geargobbler = new GearGobbler();
 		ballsweeper = new BallSweeper();
 		fuelshooter = new FuelShooter();
-		gearCamera = new VisionStreamer("gearCamera", "178-gear-camera.local", true);
+		gearCamera = new VisionStreamer("gearCamera", "178-gear-camera.local");
 		lights = new LightsSubsystem();
-		shooterCamera = new VisionStreamer("shooterCamera", "178-shooter-camera.local", true);
+		shooterCamera = new VisionStreamer("shooterCamera", "178-shooter-camera.local");
 		ropeclimber = new RopeClimber();
 		lidar = new LIDAR(Port.kOnboard);
 		gyro = new AnalogGyro(RobotMap.GYRO);

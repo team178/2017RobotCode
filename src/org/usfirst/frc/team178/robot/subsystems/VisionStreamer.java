@@ -17,8 +17,8 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 public class VisionStreamer extends Subsystem {
 
 	// actual values to be determined after final physical setup implemented
-	private static int IMG_HEIGHT;
-	private static int IMG_WIDTH;
+	private static int IMG_HEIGHT = 600;
+	private static int IMG_WIDTH = 800;
 	private VisionThread visionThread;
 	private double[] centerX = { 0.0, 0.0 };
 	private double[] centerY = { 0.0, 0.0 };
@@ -32,16 +32,10 @@ public class VisionStreamer extends Subsystem {
 
 	// The information for the center, width, and height used in the
 	// VisionStreamer are given.
-	public VisionStreamer(String cameraName, String host, boolean isVertical) {
+	public VisionStreamer(String cameraName, String host) {
 
 		camera = new AxisCamera(cameraName, host);
-		if (isVertical) { // vertical
-			IMG_WIDTH = 600;
-			IMG_HEIGHT = 800;
-		} else { // horizontal
-			IMG_WIDTH = 800;
-			IMG_HEIGHT = 600;
-		}
+		
 		// camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
 
 		visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
