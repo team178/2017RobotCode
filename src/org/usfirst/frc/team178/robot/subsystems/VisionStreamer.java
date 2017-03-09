@@ -17,8 +17,8 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 public class VisionStreamer extends Subsystem {
 
 	// actual values to be determined after final physical setup implemented
-	private static int IMG_HEIGHT = 600;
-	private static int IMG_WIDTH = 800;
+	private static int IMG_HEIGHT = 800;
+	private static int IMG_WIDTH = 600;
 	private VisionThread visionThread;
 	private double[] centerX = { 0.0, 0.0 };
 	private double[] centerY = { 0.0, 0.0 };
@@ -41,7 +41,7 @@ public class VisionStreamer extends Subsystem {
 		visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
 			if (pipeline.filterContoursOutput().size() >= 2) {
 				int currentRectangleIndex = 0;
-				//System.out.println(pipeline.filterContoursOutput().size());
+				System.out.println(pipeline.filterContoursOutput().size());
 				for (int i = 0; i < pipeline.filterContoursOutput().size(); i++) {
 					Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(i));
 					synchronized (imgLock) {
