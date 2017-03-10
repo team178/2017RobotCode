@@ -21,7 +21,7 @@ public class CenterOnAirship extends Command {
 	public CenterOnAirship() {
 		requires(Robot.drivetrain);
 		drivetrain = Robot.drivetrain;
-		threshold = 50;
+		threshold = 4;
 		camera = Robot.gearCamera;
 		requires(Robot.gearCamera);
 		// Use requires() here to declare subsystem dependencies
@@ -43,25 +43,25 @@ public class CenterOnAirship extends Command {
 															// / 2);
 		if ((Math.abs(error) > threshold) && (Math.abs(error) < 350)) {
 			turn = -.0015 * error;
-			if ((turn / 2) <= .15 && (turn / 2) >= 0) {
-				drivetrain.drive(.15, .15);
-			} else if ((turn / 2) >= -.15 && (turn / 2) <= 0) {
-				drivetrain.drive(-.15, -.15);
+			if ((turn / 2) <= .09 && (turn / 2) >= 0) { //right
+				drivetrain.drive(.09, .09);
+			} else if ((turn / 2) >= -.09 && (turn / 2) <= 0) { //left
+				drivetrain.drive(-.09, -.09);
 			} else {
-				drivetrain.drive(turn / 2, turn / 2);
+				drivetrain.drive(turn / 2, turn / 2); //straight
 			}
 			// System.out.println("CenterX: " + centerX);
 		} else if (Math.abs(error) > 300) {
 			//System.out.println("WHAT THE ACTUAL HECK IS THIS?????");
 		} else {
-			drivetrain.drive(0, 0);
+			drivetrain.drive(0, 0); //don't move
 		}
 		// print statements for testing & scaling
-		if (((timeSinceInitialized() * 1000) % 250) <= 20) {
+	//	if (((timeSinceInitialized() * 1000) % 250) <= 20) {
 			System.out.println("BlendedCenter: " + camera.getBlendedCenterX());
 			System.out.println("Error: " + error);
 			System.out.println("Turn: " + turn);
-		}
+		//}
 	}
 
 	// Checks to see if vision was correct
