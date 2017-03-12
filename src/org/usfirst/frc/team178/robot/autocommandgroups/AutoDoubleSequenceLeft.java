@@ -8,15 +8,15 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoDoubleSequence extends CommandGroup {
+public class AutoDoubleSequenceLeft extends CommandGroup {
 
-    public AutoDoubleSequence() {
+    public AutoDoubleSequenceLeft() {
     	//AutoGearSequenceLeft
-    	addSequential(new DriveDistance(-0.01, -0.1), 1);
-    	addSequential(new DriveDistance(RobotMap.AutoGearDistA, 0.8));
+    	addSequential(new DriveDistance(-6, -0.1), 1);
+    	addSequential(new DriveDistance(RobotMap.AutoGearDistA, 1));
 		addSequential(new AutoTurn(RobotMap.AutoGearTurn, 0.3));
-		addSequential(new CenterOnAirship(), 3);
-		addSequential(new DriveDistance(RobotMap.AutoGearDistB, 0.6));
+		addSequential(new CenterOnAirship(), 4);
+		addSequential(new PauseRobot(2));
         //AutoShootSequence +180 turn
 		addSequential(new DriveDistance(-45, -0.3)); //Reverse in case of barriers
 		addSequential(new AutoTurn(180, 0.3)); //Or some value close to 180

@@ -75,6 +75,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Do Nothing", new PauseRobot(15));
 		chooser.addObject("AutoGear w/ Delay, right (RED ALLIANCE)", new AutoGearRightDelay());
 		chooser.addObject("AutoGear w/ Delay, left (BLUE ALLIANCE)", new AutoGearLeftDelay());
+		chooser.addObject("Do both (LEFT SIDE)", new AutoDoubleSequenceLeft());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 

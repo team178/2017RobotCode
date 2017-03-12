@@ -61,9 +61,9 @@ public class RobotMap {
 	public static int SERVO_shooter = 0; //PWM 
 	public static int SERVO_drivetrain = 1; //PWM
 	
-	public static int AutoGearDistA = 80;  //Value for AG driving 1 
-	public static int AutoGearDistB = 75;  //Value for AG driving 2
-	public static int AutoGearTurn = 50;   //Value for AG turning
+	final public static int AutoGearDistA = 90;  //Value for AG driving 1 
+	final public static int AutoGearDistB = 75;  //Value for AG driving 2
+	final public static int AutoGearTurn = 40;   //Value for AG turning
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;
