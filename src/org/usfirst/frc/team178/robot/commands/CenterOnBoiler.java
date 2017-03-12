@@ -15,13 +15,14 @@ public class CenterOnBoiler extends Command {
 	DriveTrain drivetrain;
 	VisionStreamer camera;
 	double drive;
+	double driveYValue;
 	int thresholdX;
 	int thresholdY;
 	
     public CenterOnBoiler() {
     	requires(Robot.drivetrain);
 		drivetrain = Robot.drivetrain;
-		thresholdX = 70;
+		thresholdX = 10;
 		thresholdY = 332;
 		camera = Robot.shooterCamera;
 		requires(Robot.shooterCamera);
@@ -32,6 +33,7 @@ public class CenterOnBoiler extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	drive = -.1;
+    	driveYValue = -.1;
 		drivetrain.changeToLoGear();
     }
 
@@ -40,10 +42,18 @@ public class CenterOnBoiler extends Command {
     	System.out.println("Start");
     	double yError = camera.getCenterYfromCameraCenterY()+262;
     	double xError = camera.getCenterXfromCameraCenterX();
+    	//Adjust vertical
+    			if ((Math.abs(yError) > thresholdY) && (Math.abs(yError) < 350)) {
+    				driveYValue = -.0015 * yError;
+ 
+    				System.out.println(camera.getCenterYfromCameraCenterY());
+    			}else{
+    				driveYValue = 0;
+    			}
     	//Adjust horizontal
     	if ((Math.abs(xError) > thresholdX) && (Math.abs(xError) < 350)) {
 			drive = -.0015 * xError;
-			drivetrain.drive(drive/2, drive/2);
+			drivetrain.drive((drive/2) + (driveYValue/2) , (drive/2) - (driveYValue/2));
 			//System.out.println("CenterX: " + centerX);
 			drivetrain.correctSpeed();
 		}else if(Math.abs(xError) > 300){
@@ -51,17 +61,7 @@ public class CenterOnBoiler extends Command {
 		}else{
 			drivetrain.drive(0, 0);
 		}
-    	//Adjust vertical
-		if ((Math.abs(yError) > thresholdY) && (Math.abs(yError) < 350)) {
-			drive = -.0015 * yError;
-			drivetrain.drive(drive/2, -drive/2);
-			drivetrain.correctSpeed();
-			System.out.println(camera.getCenterYfromCameraCenterY());
-		}else if(Math.abs(yError) > 300){
-			System.out.println("still not really sure what this does, but hey, if it works");
-		}else{
-			drivetrain.drive(0, 0);
-		}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
