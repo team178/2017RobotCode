@@ -38,7 +38,7 @@ public class ShootFuel extends Command {
     protected void initialize() {
     	fuelshooter = Robot.fuelshooter;
     	lights = Robot.lights;
-    	lights.sendMessage(SubsystemIndex.SHOOTER, "enforcers shot");
+    	lights.sendMessage(SubsystemIndex.BALLTRACK, "enforcers shot");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -70,7 +70,7 @@ public class ShootFuel extends Command {
     protected void end() {
     	System.out.println("end");
     	fuelshooter.stop();
-    	lights.setBaseColor(SubsystemIndex.SHOOTER);
+    	lights.setBaseColor(SubsystemIndex.BALLTRACK);
     	fuelshooter.moveServo(0); 
     	System.out.println("end: " +fuelshooter.getServo());
     }

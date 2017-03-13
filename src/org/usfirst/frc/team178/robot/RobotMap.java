@@ -59,8 +59,9 @@ public class RobotMap {
 	public static int GEARGOBBLER2 = 3; //PCM Channel
 	public static int SERVO_shooter = 0; //PWM 
 	public static int SERVO_drivetrain = 1; //PWM
+	
 	public enum SubsystemIndex {
-		ALL, SHOOTER, GOBBLER, CLIMBER
+		ALL, BALLTRACK, BACKBUMPER
 	}
 	
 	public static int AutoGearDistA = 80;  //Value for AG driving 1 
