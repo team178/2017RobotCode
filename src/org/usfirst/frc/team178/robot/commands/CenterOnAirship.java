@@ -17,11 +17,12 @@ public class CenterOnAirship extends Command {
 	VisionStreamer camera;
 	double turn;
 	int threshold;
+	final double speed = 0.4;
 
 	public CenterOnAirship() {
 		requires(Robot.drivetrain);
 		drivetrain = Robot.drivetrain;
-		threshold = 50;
+		threshold = 4;
 		camera = Robot.gearCamera;
 		requires(Robot.gearCamera);
 		// Use requires() here to declare subsystem dependencies
@@ -37,31 +38,30 @@ public class CenterOnAirship extends Command {
 	// This is what happens when the robot is to center directly on the airship
 	// using vision
 	protected void execute() {
-		double error = camera.getCenterXfromCameraCenterX();// (camera.getBlendedCenterX())
-															// -
+		double error = camera.getCenterXfromCameraCenterX();// (camera.getBlendedCenterX())													// -
 															// (camera.getIMG_WIDTH()
 															// / 2);
 		if ((Math.abs(error) > threshold) && (Math.abs(error) < 350)) {
 			turn = -.0015 * error;
-			if ((turn / 2) <= .15 && (turn / 2) >= 0) {
-				drivetrain.drive(.15, .15);
-			} else if ((turn / 2) >= -.15 && (turn / 2) <= 0) {
-				drivetrain.drive(-.15, -.15);
-			} else {
-				drivetrain.drive(turn / 2, turn / 2);
-			}
+		/*	if ((turn / 2) <= .09 && (turn / 2) >= 0) { //right
+				drivetrain.drive(speed + .09, -speed - .09);
+			} else if ((turn / 2) >= -.09 && (turn / 2) <= 0) { //left
+				drivetrain.drive(-.09, -.09);
+			} else {*/
+				drivetrain.drive(speed+(turn / 4), -speed+(turn / 4)); //straight
+			//}
 			// System.out.println("CenterX: " + centerX);
 		} else if (Math.abs(error) > 300) {
 			//System.out.println("WHAT THE ACTUAL HECK IS THIS?????");
 		} else {
-			drivetrain.drive(0, 0);
+			drivetrain.drive(0, 0); //don't move
 		}
 		// print statements for testing & scaling
-		if (((timeSinceInitialized() * 1000) % 250) <= 20) {
+	//	if (((timeSinceInitialized() * 1000) % 250) <= 20) {
 			System.out.println("BlendedCenter: " + camera.getBlendedCenterX());
 			System.out.println("Error: " + error);
 			System.out.println("Turn: " + turn);
-		}
+		//}
 	}
 
 	// Checks to see if vision was correct
@@ -72,8 +72,8 @@ public class CenterOnAirship extends Command {
 																			// 400)
 																			// {
 			System.out.println("THRESHOLD END: " + ((camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2)));
-			drivetrain.drive(0, 0);
-			return true;
+			
+			return false;
 		} else {
 			return false;
 		}

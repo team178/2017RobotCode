@@ -25,7 +25,7 @@ import org.opencv.objdetect.*;
 *
 * @author GRIP
 */
-public class GripPipeline implements VisionPipeline {
+public class GripPipelineShooter implements VisionPipeline {
 
 	//Outputs
 	private Mat hsvThresholdOutput = new Mat();
@@ -44,9 +44,9 @@ public class GripPipeline implements VisionPipeline {
 	@Override	public void process(Mat source0) {
 		// Step HSV_Threshold0:
 		Mat hsvThresholdInput = source0;
-		double[] hsvThresholdHue = {50, 112};
-		double[] hsvThresholdSaturation = {255, 255.0};
-		double[] hsvThresholdValue = {149, 255.0};
+		double[] hsvThresholdHue = {42, 100};
+		double[] hsvThresholdSaturation = {188, 255};
+		double[] hsvThresholdValue = {105, 255};
 		hsvThreshold(hsvThresholdInput, hsvThresholdHue, hsvThresholdSaturation, hsvThresholdValue, hsvThresholdOutput);
 
 		// Step CV_dilate0:

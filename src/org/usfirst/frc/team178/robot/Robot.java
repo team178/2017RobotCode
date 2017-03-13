@@ -56,9 +56,9 @@ public class Robot extends IterativeRobot {
 		geargobbler = new GearGobbler();
 		ballsweeper = new BallSweeper();
 		fuelshooter = new FuelShooter();
-		gearCamera = new VisionStreamer("gearCamera", "178-gear-camera.local", true);
+		gearCamera = new VisionStreamer("gearCamera", "178-gear-camera.local");
 		lights = new LightsSubsystem();
-		shooterCamera = new VisionStreamer("shooterCamera", "178-shooter-camera.local", true);
+		shooterCamera = new VisionStreamer("shooterCamera", "178-shooter-camera.local");
 		ropeclimber = new RopeClimber();
 		lidar = new LIDAR(Port.kOnboard);
 		gyro = new AnalogGyro(RobotMap.GYRO);
@@ -76,6 +76,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Do Nothing", new PauseRobot(15));
 		chooser.addObject("AutoGear w/ Delay, right (RED ALLIANCE)", new AutoGearRightDelay());
 		chooser.addObject("AutoGear w/ Delay, left (BLUE ALLIANCE)", new AutoGearLeftDelay());
+		chooser.addObject("Do both (LEFT SIDE)", new AutoDoubleSequenceLeft());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
@@ -147,6 +148,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		SmartDashboard.putNumber("Distance GearGobbler: ", geargobbler.getDistanceGG());
 		SmartDashboard.putNumber("Distance DriveTrain", drivetrain.getDistanceDT());
+		SmartDashboard.putNumber("Pressure", pneumatics.getPressure());
 		//SmartDashboard.putBoolean("Gear in gobbler: ", geargobbler.getToggled());
 		Scheduler.getInstance().run();
 	}

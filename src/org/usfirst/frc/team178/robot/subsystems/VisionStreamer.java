@@ -12,55 +12,41 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.vision.VisionThread;
 
-//This is where the height and width are assigned for the camera, whch decides the quality.
-//The center, width, and height are given to use in the camera.
 public class VisionStreamer extends Subsystem {
 
 	// actual values to be determined after final physical setup implemented
-	private static int IMG_HEIGHT;
-	private static int IMG_WIDTH;
+	private static final int IMG_HEIGHT = 600;
+	private static final int IMG_WIDTH = 800;
 	private VisionThread visionThread;
 	private double[] centerX = { 0.0, 0.0 };
 	private double[] centerY = { 0.0, 0.0 };
 	private double[] rectWidth = { 0.0, 0.0 };
 	private double[] rectHeight = { 0.0, 0.0 };
 
-	// This is where the imgLock is entered using the new Object().
 	private final Object imgLock = new Object();
-	// The Axis Camera is defined.
+
 	private AxisCamera camera;
 
-	// The information for the center, width, and height used in the
-	// VisionStreamer are given.
-	public VisionStreamer(String cameraName, String host, boolean isVertical) {
-
+	public VisionStreamer(String cameraName, String host) {
 		camera = new AxisCamera(cameraName, host);
-		if (isVertical) { // vertical
-			IMG_WIDTH = 600;
-			IMG_HEIGHT = 800;
-		} else { // horizontal
-			IMG_WIDTH = 800;
-			IMG_HEIGHT = 600;
-		}
-		// camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+		camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
 
 		visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
+			 System.out.println("rectangle count: " +
+			 pipeline.filterContoursOutput().size());
 			if (pipeline.filterContoursOutput().size() >= 2) {
-				int currentRectangleIndex = 0;
-				//System.out.println(pipeline.filterContoursOutput().size());
-				for (int i = 0; i < pipeline.filterContoursOutput().size(); i++) {
+				for (int i = 0; i < 2; i++) {
+					//System.out.println("for loop is running, i is: " + i);
 					Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(i));
 					synchronized (imgLock) {
-						if (r.y >= 400 && currentRectangleIndex < 2) {
-							centerX[currentRectangleIndex] = r.x + (r.width / 2);
-							centerY[currentRectangleIndex] = r.y + (r.height / 2);
-							rectWidth[currentRectangleIndex] = r.width;
-							rectHeight[currentRectangleIndex] = r.height;
-							currentRectangleIndex++;
-						}
+						centerX[i] = r.x + (r.width / 2); 
+						centerY[i] = r.y + (r.height / 2);
+						rectWidth[i] = r.width;
+						rectHeight[i] = r.height;
 					}
 				}
 			} else {
+				System.out.println("Reached ELSE");
 				centerX[0] = 1000; // out of range = 1000
 				centerY[0] = 1000;
 				centerX[1] = 1000;
@@ -74,8 +60,7 @@ public class VisionStreamer extends Subsystem {
 	 * alternative to implementing a thread public void processCurrentImage() {
 	 * GripPipeline.process(); }
 	 */
-	// The VisionCamera is finding the dimensions and returning all the
-	// information in order to find the information.
+
 	public double getBlendedCenterX() {
 		return ((centerX[0] + centerX[1]) / 2);
 	}
