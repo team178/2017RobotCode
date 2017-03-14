@@ -33,7 +33,7 @@ public class MoveGobbler extends Command {
 		geargobbler = Robot.geargobbler;
 		initial = geargobbler.getGobbler();
 		lights = Robot.lights;
-    	lights.sendMessage(SubsystemIndex.BALLTRACK, "seaweed");
+    	lights.sendMessage(SubsystemIndex.BALLTRACK, "gold");
 		System.out.println(initial);
 	}
 
