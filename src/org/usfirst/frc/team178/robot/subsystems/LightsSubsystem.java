@@ -22,6 +22,7 @@ public class LightsSubsystem extends Subsystem {
 	public LightsSubsystem() {
 		arduino = new I2C(I2C.Port.kOnboard, 8);
 		ds = DriverStation.getInstance();
+		setBaseColor(SubsystemIndex.ALL);
 	}
 
    public void setBaseColor(SubsystemIndex subsystem) {
