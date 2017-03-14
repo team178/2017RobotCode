@@ -4,6 +4,7 @@ import org.opencv.core.Mat;
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team178.robot.GripPipeline;
+import org.usfirst.frc.team178.robot.GripPipelineShooter;
 import org.usfirst.frc.team178.robot.RobotMap;
 
 import edu.wpi.cscore.AxisCamera;
@@ -30,29 +31,55 @@ public class VisionStreamer extends Subsystem {
 	public VisionStreamer(String cameraName, String host) {
 		camera = new AxisCamera(cameraName, host);
 		camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
-
-		visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
-			 System.out.println("rectangle count: " +
-			 pipeline.filterContoursOutput().size());
-			if (pipeline.filterContoursOutput().size() >= 2) {
-				for (int i = 0; i < 2; i++) {
-					//System.out.println("for loop is running, i is: " + i);
-					Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(i));
-					synchronized (imgLock) {
-						centerX[i] = r.x + (r.width / 2); 
-						centerY[i] = r.y + (r.height / 2);
-						rectWidth[i] = r.width;
-						rectHeight[i] = r.height;
+		if (cameraName.equals("gearCamera")) {
+			visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
+				System.out.println("rectangle count: " + pipeline.filterContoursOutput().size());
+				if (pipeline.filterContoursOutput().size() >= 2) {
+					for (int i = 0; i < 2; i++) {
+						// System.out.println("for loop is running, i is: " +
+						// i);
+						Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(i));
+						synchronized (imgLock) {
+							centerX[i] = r.x + (r.width / 2);
+							centerY[i] = r.y + (r.height / 2);
+							rectWidth[i] = r.width;
+							rectHeight[i] = r.height;
+						}
 					}
+				} else {
+					System.out.println("Reached ELSE");
+					centerX[0] = 1000; // out of range = 1000
+					centerY[0] = 1000;
+					centerX[1] = 1000;
+					centerY[1] = 1000;
 				}
-			} else {
-				System.out.println("Reached ELSE");
-				centerX[0] = 1000; // out of range = 1000
-				centerY[0] = 1000;
-				centerX[1] = 1000;
-				centerY[1] = 1000;
-			}
-		});
+			});
+		} else if (cameraName.equals("shooterCamera")) {
+			visionThread = new VisionThread(camera, new GripPipelineShooter(), pipeline -> {
+				System.out.println("rectangle count: " + pipeline.filterContoursOutput().size());
+				if (pipeline.filterContoursOutput().size() >= 2) {
+					for (int i = 0; i < 2; i++) {
+						// System.out.println("for loop is running, i is: " +
+						// i);
+						Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(i));
+						synchronized (imgLock) {
+							centerX[i] = r.x + (r.width / 2);
+							centerY[i] = r.y + (r.height / 2);
+							rectWidth[i] = r.width;
+							rectHeight[i] = r.height;
+						}
+					}
+				} else {
+					System.out.println("Reached ELSE");
+					centerX[0] = 1000; // out of range = 1000
+					centerY[0] = 1000;
+					centerX[1] = 1000;
+					centerY[1] = 1000;
+				}
+			});
+		} else {
+			System.out.println("camera not found");
+		}
 		visionThread.start();
 	}
 
