@@ -5,6 +5,7 @@ package org.usfirst.frc.team178.robot;
 import org.usfirst.frc.team178.robot.commands.DriveDistance;
 import org.usfirst.frc.team178.robot.commands.LIDARDistance;
 import org.usfirst.frc.team178.robot.commands.PauseRobot;
+import org.usfirst.frc.team178.robot.commands.SetDefaultLights;
 import org.usfirst.frc.team178.robot.subsystems.*;
 import org.usfirst.frc.team178.robot.autocommandgroups.*;
 

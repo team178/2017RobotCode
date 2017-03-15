@@ -2,7 +2,9 @@ package org.usfirst.frc.team178.robot.commands;
 
 import org.usfirst.frc.team178.robot.OI;
 import org.usfirst.frc.team178.robot.Robot;
+import org.usfirst.frc.team178.robot.RobotMap.SubsystemIndex;
 import org.usfirst.frc.team178.robot.subsystems.FuelShooter;
+import org.usfirst.frc.team178.robot.subsystems.LightsSubsystem;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -11,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class ShootFuel extends Command {
+	LightsSubsystem lights;
 	FuelShooter fuelshooter;
 	OI oi;
 	double time;
@@ -19,6 +22,7 @@ public class ShootFuel extends Command {
     public ShootFuel() {
     	time = 100000000;
     	requires (Robot.fuelshooter);
+    	requires(Robot.lights);
     	
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -33,6 +37,8 @@ public class ShootFuel extends Command {
     //fuelshooter is initialized and is ready to go!
     protected void initialize() {
     	fuelshooter = Robot.fuelshooter;
+    	lights = Robot.lights;
+    	lights.sendMessage(SubsystemIndex.BALLTRACK, "enforcers shot");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -64,6 +70,7 @@ public class ShootFuel extends Command {
     protected void end() {
     	System.out.println("end");
     	fuelshooter.stop();
+    	lights.setBaseColor(SubsystemIndex.BALLTRACK);
     	fuelshooter.moveServo(0); 
     	System.out.println("end: " +fuelshooter.getServo());
     }

@@ -1,7 +1,9 @@
 package org.usfirst.frc.team178.robot.commands;
 
 import org.usfirst.frc.team178.robot.Robot;
+import org.usfirst.frc.team178.robot.RobotMap.SubsystemIndex;
 import org.usfirst.frc.team178.robot.subsystems.GearGobbler;
+import org.usfirst.frc.team178.robot.subsystems.LightsSubsystem;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -13,11 +15,13 @@ import edu.wpi.first.wpilibj.command.Command;
 // This is where the code calls the GearGobbler and the DoubleSolenoid.
 public class MoveGobbler extends Command {
 	GearGobbler geargobbler;
+	LightsSubsystem lights;
 	DoubleSolenoid.Value initial;
 
 	// This is where it requires code from the GearGobbler.
 	public MoveGobbler() {
 		requires(Robot.geargobbler);
+    	requires(Robot.lights);
 	}
 
 	// Use requires() here to declare subsystem dependencies
@@ -28,6 +32,8 @@ public class MoveGobbler extends Command {
 	protected void initialize() {
 		geargobbler = Robot.geargobbler;
 		initial = geargobbler.getGobbler();
+		lights = Robot.lights;
+    	lights.sendMessage(SubsystemIndex.BALLTRACK, "gold");
 		System.out.println(initial);
 	}
 
@@ -50,11 +56,13 @@ public class MoveGobbler extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		geargobbler.retractGobbler();
+		lights.setBaseColor(SubsystemIndex.BALLTRACK);
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
 		geargobbler.retractGobbler();
+		lights.setBaseColor(SubsystemIndex.BALLTRACK);
 	}
 }
