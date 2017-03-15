@@ -18,7 +18,7 @@ public class AutoGearSequenceLeft extends CommandGroup {
 		addSequential(new AutoTurn(RobotMap.AutoGearTurn, 0.3));
 		System.out.println("I AM DRIVING ON THE LEFT SIDE");
 		// addSequential(Timer.delay(4));
-		addSequential(new CenterOnAirship());
+		addSequential(new CenterOnAirship(), 4);
 		// General sequence for autonomous gears, may need variations
 		// Center: Drive forward, center, place gear
 		// Left or right: Drive forward, rotate, center, place gear

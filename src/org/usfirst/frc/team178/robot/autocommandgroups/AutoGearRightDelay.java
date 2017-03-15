@@ -19,6 +19,6 @@ public class AutoGearRightDelay extends CommandGroup {
     	addSequential(new DriveDistance(RobotMap.AutoGearDistA, 1));
 		addSequential(new AutoTurn(-RobotMap.AutoGearTurn, -0.3));
 		//addSequential(Timer.delay(4));
-		addSequential(new CenterOnAirship());
+		addSequential(new CenterOnAirship(), 4);
     }
 }

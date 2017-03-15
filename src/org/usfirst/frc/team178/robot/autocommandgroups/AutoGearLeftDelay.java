@@ -17,6 +17,6 @@ public class AutoGearLeftDelay extends CommandGroup {
 		addSequential(new AutoTurn(RobotMap.AutoGearTurn, 0.3));
 		System.out.println("I AM DRIVING ON THE LEFT SIDE");
 		// addSequential(Timer.delay(4));
-		addSequential(new CenterOnAirship());
+		addSequential(new CenterOnAirship(), 4);
     }
 }
