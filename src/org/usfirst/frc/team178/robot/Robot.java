@@ -58,7 +58,7 @@ public class Robot extends IterativeRobot {
 		fuelshooter = new FuelShooter();
 		gearCamera = new VisionStreamer("gearCamera", "178-gear-camera.local");
 		lights = new LightsSubsystem();
-		shooterCamera = new VisionStreamer("shooterCamera", "178-shooter-camera.local");
+	//	shooterCamera = new VisionStreamer("shooterCamera", "178-shooter-camera.local");
 		ropeclimber = new RopeClimber();
 		lidar = new LIDAR(Port.kOnboard);
 		gyro = new AnalogGyro(RobotMap.GYRO);
@@ -77,6 +77,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("AutoGear w/ Delay, right (RED ALLIANCE)", new AutoGearRightDelay());
 		chooser.addObject("AutoGear w/ Delay, left (BLUE ALLIANCE)", new AutoGearLeftDelay());
 		chooser.addObject("Do both (LEFT SIDE)", new AutoDoubleSequenceLeft());
+		chooser.addObject("Do both (RIGHT SIDE)", new AutoDoubleSequenceRight());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
