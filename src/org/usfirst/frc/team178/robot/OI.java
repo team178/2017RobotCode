@@ -42,10 +42,12 @@ public class OI {
 		//buttonX.whenPressed(new CenterOnBoiler());
 		startButton.whenPressed(new RotateCameraForward());
 		backButton.whenPressed(new RotateCameraBackwards());
-		buttonX.whenPressed(new CenterOnAirship());
-		buttonY.whenPressed(new DriveDistance(45, 0.3));
+		//buttonX.whenPressed(new CenterOnAirship());
+		//buttonY.whenPressed(new DriveDistance(45, 0.3));
 		//button4.whenPressed(new ExtendGobbler());
 		//button5.whenPressed(new RetractGobbler());
+		buttonX.whenPressed(new AutoTurn(360, 0.1));
+		
 	}
 	
 	
