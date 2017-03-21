@@ -46,11 +46,10 @@ public class OI {
 		//buttonY.whenPressed(new DriveDistance(45, 0.3));
 		//button4.whenPressed(new ExtendGobbler());
 		//button5.whenPressed(new RetractGobbler());
-		buttonX.whenPressed(new AutoTurn(360, 0.1));
+		//buttonX.whenPressed(new AutoTurn(360, 0.1));
+		buttonX.whileHeld(new CenterOnAirship());
 		
 	}
-	
-	
 	 public double getX (){
 	    	return Pooja.getX();
 	    }

@@ -12,9 +12,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoSitAndShootRed extends CommandGroup {
 
     public AutoSitAndShootRed() {
-    	addSequential(new ShootFuel(8));
-    	addSequential(new AutoTurn(-80, -0.4));
-    	addSequential(new DriveDistance(115, 0.5));
+    	addSequential(new DriveDistance(-6, -0.1), 1);
+    	addSequential(new DriveDistance(35, 0.4));
+    	addSequential(new AutoTurn(115, 0.4));
+    	addSequential(new DriveDistance(30, 0.4), 4);
+    	addSequential(new ShootFuel(5));
+    	addSequential(new DriveDistance(-30, -0.4), 4);
+    	addSequential(new AutoTurn(-115, -0.4));
+    	addSequential(new DriveDistance(50, 0.7));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
