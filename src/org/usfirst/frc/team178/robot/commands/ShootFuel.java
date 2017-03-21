@@ -80,6 +80,7 @@ public class ShootFuel extends Command {
     protected void interrupted() {
     	fuelshooter.stop();
     	fuelshooter.moveServo(0);
+    	lights.setBaseColor(SubsystemIndex.BALLTRACK);
     	System.out.println("end: " +fuelshooter.getServo());
     }
     
