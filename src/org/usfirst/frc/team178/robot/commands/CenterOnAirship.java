@@ -22,9 +22,10 @@ public class CenterOnAirship extends Command {
 	public CenterOnAirship() {
 		requires(Robot.drivetrain);
 		drivetrain = Robot.drivetrain;
-		threshold = 4;
+		threshold = 2;
 		camera = Robot.gearCamera;
 		requires(Robot.gearCamera);
+		
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 	}
@@ -48,7 +49,8 @@ public class CenterOnAirship extends Command {
 			} else if ((turn / 2) >= -.09 && (turn / 2) <= 0) { //left
 				drivetrain.drive(-.09, -.09);
 			} else {*/
-				drivetrain.drive(speed+(turn / 4), -speed+(turn / 4)); //straight
+				drivetrain.drive(speed+(turn / 5), -speed+(turn / 5)); //straight
+				
 			//}
 			// System.out.println("CenterX: " + centerX);
 		} else if (Math.abs(error) > 300) {

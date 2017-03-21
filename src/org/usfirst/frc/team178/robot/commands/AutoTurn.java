@@ -36,7 +36,7 @@ public class AutoTurn extends Command {
 	// Consistently changes Angle until it is at a "targetAngle"
 	protected void execute() {
 		currentAngle = gyro.getAngle();
-		double speedChange = ((targetAngle - currentAngle) / targetAngle);
+			double speedChange = ((targetAngle - currentAngle) / targetAngle);
 		
 		if (Math.abs(currentAngle) >= (0.7*(Math.abs(targetAngle)))) {
 			double leftSpd = lSpeed * speedChange;
