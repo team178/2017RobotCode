@@ -1,8 +1,10 @@
 package org.usfirst.frc.team178.robot.commands;
 
 import org.usfirst.frc.team178.robot.Robot;
+import org.usfirst.frc.team178.robot.RobotMap.SubsystemIndex;
 import org.usfirst.frc.team178.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team178.robot.subsystems.VisionStreamer;
+import org.usfirst.frc.team178.robot.subsystems.LightsSubsystem;
 
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Command;
@@ -18,6 +20,7 @@ public class CenterOnAirship extends Command {
 	double turn;
 	int threshold;
 	final double speed = 0.4;
+	LightsSubsystem lights;
 
 	public CenterOnAirship() {
 		requires(Robot.drivetrain);
@@ -34,6 +37,8 @@ public class CenterOnAirship extends Command {
 	protected void initialize() {
 		turn = -.1;
 		drivetrain.changeToLoGear();
+		lights = Robot.lights;
+    	lights.sendMessage(SubsystemIndex.BALLTRACK, "enforcers shot");
 	}
 
 	// This is what happens when the robot is to center directly on the airship
@@ -84,11 +89,13 @@ public class CenterOnAirship extends Command {
 	// Finishes
 	protected void end() {
 		drivetrain.drive(0, 0);
+		lights.setBaseColor(SubsystemIndex.BALLTRACK);
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
 		drivetrain.drive(0, 0);
+		lights.setBaseColor(SubsystemIndex.BALLTRACK);
 	}
 }
