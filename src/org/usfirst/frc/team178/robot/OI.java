@@ -35,7 +35,7 @@ public class OI {
 	
 	public OI() {
 		buttonB.whileHeld(new MoveGobbler());
-		//button3.whenPressed(new LIDARDrive(10, 0.1));
+		button3.whenPressed(new LIDARDrive(10, 0.1));
 		buttonA.whileHeld(new ShootFuel());
 		rBumper.whileHeld(new SweepBalls());
 		lBumper.whileHeld(new ClimbRope());
