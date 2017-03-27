@@ -82,6 +82,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Sit and Shoot (BLUE ALLIANCE)", new AutoSitAndShootBlue());
 		chooser.addObject("Shoot then Gear (RED ALLIANCE)", new AutoSitShootGearRed());
 		chooser.addObject("Shoot then Gear (BLUE ALLIANCE)", new AutoSitShootGearBlue());
+		chooser.addObject("Light Show (sit there and light)", new AutoLightRobot());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
