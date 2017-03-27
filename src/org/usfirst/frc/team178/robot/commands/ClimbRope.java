@@ -53,6 +53,6 @@ public class ClimbRope extends Command {
 	//Abandons this if something goes wrong since it is in the endgame
 	protected void interrupted() {
 		ropeclimber.climb(0);
-    	lights.setBaseColor(SubsystemIndex.ALL);
+		lights.setBaseColor(SubsystemIndex.ALL);
 	}
 }

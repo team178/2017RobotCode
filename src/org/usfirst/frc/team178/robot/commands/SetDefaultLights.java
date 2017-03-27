@@ -10,21 +10,21 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class SetDefaultLights extends Command {
-	LightsSubsystem lights;
+//	LightsSubsystem lights;
     public SetDefaultLights() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.lights);
+   // 	requires(Robot.lights);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	lights = Robot.lights;
+    	//lights = Robot.lights;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	lights.setBaseColor(SubsystemIndex.ALL);
+    //	lights.setBaseColor(SubsystemIndex.ALL);
     }
 
     // Make this return true when this Command no longer needs to run execute()

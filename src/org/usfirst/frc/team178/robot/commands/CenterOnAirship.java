@@ -28,6 +28,8 @@ public class CenterOnAirship extends Command {
 		threshold = 2;
 		camera = Robot.gearCamera;
 		requires(Robot.gearCamera);
+		requires(Robot.lights);
+		lights = Robot.lights;
 		
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
@@ -37,7 +39,7 @@ public class CenterOnAirship extends Command {
 	protected void initialize() {
 		turn = -.1;
 		drivetrain.changeToLoGear();
-		lights = Robot.lights;
+		
     	lights.sendMessage(SubsystemIndex.BALLTRACK, "enforcers shot");
 	}
 
