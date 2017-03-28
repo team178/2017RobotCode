@@ -3,6 +3,7 @@ package org.usfirst.frc.team178.robot.commands;
 import org.usfirst.frc.team178.robot.Robot;
 import org.usfirst.frc.team178.robot.RobotMap.SubsystemIndex;
 import org.usfirst.frc.team178.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team178.robot.subsystems.GearGobbler;
 import org.usfirst.frc.team178.robot.subsystems.VisionStreamer;
 import org.usfirst.frc.team178.robot.subsystems.LightsSubsystem;
 
@@ -17,6 +18,7 @@ public class CenterOnAirship extends Command {
 	private final Object imgLock = new Object();
 	DriveTrain drivetrain;
 	VisionStreamer camera;
+	GearGobbler geargobbler;
 	double turn;
 	int threshold;
 	final double speed = 0.4;
@@ -30,6 +32,8 @@ public class CenterOnAirship extends Command {
 		requires(Robot.gearCamera);
 		requires(Robot.lights);
 		lights = Robot.lights;
+		requires(Robot.geargobbler);
+		geargobbler = Robot.geargobbler;
 		
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
@@ -75,14 +79,14 @@ public class CenterOnAirship extends Command {
 
 	// Checks to see if vision was correct
 	protected boolean isFinished() {
-		if (Math.abs(camera.getCenterXfromCameraCenterX()) < threshold) {// ||
+		if (geargobbler.getDistanceGG() >= 0.08 ) {// ||
 																			// Math.abs(camera.getCenterXfromCameraCenterX())
 																			// >
 																			// 400)
 																			// {
-			System.out.println("THRESHOLD END: " + ((camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2)));
+			//System.out.println("THRESHOLD END: " + ((camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2)));
 			
-			return false;
+			return true;
 		} else {
 			return false;
 		}
