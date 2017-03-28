@@ -2,7 +2,9 @@ package org.usfirst.frc.team178.robot.commands;
 
 import org.usfirst.frc.team178.robot.OI;
 import org.usfirst.frc.team178.robot.Robot;
+import org.usfirst.frc.team178.robot.RobotMap.SubsystemIndex;
 import org.usfirst.frc.team178.robot.subsystems.*;
+import org.usfirst.frc.team178.robot.subsystems.LightsSubsystem;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.Command;
@@ -15,9 +17,11 @@ public class AutoTurn extends Command {
 	DriveTrain drivetrain;
 	AnalogGyro gyro;
 	double lSpeed, rSpeed, targetAngle, currentAngle;
+	LightsSubsystem lights;
 
 	public AutoTurn(double tAngle, double speed) {
 		requires(Robot.drivetrain);
+		requires(Robot.lights);
 		targetAngle = tAngle;
 		lSpeed = speed;
 		rSpeed = speed;
@@ -28,9 +32,14 @@ public class AutoTurn extends Command {
 		oi = Robot.oi;
 		drivetrain = Robot.drivetrain;
 		gyro = Robot.gyro;
+		lights = Robot.lights;
 		System.out.println("i ahve startesdf");
 		drivetrain.changeToLoGear();
 		gyro.reset();
+		lights.sendMessage(SubsystemIndex.ALL, "orange");
+
+		
+		
 	}
 
 	// Consistently changes Angle until it is at a "targetAngle"
@@ -73,10 +82,12 @@ public class AutoTurn extends Command {
 	protected void end() {
 		System.out.println("End turn");
 		drivetrain.drive(0, 0);
+		lights.setBaseColor(SubsystemIndex.ALL);
 	}
 
 	// Idek what this is
 	protected void interrupted() {
 		System.out.println("?????");
+		lights.setBaseColor(SubsystemIndex.ALL);
 	}
 }

@@ -31,22 +31,22 @@ public class AutoLightRobot extends Command {
     protected void execute() {
     	time = timeSinceInitialized();
     	System.out.println(time);
-    	if (time <= 1){
+    	if (time <= 3){
     	//	lights.sendMessage(SubsystemIndex.ALL, "Enforcers");
     		lights.setBaseColor(SubsystemIndex.ALL);
     	}
-    	else if (time <= 2){
+    	else if (time <= 6){
     		lights.sendMessage(SubsystemIndex.BALLTRACK, "countdown");
     	}
-    	else if (time <= 3){
-    		lights.sendMessage(SubsystemIndex.BACKBUMPER, "Enforcers");
+    	else if (time <= 9){
+    		lights.sendMessage(SubsystemIndex.BALLTRACK, "Enforcers");
     	}
     	System.out.println("Execute");
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (time >= 5){
+    	if (time >= 14){
     		return true;
     	}
     	else return false;

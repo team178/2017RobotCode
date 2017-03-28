@@ -2,6 +2,7 @@ package org.usfirst.frc.team178.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team178.robot.*;
+import org.usfirst.frc.team178.robot.RobotMap.SubsystemIndex;
 import org.usfirst.frc.team178.robot.subsystems.*;
 
 /**
@@ -13,10 +14,13 @@ public class DriveDistance extends Command {
 	double distance;
 	double adjustedSpeed;
 	double robotSpeed;
+	LightsSubsystem lights;
+
 
 	//Creates distance and speed variables
 	public DriveDistance(double dist, double speed) {
 		requires(Robot.drivetrain);
+		requires(Robot.lights);
 		distance = dist;
 		robotSpeed = speed;
 	}
@@ -25,10 +29,12 @@ public class DriveDistance extends Command {
 	protected void initialize() {
 		oi = Robot.oi;
 		drivetrain = Robot.drivetrain;
+		lights = Robot.lights;
 		drivetrain.resetEncoders();
 		adjustedSpeed = -robotSpeed;
 		drivetrain.changeToLoGear();
 		drivetrain.drive(robotSpeed, -robotSpeed); // sets drivetrain to speed
+		lights.sendMessage(SubsystemIndex.ALL, "enforcers");
 	}
 
 	// Makes it so that the robot goes straight
@@ -89,10 +95,12 @@ public class DriveDistance extends Command {
 	protected void end() {
 		drivetrain.drive(0, 0);
 		System.out.println("yeeeeee boiiiiiii");
+		lights.setBaseColor(SubsystemIndex.ALL);
 	}
 
 	// When it fails, it lets the drive team know by telling them
 	protected void interrupted() {
 		System.out.println("maybe im interrupted");
+		lights.setBaseColor(SubsystemIndex.ALL);
 	}
 }
