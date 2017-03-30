@@ -47,7 +47,7 @@ public class ShootFuel extends Command {
     	fuelshooter.shoot(0.8);
     	System.out.println(fuelshooter.getEncoderValue());
     	if (fuelshooter.getEncoderValue() >= 3000) { //rpm
-    		fuelshooter.moveServo(0.5); 
+    		fuelshooter.moveServo(0.8); 
     	}
         
 

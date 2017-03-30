@@ -17,7 +17,7 @@ public class AutoSitAndShootRed extends CommandGroup {
     	addSequential(new DriveDistance(35, 0.4));
     	addSequential(new AutoTurn(115, 0.4));
     	addSequential(new UltraSonicDrive(0.4));
-    	addSequential(new ShootFuel(5));
+    	addSequential(new ShootFuel(9));
     	addSequential(new DriveDistance(-30, -0.4), 4);
     	addSequential(new AutoTurn(-115, -0.4));
     	addSequential(new DriveDistance(50, 0.7));
