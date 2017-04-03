@@ -66,7 +66,8 @@ public class DriveDistance extends Command {
 					rightSpd = -minSpeed;
 				} 
 				drivetrain.drive(leftSpd, rightSpd);
-				//System.out.println("Distance: " + drivetrain.getLeftDistance());
+				System.out.println("Left Distance: " + drivetrain.getLeftDistance());
+				System.out.println("Right Distance: " + drivetrain.getRightDistance());
 			} else {
 				drivetrain.leftDrive(robotSpeed);
 				drivetrain.rightDrive(adjustedSpeed);// sets right side to

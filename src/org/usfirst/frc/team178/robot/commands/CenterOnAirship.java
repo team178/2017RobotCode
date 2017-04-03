@@ -73,9 +73,9 @@ public class CenterOnAirship extends Command {
 		}
 		// print statements for testing & scaling
 		// if (((timeSinceInitialized() * 1000) % 250) <= 20) {
-		System.out.println("BlendedCenter: " + camera.getBlendedCenterX());
-		System.out.println("Error: " + error);
-		System.out.println("Turn: " + turn);
+		//System.out.println("BlendedCenter: " + camera.getBlendedCenterX());
+		//System.out.println("Error: " + error);
+		//System.out.println("Turn: " + turn);
 		// }
 	}
 

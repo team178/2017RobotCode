@@ -32,7 +32,7 @@ public class VisionStreamer extends Subsystem {
 		camera = new AxisCamera(cameraName, host);
 		camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
 			visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
-				System.out.println("rectangle count: " + pipeline.filterContoursOutput().size());
+				//System.out.println("rectangle count: " + pipeline.filterContoursOutput().size());
 				if (pipeline.filterContoursOutput().size() >= 2) {
 					for (int i = 0; i < 2; i++) {
 						// System.out.println("for loop is running, i is: " +
@@ -46,7 +46,7 @@ public class VisionStreamer extends Subsystem {
 						}
 					}
 				} else {
-					System.out.println("Reached ELSE");
+					//System.out.println("Reached ELSE");
 					centerX[0] = 1000; // out of range = 1000
 					centerY[0] = 1000;
 					centerX[1] = 1000;

@@ -16,7 +16,7 @@ public class AutoGearSequenceLeft extends CommandGroup {
 		addSequential(new DriveDistance(-6, -0.1), 1);
 		addSequential(new DriveDistance(RobotMap.AutoGearDistB, 0.8));
 		addSequential(new AutoTurn(RobotMap.AutoGearTurn, 0.4));
-		addSequential(new DriveDistance(-20, -0.5));
+		addSequential(new DriveDistance(-25, -0.5));
 		System.out.println("I AM DRIVING ON THE LEFT SIDE");
 		// addSequential(Timer.delay(4));
 		addSequential(new CenterOnAirship() );
