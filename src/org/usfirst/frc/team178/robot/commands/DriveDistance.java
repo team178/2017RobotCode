@@ -50,7 +50,7 @@ public class DriveDistance extends Command {
 			// System.out.println("RightSpeed: " + drivetrain.getRightSpeed());
 			// System.out.println("LeftSpeed: " + drivetrain.getLeftSpeed());
 			double speedChange = .5 + (distance - drivetrain.getRightDistance()) / distance;
-			if (drivetrain.getLeftDistance() >= (distance * .7)) {
+			if (drivetrain.getLeftDistance() <= (distance * .7)) {
 				double leftSpd = robotSpeed * speedChange;
 				double rightSpd = adjustedSpeed * speedChange;
 				double minSpeed = .1;
@@ -66,7 +66,8 @@ public class DriveDistance extends Command {
 					rightSpd = -minSpeed;
 				} 
 				drivetrain.drive(leftSpd, rightSpd);
-				//System.out.println("Distance: " + drivetrain.getLeftDistance());
+				System.out.println("Left Distance: " + drivetrain.getLeftDistance());
+				System.out.println("Right Distance: " + drivetrain.getRightDistance());
 			} else {
 				drivetrain.leftDrive(robotSpeed);
 				drivetrain.rightDrive(adjustedSpeed);// sets right side to

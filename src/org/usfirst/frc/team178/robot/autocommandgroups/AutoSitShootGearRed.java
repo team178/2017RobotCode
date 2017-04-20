@@ -15,14 +15,14 @@ public class AutoSitShootGearRed extends CommandGroup {
 
     public AutoSitShootGearRed() {
     	addSequential(new DriveDistance(-6, -0.1), 1);
-    	addSequential(new DriveDistance(35, 0.4));
+    	addSequential(new DriveDistance(20, 0.4));
     	addSequential(new AutoTurn(115, 0.4));
     	addSequential(new UltraSonicDrive(0.4));
     	addSequential(new ShootFuel(5));
     	addSequential(new DriveDistance(-30,-0.4), 4);
-    	addSequential(new AutoTurn(-145, -0.4));
+    	addSequential(new AutoTurn(-165, -0.4));
     	addSequential(new DriveDistance(20, 0.4));
-    	addSequential(new CenterOnAirship(), 4);
+    	addSequential(new CenterOnAirship());
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

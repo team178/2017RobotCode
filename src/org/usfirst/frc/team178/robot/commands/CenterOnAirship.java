@@ -34,58 +34,61 @@ public class CenterOnAirship extends Command {
 		lights = Robot.lights;
 		requires(Robot.geargobbler);
 		geargobbler = Robot.geargobbler;
-		
+
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		turn = -.1;
+		turn = -.5;
 		drivetrain.changeToLoGear();
-		
-    	lights.sendMessage(SubsystemIndex.BALLTRACK, "enforcers shot");
+
+		lights.sendMessage(SubsystemIndex.BALLTRACK, "enforcers shot");
 	}
 
 	// This is what happens when the robot is to center directly on the airship
 	// using vision
 	protected void execute() {
-		double error = camera.getCenterXfromCameraCenterX();// (camera.getBlendedCenterX())													// -
+		double error = camera.getCenterXfromCameraCenterX();// (camera.getBlendedCenterX())
+															// // -
 															// (camera.getIMG_WIDTH()
 															// / 2);
 		if ((Math.abs(error) > threshold) && (Math.abs(error) < 350)) {
 			turn = -.0015 * error;
-		/*	if ((turn / 2) <= .09 && (turn / 2) >= 0) { //right
-				drivetrain.drive(speed + .09, -speed - .09);
-			} else if ((turn / 2) >= -.09 && (turn / 2) <= 0) { //left
-				drivetrain.drive(-.09, -.09);
-			} else {*/
-				drivetrain.drive(speed+(turn / 5), -speed+(turn / 5)); //straight
-				
-			//}
+			/*
+			 * if ((turn / 2) <= .09 && (turn / 2) >= 0) { //right
+			 * drivetrain.drive(speed + .09, -speed - .09); } else if ((turn /
+			 * 2) >= -.09 && (turn / 2) <= 0) { //left drivetrain.drive(-.09,
+			 * -.09); } else {
+			 */
+			drivetrain.drive(speed + (turn / 5), -speed + (turn / 5)); // straight
+
+			// }
 			// System.out.println("CenterX: " + centerX);
 		} else if (Math.abs(error) > 300) {
-			//System.out.println("WHAT THE ACTUAL HECK IS THIS?????");
+			// System.out.println("WHAT THE ACTUAL HECK IS THIS?????");
 		} else {
-			drivetrain.drive(0, 0); //don't move
+			drivetrain.drive(0, 0); // don't move
 		}
 		// print statements for testing & scaling
-	//	if (((timeSinceInitialized() * 1000) % 250) <= 20) {
-			System.out.println("BlendedCenter: " + camera.getBlendedCenterX());
-			System.out.println("Error: " + error);
-			System.out.println("Turn: " + turn);
-		//}
+		// if (((timeSinceInitialized() * 1000) % 250) <= 20) {
+		//System.out.println("BlendedCenter: " + camera.getBlendedCenterX());
+		//System.out.println("Error: " + error);
+		//System.out.println("Turn: " + turn);
+		// }
 	}
 
 	// Checks to see if vision was correct
 	protected boolean isFinished() {
-		if (geargobbler.getDistanceGG() >= 0.08 ) {// ||
-																			// Math.abs(camera.getCenterXfromCameraCenterX())
-																			// >
-																			// 400)
-																			// {
-			//System.out.println("THRESHOLD END: " + ((camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2)));
-			
+		if (geargobbler.getDistanceGG() >= 0.11) {// ||
+													// Math.abs(camera.getCenterXfromCameraCenterX())
+													// >
+													// 400)
+													// {
+			// System.out.println("THRESHOLD END: " +
+			// ((camera.getBlendedCenterX()) - (camera.getIMG_WIDTH() / 2)));
+
 			return true;
 		} else {
 			return false;
