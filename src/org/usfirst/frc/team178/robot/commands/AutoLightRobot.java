@@ -39,7 +39,7 @@ public class AutoLightRobot extends Command {
     		lights.sendMessage(SubsystemIndex.BALLTRACK, "countdown");
     	}
     	else if (time <= 9){
-    		lights.sendMessage(SubsystemIndex.BALLTRACK, "Enforcers");
+    		lights.sendMessage(SubsystemIndex.BACKBUMPER, "Enforcers");
     	}
     	System.out.println("Execute");
     }
