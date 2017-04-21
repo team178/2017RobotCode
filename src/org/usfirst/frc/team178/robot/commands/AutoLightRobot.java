@@ -34,6 +34,7 @@ public class AutoLightRobot extends Command {
     	if (time <= 3){
     	//	lights.sendMessage(SubsystemIndex.ALL, "Enforcers");
     		lights.setBaseColor(SubsystemIndex.ALL);
+    		lights.setBaseColor(SubsystemIndex.BACKBUMPER);
     	}
     	else if (time <= 6){
     		lights.sendMessage(SubsystemIndex.BALLTRACK, "countdown");
