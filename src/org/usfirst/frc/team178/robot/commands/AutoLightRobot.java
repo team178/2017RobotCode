@@ -34,12 +34,13 @@ public class AutoLightRobot extends Command {
     	if (time <= 3){
     	//	lights.sendMessage(SubsystemIndex.ALL, "Enforcers");
     		lights.setBaseColor(SubsystemIndex.ALL);
+    		lights.setBaseColor(SubsystemIndex.BACKBUMPER);
     	}
     	else if (time <= 6){
     		lights.sendMessage(SubsystemIndex.BALLTRACK, "countdown");
     	}
     	else if (time <= 9){
-    		lights.sendMessage(SubsystemIndex.BALLTRACK, "Enforcers");
+    		lights.sendMessage(SubsystemIndex.BACKBUMPER, "Enforcers");
     	}
     	System.out.println("Execute");
     }

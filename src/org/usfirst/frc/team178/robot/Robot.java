@@ -64,7 +64,8 @@ public class Robot extends IterativeRobot {
 		gyro = new AnalogGyro(RobotMap.GYRO);
 
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
-		camera.setResolution(400, 200);
+		camera.setResolution(320, 240);
+		camera.setFPS(25);
 
 		oi = new OI(); // NEEDS to be after subsystems
 

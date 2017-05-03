@@ -31,6 +31,7 @@ public class VisionStreamer extends Subsystem {
 	public VisionStreamer(String cameraName, String host) {
 		camera = new AxisCamera(cameraName, host);
 		camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+		camera.setFPS(15);
 			visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
 				//System.out.println("rectangle count: " + pipeline.filterContoursOutput().size());
 				if (pipeline.filterContoursOutput().size() >= 2) {
