@@ -33,8 +33,8 @@ public class FuelShooter extends Subsystem {
 	//used to shoot and to turn off shooter
 	//This is where the shoot speed is set for the two shooters on the FuelShooter.
 	public void shoot(double shootSpeed) {
-		shooter1.set(1.1*shootSpeed);
-		shooter2.set(-1.1*shootSpeed);
+		shooter1.set(shootSpeed);
+		shooter2.set(-shootSpeed);
 	}
 	
 	//This is where the shoot speed is 0 and the FuelShooter stops.
