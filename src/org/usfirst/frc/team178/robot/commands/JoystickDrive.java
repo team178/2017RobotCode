@@ -33,8 +33,15 @@ public class JoystickDrive extends Command {
 		{
 			drivetrain.changeToHiGear();
 		}
-		yVal = oi.getY();
-		twistVal = 0.5*(oi.getTwist());
+		if (oi.rBumper.get()) {
+			yVal = oi.getXBoxY();
+			System.out.println("hiiiiii cap");
+			twistVal = oi.getXBoxX();
+		}
+		else {
+			yVal = oi.getY();
+			twistVal = 0.5*(oi.getTwist());
+		}
 		//System.out.println("Y Val: " + yVal);
 		//System.out.println("Twist Val: " + twistVal);
 		//System.out.println("X Val: " + oi.getX());
@@ -50,6 +57,7 @@ public class JoystickDrive extends Command {
 		else {
 			drivetrain.drive(0,0);
 		}
+
 	}
 
 	protected boolean isFinished() {
