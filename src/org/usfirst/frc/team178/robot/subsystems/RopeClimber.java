@@ -17,8 +17,8 @@ public class RopeClimber extends Subsystem {
 	
 	//This is where the motors are given the name "climber" from the RobotMap.
 	public RopeClimber() {
-		climber1 = new CANTalon(RobotMap.Climber1);
-		climber2 = new CANTalon(RobotMap.Climber2);
+		climber1 = new Talon(RobotMap.Climber1);
+		climber2 = new Talon(RobotMap.Climber2);
 	}
 
     // Put methods for controlling this subsystem
