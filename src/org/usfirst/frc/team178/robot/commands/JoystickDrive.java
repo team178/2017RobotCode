@@ -39,7 +39,7 @@ public class JoystickDrive extends Command {
 			twistVal = oi.getXBoxX();
 		}
 		else {
-			yVal = oi.getY();
+			yVal = 0.5* oi.getY();
 			twistVal = 0.5*(oi.getTwist());
 		}
 		//System.out.println("Y Val: " + yVal);

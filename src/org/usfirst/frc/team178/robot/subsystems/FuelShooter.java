@@ -1,6 +1,6 @@
 package org.usfirst.frc.team178.robot.subsystems;
 
-import com.ctre.CANTalon;
+import edu.wpi.first.wpilibj.Talon;
 import org.usfirst.frc.team178.robot.RobotMap;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Servo;
@@ -12,16 +12,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 //This is where the motors are stated for use in the FuelShooter subsystem.
 public class FuelShooter extends Subsystem {
 	
-	public static CANTalon shooter1;
-	public static CANTalon shooter2;
+	public static Talon shooter1;
+	public static Talon shooter2;
 	public static Encoder encoder;
 	public static Servo servo;
 	
 	//This is where the motors are defined.
 	public FuelShooter() {
 	
-	shooter1 = new CANTalon(RobotMap.Shooter1);
-	shooter2 = new CANTalon(RobotMap.Shooter2);
+	shooter1 = new Talon(RobotMap.Shooter1);
+	shooter2 = new Talon(RobotMap.Shooter2);
 	encoder = new Encoder(RobotMap.SHOOTERencoderA, RobotMap.SHOOTERencoderB, true, Encoder.EncodingType.k4X);
 	servo = new Servo(RobotMap.SERVO_shooter);
 	

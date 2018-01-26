@@ -3,7 +3,7 @@ package org.usfirst.frc.team178.robot.subsystems;
 import org.usfirst.frc.team178.robot.RobotMap;
 import org.usfirst.frc.team178.robot.commands.JoystickDrive;
 
-import com.ctre.CANTalon;
+import edu.wpi.first.wpilibj.Talon;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Servo;
@@ -19,12 +19,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 // needed for the DriveTrain.
 public class DriveTrain extends Subsystem {
 
-	public static CANTalon left1;
-	public static CANTalon left2;
-	public static CANTalon left3;
-	public static CANTalon right1;
-	public static CANTalon right2;
-	public static CANTalon right3;
+	public static Talon left1;
+	public static Talon left2;
+	public static Talon left3;
+	public static Talon right1;
+	public static Talon right2;
+	public static Talon right3;
 	public static Encoder right;
 	public static Encoder left;
 	public static DoubleSolenoid speedShifter;
@@ -35,12 +35,12 @@ public class DriveTrain extends Subsystem {
 	// in.
 	public DriveTrain() {
 
-		left1 = new CANTalon(RobotMap.DMTOPleft);
-		left2 = new CANTalon(RobotMap.DMMIDDLEleft);
-		left3 = new CANTalon(RobotMap.DMBOTTOMleft);
-		right1 = new CANTalon(RobotMap.DMTOPright);
-		right2 = new CANTalon(RobotMap.DMMIDDLEright);
-		right3 = new CANTalon(RobotMap.DMBOTTOMright);
+		left1 = new Talon(RobotMap.DMTOPleft);
+		left2 = new Talon(RobotMap.DMMIDDLEleft);
+		left3 = new Talon(RobotMap.DMBOTTOMleft);
+		right1 = new Talon(RobotMap.DMTOPright);
+		right2 = new Talon(RobotMap.DMMIDDLEright);
+		right3 = new Talon(RobotMap.DMBOTTOMright);
 		right = new Encoder(RobotMap.DRIVEencoderRA, RobotMap.DRIVEencoderRB, false, Encoder.EncodingType.k4X);
 		left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
 		speedShifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.SHIFTLOW, RobotMap.SHIFTHI);

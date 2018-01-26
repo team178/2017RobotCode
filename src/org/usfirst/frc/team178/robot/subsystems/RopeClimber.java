@@ -2,7 +2,7 @@ package org.usfirst.frc.team178.robot.subsystems;
 
 import org.usfirst.frc.team178.robot.RobotMap;
 
-import com.ctre.CANTalon;
+import edu.wpi.first.wpilibj.Talon;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 //This is where the motors needed for the RopeClimber are defined.
 public class RopeClimber extends Subsystem {
 	
-	public static CANTalon climber1;
-	public static CANTalon climber2;
+	public static Talon climber1;
+	public static Talon climber2;
 	
 	//This is where the motors are given the name "climber" from the RobotMap.
 	public RopeClimber() {

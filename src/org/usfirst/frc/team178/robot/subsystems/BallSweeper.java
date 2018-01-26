@@ -2,8 +2,7 @@ package org.usfirst.frc.team178.robot.subsystems;
 
 import org.usfirst.frc.team178.robot.RobotMap;
 
-import com.ctre.CANTalon;
-
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -11,13 +10,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class BallSweeper extends Subsystem {
 
-    public static CANTalon left;
-    public static CANTalon right; 
+    public static Talon left;
+    public static Talon right; 
 
     //These are the motors necessary for the sweeper
 	public BallSweeper() {
-		left = new CANTalon(RobotMap.BallSweep1);
-		right = new CANTalon(RobotMap.BallSweep2);
+		left = new Talon(RobotMap.BallSweep1);
+		right = new Talon(RobotMap.BallSweep2);
 	}
 	
 	//Sets the two speeds of the sweeper
