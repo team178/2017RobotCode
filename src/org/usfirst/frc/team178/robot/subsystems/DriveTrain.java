@@ -3,7 +3,9 @@ package org.usfirst.frc.team178.robot.subsystems;
 import org.usfirst.frc.team178.robot.RobotMap;
 import org.usfirst.frc.team178.robot.commands.JoystickDrive;
 
-import edu.wpi.first.wpilibj.Talon;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Servo;
@@ -19,12 +21,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 // needed for the DriveTrain.
 public class DriveTrain extends Subsystem {
 
-	public static Talon left1;
-	public static Talon left2;
-	public static Talon left3;
-	public static Talon right1;
-	public static Talon right2;
-	public static Talon right3;
+	public static TalonSRX left1;
+	public static TalonSRX left2;
+	public static TalonSRX left3;
+	public static TalonSRX right1;
+	public static TalonSRX right2;
+	public static TalonSRX right3;
 	public static Encoder right;
 	public static Encoder left;
 	public static DoubleSolenoid speedShifter;
@@ -35,12 +37,12 @@ public class DriveTrain extends Subsystem {
 	// in.
 	public DriveTrain() {
 
-		left1 = new Talon(RobotMap.DMTOPleft);
-		left2 = new Talon(RobotMap.DMMIDDLEleft);
-		left3 = new Talon(RobotMap.DMBOTTOMleft);
-		right1 = new Talon(RobotMap.DMTOPright);
-		right2 = new Talon(RobotMap.DMMIDDLEright);
-		right3 = new Talon(RobotMap.DMBOTTOMright);
+		left1 = new TalonSRX(RobotMap.DMTOPleft);
+		left2 = new TalonSRX(RobotMap.DMMIDDLEleft);
+		left3 = new TalonSRX(RobotMap.DMBOTTOMleft);
+		right1 = new TalonSRX(RobotMap.DMTOPright);
+		right2 = new TalonSRX(RobotMap.DMMIDDLEright);
+		right3 = new TalonSRX(RobotMap.DMBOTTOMright);
 		right = new Encoder(RobotMap.DRIVEencoderRA, RobotMap.DRIVEencoderRB, false, Encoder.EncodingType.k4X);
 		left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
 		speedShifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.SHIFTLOW, RobotMap.SHIFTHI);
@@ -83,28 +85,28 @@ public class DriveTrain extends Subsystem {
 	// These are the three motors for the leftDrive that are set to certain
 	// speeds.
 	public void leftDrive(double speed) {
-		left1.set(speed);
-		left2.set(speed);
-		left3.set(speed);
+		left1.set(ControlMode.Velocity, speed);
+		left2.set(ControlMode.Velocity, speed);
+		left3.set(ControlMode.Velocity, speed);
 	}
 
 	// These are the three motors for the rightDrive that are set to certain
 	// speeds.
 	public void rightDrive(double speed) {
-		right1.set(speed);
-		right2.set(speed);
-		right3.set(speed);
+		right1.set(ControlMode.Velocity, speed);
+		right2.set(ControlMode.Velocity, speed);
+		right3.set(ControlMode.Velocity, speed);
 	}
 
 	// This is where the code tells the three motors from each side to drive at
 	// a certain speed.
 	public void drive(double leftMotors, double rightMotors) {
-		left1.set(leftMotors);
-		left2.set(leftMotors);
-		left3.set(leftMotors);
-		right1.set(rightMotors);
-		right2.set(rightMotors);
-		right3.set(rightMotors);
+		left1.set(ControlMode.Velocity, leftMotors);
+		left2.set(ControlMode.Velocity, leftMotors);
+		left3.set(ControlMode.Velocity, leftMotors);
+		right1.set(ControlMode.Velocity, rightMotors);
+		right2.set(ControlMode.Velocity, rightMotors);
+		right3.set(ControlMode.Velocity, rightMotors);
 	}
 
 	//

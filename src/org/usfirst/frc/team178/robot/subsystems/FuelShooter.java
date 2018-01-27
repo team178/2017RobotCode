@@ -1,6 +1,7 @@
 package org.usfirst.frc.team178.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Talon;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import org.usfirst.frc.team178.robot.RobotMap;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Servo;
@@ -12,16 +13,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 //This is where the motors are stated for use in the FuelShooter subsystem.
 public class FuelShooter extends Subsystem {
 	
-	public static Talon shooter1;
-	public static Talon shooter2;
+	public static TalonSRX shooter1;
+	public static TalonSRX shooter2;
 	public static Encoder encoder;
 	public static Servo servo;
 	
 	//This is where the motors are defined.
 	public FuelShooter() {
 	
-	shooter1 = new Talon(RobotMap.Shooter1);
-	shooter2 = new Talon(RobotMap.Shooter2);
+	shooter1 = new TalonSRX(RobotMap.Shooter1);
+	shooter2 = new TalonSRX(RobotMap.Shooter2);
 	encoder = new Encoder(RobotMap.SHOOTERencoderA, RobotMap.SHOOTERencoderB, true, Encoder.EncodingType.k4X);
 	servo = new Servo(RobotMap.SERVO_shooter);
 	
@@ -33,8 +34,8 @@ public class FuelShooter extends Subsystem {
 	//used to shoot and to turn off shooter
 	//This is where the shoot speed is set for the two shooters on the FuelShooter.
 	public void shoot(double shootSpeed) {
-		shooter1.set(shootSpeed);
-		shooter2.set(-shootSpeed);
+		shooter1.set(ControlMode.Velocity, shootSpeed);
+		shooter2.set(ControlMode.Velocity, -shootSpeed);
 	}
 	
 	//This is where the shoot speed is 0 and the FuelShooter stops.
