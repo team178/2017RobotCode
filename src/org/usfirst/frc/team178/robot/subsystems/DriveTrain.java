@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -47,7 +48,7 @@ public class DriveTrain extends Subsystem {
 		left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
 		speedShifter = new DoubleSolenoid(RobotMap.PCM, RobotMap.SHIFTLOW, RobotMap.SHIFTHI);
 		ultrasonic = new AnalogInput(RobotMap.ULTRASONICDT);
-		servo = new Servo(RobotMap.SERVO_drivetrain);
+		//servo = new Servo(RobotMap.SERVO_drivetrain);
 
 		// TODO: set left and right encoder distance per pulse here! :)
 
@@ -85,28 +86,28 @@ public class DriveTrain extends Subsystem {
 	// These are the three motors for the leftDrive that are set to certain
 	// speeds.
 	public void leftDrive(double speed) {
-		left1.set(ControlMode.Velocity, speed);
-		left2.set(ControlMode.Velocity, speed);
-		left3.set(ControlMode.Velocity, speed);
+		left1.set(ControlMode.PercentOutput, speed);
+		left2.set(ControlMode.PercentOutput, speed);
+		left3.set(ControlMode.PercentOutput, speed);
 	}
 
 	// These are the three motors for the rightDrive that are set to certain
 	// speeds.
 	public void rightDrive(double speed) {
-		right1.set(ControlMode.Velocity, speed);
-		right2.set(ControlMode.Velocity, speed);
-		right3.set(ControlMode.Velocity, speed);
+		right1.set(ControlMode.PercentOutput, speed);
+		right2.set(ControlMode.PercentOutput, speed);
+		right3.set(ControlMode.PercentOutput, speed);
 	}
 
 	// This is where the code tells the three motors from each side to drive at
 	// a certain speed.
 	public void drive(double leftMotors, double rightMotors) {
-		left1.set(ControlMode.Velocity, leftMotors);
-		left2.set(ControlMode.Velocity, leftMotors);
-		left3.set(ControlMode.Velocity, leftMotors);
-		right1.set(ControlMode.Velocity, rightMotors);
-		right2.set(ControlMode.Velocity, rightMotors);
-		right3.set(ControlMode.Velocity, rightMotors);
+		left1.set(ControlMode.PercentOutput, leftMotors);
+		left2.set(ControlMode.PercentOutput, leftMotors);
+		left3.set(ControlMode.PercentOutput, leftMotors);
+		right1.set(ControlMode.PercentOutput, rightMotors);
+		right2.set(ControlMode.PercentOutput, rightMotors);
+		right3.set(ControlMode.PercentOutput, rightMotors);
 	}
 
 	//
