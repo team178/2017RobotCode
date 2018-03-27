@@ -66,7 +66,7 @@ public class OI {
 	    	return Elizabeth.getRawAxis(4);
 	    }
 	    public double getXBoxY() {
-		return Elizabeth.getRawAxis(5); //5 is axis for movement value
+	    	return Elizabeth.getRawAxis(5); //5 is axis for movement value
 		//Up is negative, down is positive
 	}
 	//// CREATING BUTTONS

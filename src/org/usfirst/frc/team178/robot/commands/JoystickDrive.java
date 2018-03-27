@@ -33,10 +33,10 @@ public class JoystickDrive extends Command {
 		{
 			drivetrain.changeToHiGear();
 		}
-		if (oi.rBumper.get()) {
-			yVal = oi.getXBoxY();
+		if (oi.lBumper.get()) {
+			yVal = 0.5*oi.getXBoxY();
 			System.out.println("hiiiiii cap");
-			twistVal = oi.getXBoxX();
+			twistVal = 0.7*oi.getXBoxX();
 		}
 		else {
 			yVal = 0.1* oi.getY();
