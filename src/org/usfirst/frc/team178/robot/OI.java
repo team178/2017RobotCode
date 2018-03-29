@@ -39,7 +39,7 @@ public class OI {
 		button3.whenPressed(new LIDARDrive(10, 0.1));
 		buttonA.whileHeld(new ShootFuel());
 		//rBumper.whileHeld(new SweepBalls());
-		lBumper.whileHeld(new ClimbRope());
+		//lBumper.whileHeld(new ClimbRope());
 		//buttonX.whenPressed(new CenterOnBoiler());
 		startButton.whenPressed(new RotateCameraForward());
 		backButton.whenPressed(new RotateCameraBackwards());

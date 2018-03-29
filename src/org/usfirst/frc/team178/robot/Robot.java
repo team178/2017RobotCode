@@ -63,9 +63,9 @@ public class Robot extends IterativeRobot {
 		lidar = new LIDAR(Port.kOnboard);
 		gyro = new AnalogGyro(RobotMap.GYRO);
 
-		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
+		/*UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
 		camera.setResolution(300, 200);
-		camera.setFPS(20);
+		camera.setFPS(20);*/
 
 		oi = new OI(); // NEEDS to be after subsystems
 

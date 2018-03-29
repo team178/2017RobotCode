@@ -25,6 +25,7 @@ public class JoystickDrive extends Command {
 	//This is where the direction of the Joystick os determined depending upon the value received from the DoubleSolenoid. 
 	protected void execute() {
 		//Joystick returns from -1 to 1, motor takes values from -1 to 1.
+		//If speed shifter is not functioning, check setClosedLoopControl
 		if (oi.button1.get() && DriveTrain.speedShifter.get() == DoubleSolenoid.Value.kReverse)
 		{
 			drivetrain.changeToLoGear();
@@ -34,13 +35,13 @@ public class JoystickDrive extends Command {
 			drivetrain.changeToHiGear();
 		}
 		if (oi.lBumper.get()) {
-			yVal = 0.5*oi.getXBoxY();
-			System.out.println("hiiiiii cap");
-			twistVal = 0.7*oi.getXBoxX();
+			yVal = 0.35*oi.getXBoxY();
+			//System.out.println("hiiiiii cap");
+			twistVal = 0.35*oi.getXBoxX();
 		}
 		else {
-			yVal = 0.1* oi.getY();
-			twistVal = 0.25*(oi.getTwist());
+			yVal = 0.35* oi.getY();
+			twistVal = 0.35*(oi.getTwist());
 			System.out.println(yVal + " " + twistVal);
 		}
 		//System.out.println("Y Val: " + yVal);
